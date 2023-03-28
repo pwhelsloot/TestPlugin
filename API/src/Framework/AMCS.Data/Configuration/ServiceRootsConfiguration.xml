@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<section type="ServiceRootsConfiguration" namespace="AMCS.Data.Configuration" sectionName="amcs.serviceRoots" generateInterfaces="true">
-  <collection name="serviceRoots" type="ServiceRoot" default="true">
-    <attribute name="name" type="string" key="true" required="true"/>
-    <attribute name="url" type="string" required="true"/>
-  </collection>
-</section>

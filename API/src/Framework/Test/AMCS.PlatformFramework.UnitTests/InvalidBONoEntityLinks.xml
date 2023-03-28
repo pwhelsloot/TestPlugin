@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<BusinessObjects>
-  <BusinessObject
-    Name="Jobs"
-    AllowWebHooks="true"
-    AllowUserDefinedFields="true"
-    TableName="dbo.CustomerSite" />
-</BusinessObjects>
