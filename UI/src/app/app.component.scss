@@ -1,0 +1,14 @@
+@import 'sass/abstracts/_variables.scss';
+
+.errorDialogTitle {
+  text-align: left;
+  padding: 1em;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.errorText {
+  color: $pallette-alert-color;
+}

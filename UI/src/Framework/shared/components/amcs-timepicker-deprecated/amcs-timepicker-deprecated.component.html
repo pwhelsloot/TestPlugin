@@ -1,0 +1,9 @@
+<div class="form-group form-md-line-input amcs-input"
+  [ngClass]="{'has-error' : hasError, 'has-success' : !hasError && edited, 'small-mode': smallMode}">
+  <label class="form-input-label" *ngIf="label">{{label}}</label>
+  <timepicker [(ngModel)]="innerValue" (click)="onTouchedCallback()" [showMeridian]="ngxConfig.showMeridian"
+    [meridians]="ngxConfig.meridians" [showSpinners]="ngxConfig.showSpinners" [arrowkeys]="ngxConfig.arrowkeys"
+    [hourStep]="ngxConfig.hourStep" [minuteStep]="ngxConfig.minuteStep" [readonlyInput]="ngxConfig.readonlyInput"
+    [min]="ngxConfig.min" [max]="ngxConfig.max" tooltip="{{timeTooltip}}" #timePicker appAutomationLocator
+    [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey"></timepicker>
+</div>

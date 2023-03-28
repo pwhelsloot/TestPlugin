@@ -1,0 +1,19 @@
+<div *ngIf="showAlert" class="container">
+  <alert class="warning-tile" ngClass [type]="config.type" [isOpen]="config.isOpen"
+    [dismissOnTimeout]="config.dismissOnTimeout" appAutomationLocator [compName]="compName"
+    [uniqueKey]="uniqueKey?uniqueKey:config.type">
+    <ng-container *ngIf="config.showIcon" [ngSwitch]="config.type">
+      <i *ngSwitchCase="AlertType.warning" class="warning-icon far fa-exclamation-circle fa-2x"></i>
+      <i *ngSwitchCase="AlertType.danger" class="warning-icon far fa-exclamation-triangle fa-2x"></i>
+      <i *ngSwitchCase="AlertType.info" class="warning-icon far fa-info-circle fa-2x"></i>
+      <i *ngSwitchCase="AlertType.success" class="warning-icon far fa-check-circle fa-2x"></i>
+    </ng-container>
+    <span class="message">{{ config.message }}</span>
+    <ng-content></ng-content>
+    <div *ngIf="config.dismissible" class="button-contiainer">
+      <a class="button">
+        <i appAutomationLocator [compName]="compName" [uniqueKey]="hideAlert" class="fal fa-times fa-lg close-button" (click)="hide()"></i>
+      </a>
+    </div>
+  </alert>
+</div>

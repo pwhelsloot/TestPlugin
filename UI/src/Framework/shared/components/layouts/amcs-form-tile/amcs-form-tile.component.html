@@ -1,0 +1,42 @@
+<app-amcs-custom-tile [loading]="form === null" [bodyMinHeight]="options ? options.tileBodyMinHeight : null">
+    <ng-container ngProjectAs="title">
+        <ng-container *ngIf="options">
+            <div class="caption">
+                <i class="fal fa-pencil"></i>
+                <span class="caption-subject bold uppercase" *ngIf="options.featureTitle">{{options.featureTitle}}
+                </span>
+                <span *ngIf="options.featureTitle && options.editorTitle">&nbsp;-&nbsp;</span>
+                <span class="caption-subject bold uppercase" *ngIf="options.editorTitle">{{options.editorTitle}}</span>
+                <ng-container *ngIf="!isEditMode && options.editorTitle">
+                    <span class="caption-subject bold uppercase"> - </span>
+                    <span class="caption-subject bold uppercase" [translate]="'formTile.editortile.new'">New</span>
+                    <span class="caption-subject bold uppercase"> {{options.editorTitle}}</span>
+                </ng-container>
+            </div>
+            <div *ngIf="hasButtons" class="actions has-buttons">
+                <app-amcs-button [compName]="compName" [uniqueKey]="'viewLog'" *ngIf="!isEditMode && options.enableLog"
+                    (click)="onViewLog.emit()" customClass="noMargin">
+                    <span [translate]="'formTile.editortile.viewChangeLog'">View Change Log</span>
+                </app-amcs-button>
+                <a *ngIf="options.enableReturn" (click)="onReturn.emit()" class="close-button" appAutomationLocator
+                    [compName]="compName" [uniqueKey]="'close'">
+                    <i class="fal fa-times fa-2x"></i>
+                </a>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-container ngProjectAs="body">
+        <!-- HTML here should match amcs-browser-grid-editor-layout + amcs-form -->
+        <!-- html-hint-disable form-tag-ban -->
+        <form *ngIf="form !== null" [formGroup]="form.htmlFormGroup" #ngForm="ngForm"
+            [appFocusOnError]="form.manualFocusOnErrorSubject">
+            <div class="form-padding" [class.grid-padding]="displayMode === FormDisplayMode.Grid">
+                <ng-container #formHTML></ng-container>
+            </div>
+            <app-amcs-form-actions *ngIf="enableFormActions" [form]="form" [options]="options.formOptions.actionOptions"
+                (onSave)="onSave.emit($event)" (onCancel)="onCancel.emit($event)" (onContinue)="onContinue.emit($event)"
+                (onBack)="onBack.emit($event)">
+            </app-amcs-form-actions>
+        </form>
+    </ng-container>
+</app-amcs-custom-tile>

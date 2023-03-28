@@ -1,0 +1,26 @@
+<div class="radio-tile-wrapper {{customClass}}" [ngClass]="{'display-icon': iconClass != null || iconImgSrc != null}">
+  <div class="radio-tile-group" [style.height.px]="height"
+    [ngClass]="{'active': state, 'has-error' : hasError, 'disabled': isDisabled}">
+    <div class="radio-tile {{customRadioTileClass}}" (click)="selectTile()" (blur)="onTouched()" appAutomationLocator
+      [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey">
+      <img *ngIf="base64Image !== null" src="{{ base64Image }}" [ngStyle]="{ 'padding': imagePadding }"
+        class="img-responsive {{imgClass}}" alt="">
+      <label>
+        <span *ngIf="iconClass !== null"><i [class]="iconClass"></i></span>
+        <span *ngIf="iconImgSrc !== null && iconClass === null"><img [src]="iconImgSrc" /></span>
+        {{label}}
+        <span *ngIf="extraOptions.length > 0" class="caret">&nbsp;</span>
+      </label>
+
+    </div>
+    <div class="radio-tile-extras" [ngClass]="{'disabled': isDisabled}"
+      *ngIf="state && extraOptions != null && extraOptions.length > 0">
+      <div class="radio-tile-extra" [ngClass]="{'active': option.isSelected, 'is-first': isFirst, 'is-last': isLast}"
+        *ngFor="let option of extraOptions; let i =index; let isFirst = first; let isLast = last;"
+        (click)="selectOption(option)" appAutomationLocator [compName]="compName"
+        [uniqueKey]="formControlName+'_'+uniqueKey+'_'+i">
+        <label>{{option.description}}</label>
+      </div>
+    </div>
+  </div>
+</div>

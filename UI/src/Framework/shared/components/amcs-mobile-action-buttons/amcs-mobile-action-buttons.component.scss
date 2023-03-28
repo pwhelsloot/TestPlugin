@@ -1,0 +1,20 @@
+@import "sass/abstracts/_variables.scss";
+
+.mobile-actions {
+  height: 75px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  background-color: $amcs-white;
+  box-shadow: 0 0 10px 1px $amcs-parent-card-box-shadow-color;
+  z-index: 21;
+}
+
+.padding-right-5 {
+  padding: 0 5px 0 0 !important;
+}
+
+.padding-left-5 {
+  padding: 0 0 0 5px !important;
+}

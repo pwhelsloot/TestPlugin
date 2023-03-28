@@ -1,0 +1,17 @@
+<div class="form-group form-md-line-input amcs-input"
+  [ngClass]="{'has-error' : hasError, 'has-success' : !hasError && edited, 'secondary-ui': isSecondaryUi}"
+  appAutomationLocator [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey">
+  <app-amcs-label-definition [isMandatory]="isMandatory" [isEditable]="isEditable" [isVisible]="isVisible"
+    [showVisible]="showVisible"></app-amcs-label-definition>
+  <label>
+    <ng-content></ng-content>
+  </label>
+  <select class="form-control" #select [disabled]="isDisabled" [ngModel]="value" (ngModelChange)="writeValue($event)"
+    (blur)="onTouchedCallback()" [ngClass]="{'edited' : edited}" appAutomationLocator [compName]="compName"
+    [uniqueKey]="formControlName+'_'+uniqueKey+'_select'">
+    <option [ngValue]="null" [disabled]="!isOptional" [selected]="true">{{selectTranslation}}</option>
+    <option *ngFor="let option of options" [value]="option[this.optionBindValue]">
+      {{option[this.optionBindDescription] | glossary}}
+    </option>
+  </select>
+</div>

@@ -1,0 +1,36 @@
+<div class="dropdown-inbox-list" [ngClass]="{'show': opened}" *ngIf="opened">
+  <ng-container *ngIf="loading; else loadedTemplate">
+    <div class="dropdown-inbox-list-header dropdown-inbox-loading"></div>
+    <ul class="dropdown-inbox-list-body dropdown-inbox-loading">
+      <li>
+        <a>
+          <div class="loading-animation">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #loadedTemplate>
+    <div class="dropdown-inbox-list-header">
+      <span [translate]="'shared.header.notifications.youHave'">You have</span>
+      <span class="bold">{{ count }}</span>
+      <span [translate]="'shared.header.notifications.notifications'">Notifications</span>
+    </div>
+    <ul class="dropdown-inbox-list-body">
+      <li *ngFor="let notification of userNotifications; let i = index;">
+        <a (click)="onRowSelected(notification)" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'notification' + i">
+          {{ notification.sysUserName }} {{ "shared.header.notifications.modified" | translate }}
+          <b [ngClass]="notification.field.toLowerCase()">{{ this.getTranslatedFieldName(notification.field) }}</b> {{
+          "shared.header.notifications.to" | translate }}
+          {{ this.getFieldValueForDisplay(notification) }} {{ "shared.header.notifications.inFollowUp" | translate }}
+          {{ "shared.header.notifications.on" | translate }} <b>{{ notification.communicationNo }}</b>
+          {{ "shared.header.notifications.on" | translate }} {{ notification.modifiedDate | localizedDate: "short" }}
+        </a>
+      </li>
+    </ul>
+  </ng-template>
+</div>

@@ -1,0 +1,43 @@
+<div class="date-range-filter-container" [ngClass]="{'secondary-ui': isSecondaryUi}"
+  (clickOutside)="cancelOutside($event)">
+  <div class="btn" (click)="expand()" appAutomationLocator [compName]="compName" [uniqueKey]="'expand'"
+    [class.is-disabled]="isDisabled">
+    <i class="far fa-calendar-alt"></i>
+    <span *ngIf="!from" class="thin uppercase hidden-xs" [translate]="'dateRangeFilter.selectDateRange'">Select Date
+      Range</span>
+    <span *ngIf="from && to" class="thin uppercase hidden-xs">{{from | localizedDate:'mediumDate'}} - {{to |
+      localizedDate:'mediumDate'}}</span>
+    <i class="fa fa-angle-down"></i>
+  </div>
+
+  <div *ngIf="expanded" class="date-range-selector"
+    [ngClass]="{'date-range-selector-wide': custom, 'secondary-ui': isSecondaryUi, 'date-range-selector-right': dateRangeSelectorRight && custom}">
+    <div *ngIf="custom" class="calendar1">
+      <mat-calendar [selected]="customFrom" (selectedChange)="updateFromDate($event)" [startAt]="customFrom"
+        [minDate]="minDate" [maxDate]="maxDate" appAutomationLocator [compName]="compName" [uniqueKey]="'fromDate'">
+      </mat-calendar>
+    </div>
+    <div *ngIf="custom" class="calendar2">
+      <mat-calendar [selected]="customTo" (selectedChange)="updateToDate($event)" [startAt]="customTo"
+        [minDate]="minDate" [maxDate]="maxDate" appAutomationLocator [compName]="compName" [uniqueKey]="'toDate'">
+      </mat-calendar>
+    </div>
+    <div class="ranges">
+      <ul>
+        <li *ngFor="let filter of dateRangeFilterService.config.filters;let i = index"
+          [ngClass]="{ 'active': selectedFilter && filter === selectedFilter }" (click)="select(filter)"
+          [translate]="filter.sharedTranslationKey" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'filter_'+i">
+        </li>
+      </ul>
+      <div *ngIf="custom" class="range-inputs">
+        <button class="applyBtn btn btn-sm btn-success" type="button" [disabled]="!canApply" (click)="apply()"
+          [translate]="'dateRangeFilter.apply'" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'apply'">Apply</button>
+        <button class="cancelBtn btn btn-sm btn-default" type="button" (click)="cancel()"
+          [translate]="'dateRangeFilter.cancel'" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'cancel'">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

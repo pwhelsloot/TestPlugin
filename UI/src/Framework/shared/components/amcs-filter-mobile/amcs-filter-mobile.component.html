@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row multi-filter-view">
+    <div *ngFor="let filterDef of this.filterService.filterDefinitions$ | async;let  i=index"
+      class="col-lg-12 col-md-12 col-sm-12 col-xs-12 filter-definition">
+      <div *ngIf="display(filterDef)">
+        <a class="filter-header" (click)="handleExpansion(filterDef.id)" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'description_'+i">
+          <i class="fa" [ngClass]="{'fa-chevron-up': filterDef.expanded, 'fa-chevron-down': !filterDef.expanded}"
+            aria-hidden="true"></i>
+          <div>{{ filterDef.description }}</div>
+        </a>
+        <div class="filterOptions" [ngClass]="{'expanded': filterDef.expanded}">
+          <app-amcs-input type="text" [compName]="compName" [uniqueKey]="'patter_'+i" [(ngModel)]="filterDef.pattern"
+            (keyup)="onFilterFilterKeyup(filterDef.id, $event.target.value)" [icon]="'search'"
+            [displayMode]="FormControlDisplay.Small" [noPadding]="true">
+          </app-amcs-input>
+          <ul class="list-unstyled">
+            <li *ngFor="let option of getOptionsToDisplay(filterDef); let j=index">
+              <label tooltip="{{option.description}}" placement="right">
+                <input type="checkbox" class="form-check-input" [checked]="option.selected"
+                  (change)="this.filterService.selectFilterOption($event.target.checked, filterDef.id, option.id)"
+                  appAutomationLocator [compName]="compName" [uniqueKey]="i+'_chk1_' + j">
+                {{option.description}}</label>
+            </li>
+          </ul>
+          <a (click)="openFilterExpandedView(filterDef.id)"
+            [ngClass]="{'expanded': getNumberOfOptionsNotDisplayed(filterDef) > 0}" appAutomationLocator
+            [compName]="compName" [uniqueKey]="'moreFilter_'+i">
+            {{ 'shared.filter.more' | translate:{'no':filterDef.getNumberOfOptionsNotDisplayed()} }}</a>
+        </div>
+        <div *ngIf="inSingleFilterMode()" class="filter-controls">
+          <a (click)="clearAllOptionsInSelectedFilterDefinition()" appAutomationLocator [compName]="compName"
+            [uniqueKey]="'clear_'+i">Clear</a>
+          <a (click)="this.filterService.switchToMultiFilterMode()" appAutomationLocator [compName]="compName"
+            [uniqueKey]="'apply_'+i">Apply</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

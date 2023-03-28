@@ -1,0 +1,324 @@
+@import 'sass/abstracts/variables';
+@import 'sass/abstracts/mixins';
+
+.portlet {
+  .portlet-title {
+    .caption {
+      width: 80%;
+    }
+  }
+
+  .portlet.box.grey {
+    border: 1px solid $amcs-portlet-grey-border-color;
+  }
+
+  .form-actions {
+    margin: 0;
+    border-top: 1px solid $pallette-box-border-color;
+    z-index: 999;
+    padding: 20px;
+    z-index: 1000;
+    position: sticky;
+    bottom: 0;
+    background: #FFF;
+  }
+
+  .form-section {
+    margin: 10px 0 20px;
+    border: 0;
+  }
+
+
+  &.blue {
+    background-color: $amcs-portlet-blue-base-color;
+  }
+
+  &.grey {
+    background: $amcs-portlet-grey-base-color;
+  }
+
+  &.box {
+    @include generate-boxed-portlet-style('blue', $amcs-portlet-blue-base-color, $amcs-portlet-blue-inner-text-color, $amcs-portlet-blue-border-color) {
+      >.portlet-title {
+        >.actions {
+          .btn {
+            &:not(.link) {
+              background-color: $amcs-dashboard-boxblue-action-button-background-color;
+
+              >span {
+                color: $amcs-dashboard-boxblue-action-button-text-color;
+              }
+
+              &:hover {
+                background-color: $amcs-dashboard-boxblue-action-button-background-color-hover;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    ;
+
+    @include generate-boxed-portlet-style('grey', $amcs-portlet-grey-base-color, $amcs-portlet-grey-inner-text-color, $amcs-portlet-grey-border-color) {
+      .actions {
+        i {
+          color: $amcs-portlet-grey-icon-color !important;
+
+          &:hover {
+            color: $amcs-portlet-grey-icon-color-hover !important;
+          }
+        }
+      }
+    }
+
+    border-radius: 0 !important;
+    box-shadow: unset !important;
+
+    .portlet-title {
+      display: block;
+      border-radius: 0 !important;
+      padding-right: 10px;
+      padding-left: 10px;
+      padding-bottom: 0;
+      padding-top: 0;
+      height: auto;
+
+      >.caption {
+        padding-right: 5px;
+        padding-top: 10px;
+        width: unset;
+
+        i {
+          margin-top: 2px;
+        }
+      }
+
+      >.actions {
+        float: right;
+        width: unset;
+        padding-bottom: 6px;
+        padding-top: 10px;
+
+        .expander-button {
+          margin-left: 10px;
+
+          i {
+            line-height: 1.4px;
+            font-size: 29px;
+          }
+        }
+
+        .close-button {
+          margin-left: 10px;
+        }
+
+        &.has-buttons {
+          padding-top: 6px;
+        }
+
+        &.has-buttons-child {
+          padding-top: 6px;
+        }
+
+        a {
+          color: $pallette-primary-color;
+          text-decoration: none;
+
+          &:hover {
+            color: lighten($pallette-primary-color, 10);
+          }
+
+          i {
+            vertical-align: middle !important;
+
+            &:hover {
+              opacity: .8;
+            }
+          }
+        }
+
+        .btn {
+          margin-left: 10px !important;
+          box-shadow: unset !important;
+          text-transform: capitalize;
+          border-radius: 3px;
+          line-height: 1.4;
+          font-size: 13px;
+          padding: 4px 20px 2px;
+
+          &.icon {
+            padding: 4px 8px;
+
+            i {
+              margin: 0;
+              left: 5px;
+              top: 5px;
+              position: relative;
+            }
+          }
+
+          &.link {
+            transition: .3s;
+            padding-top: 2px;
+            box-shadow: none;
+            background-color: $amcs-portlet-button-link-color;
+
+            &:hover {
+              border-color: $amcs-portlet-button-link-color-hover;
+              background-color: $amcs-portlet-button-link-color-hover;
+            }
+          }
+        }
+      }
+    }
+
+    .portlet-body {
+      border-radius: 0 !important;
+    }
+
+    &.child-portlet {
+      >.portlet-title {
+        min-height: 36px;
+
+        >.caption {
+          padding: 10px 0 8px;
+          line-height: 18px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    >.portlet-title {
+      >.caption {
+        line-height: 22px;
+        font-size: 16px;
+        font-family: 'DIN Next';
+      }
+
+      a {
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+  }
+
+  &.light {
+    &.portlet-ribbon {
+      background-color: $amcs-heading-background-grey !important;
+
+      .portlet-body {
+        background-color: $amcs-white !important;
+      }
+    }
+
+    &.portlet-fit {
+      >.portlet-title {
+        background-color: $amcs-heading-background-grey;
+        padding: 10px 20px 10px 10px;
+      }
+    }
+
+    &.bordered {
+      >.portlet-title {
+        border-bottom: unset !important;
+      }
+    }
+  }
+}
+
+.ribbon-color-primary {
+  background-color: $pallette-primary-color;
+}
+
+.row.amcs-inner-container-layout {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.row.amcs-container-top-layout {
+  margin-top: -15px;
+}
+
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+  &.amcs-inner-container-layout {
+    padding-left: 0px;
+    padding-right: 0px
+  }
+}
+
+app-amcs-inner-container {
+  >.amcs-inner-container {
+    padding-left: 15px;
+    padding-top: 15px;
+
+    .portlet {
+      margin-bottom: 0px;
+    }
+
+    &.last-vertical {
+      padding-bottom: 15px;
+    }
+
+    &.last-horizontal {
+      padding-right: 15px;
+    }
+  }
+}
+
+// RDM - No padding inside expansion panels, these are use on mobile views
+mat-expansion-panel {
+  app-amcs-inner-container {
+    >.amcs-inner-container {
+      padding: 0px !important;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<app-amcs-select [compName]="compName" [uniqueKey]="'select'" [(ngModel)]="selectedId" [hasError]="selectedId === null"
+  [options]="lookupItems">
+  <span>{{options.labelText}}</span>
+  <span *ngIf="options.required" class="required" aria-required="true">*</span>
+</app-amcs-select>
+<div class="form-actions row">
+  <div class="col-xs-12">
+    <button class="btn amcs-green pull-left" type="button" (click)="onAccept()" appAutomationLocator
+      [compName]="compName" [uniqueKey]="'accept'">
+      <span>{{options.acceptButtonText}}</span>
+    </button>
+    <button class="btn btn-default pull-right" type="button" (click)="onCancel()" appAutomationLocator
+      [compName]="compName" [uniqueKey]="'cancel'">
+      <span>{{options.cancelButtonText}}</span>
+    </button>
+  </div>
+</div>

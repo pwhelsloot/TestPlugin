@@ -1,0 +1,17 @@
+@import 'sass/abstracts/variables';
+
+h4 {
+  padding: 45px !important; // Try to never use important!
+}
+
+app-amcs-radio-tile {
+  .radio-tile {
+    background-color: $amcs-orange-opacity-80;
+    border-radius: 5px;
+  }
+}
+
+.btn-primary {
+  color: $amcs-dropdown-black;
+  background-color: $amcs-white;
+}

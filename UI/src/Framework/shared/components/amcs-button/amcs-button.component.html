@@ -1,0 +1,28 @@
+<button
+  appInstrumentationListen
+  #btn
+  [style.min-width.px]="minWidth"
+  type="{{ type }}"
+  class="btn {{ customClass }}"
+  [ngClass]="{ disabled: disabled || loading }"
+  tooltip="{{ buttonTooltip }}"
+  tooltipPlacement="{{ buttonTooltipPlacement }}"
+  [isDisabled]="buttonTooltip == null"
+  appAutomationLocator
+  [compName]="compName"
+  [uniqueKey]="uniqueKey"
+  [class.important-button]="displayMode === ButtonDisplayModeEnum.Important"
+  (click)="onClick($event)"
+>
+  <ng-container *ngIf="loading; else loadedTemplate">
+    <div class="loading-animation">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </ng-container>
+  <ng-template #loadedTemplate>
+    <ng-content></ng-content>
+  </ng-template>
+</button>
+<!--Note the 'tooltip' & [isDisabled] properties are coming from ngx, hence it should only be used within this element -->

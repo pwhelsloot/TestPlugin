@@ -1,0 +1,90 @@
+app-amcs-select-typeahead {
+  .small-mode {
+    margin: 0 !important;
+    margin-bottom: 15px !important;
+
+    ng-select {
+      margin-top: 0px;
+    }
+  }
+
+  .grid-mode {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: white;
+
+    ng-select {
+      margin-top: 0px;
+    }
+  }
+
+  input[disabled] {
+    cursor: not-allowed !important;
+  }
+
+  .form-group.form-md-line-input {
+    .form-control {
+      padding-right: 0px !important;
+    }
+  }
+
+  .ng-select.custom {
+    height: 19px !important;
+    margin: 0;
+    padding: 0;
+
+    .ng-select-container {
+      margin: 0;
+      padding: 0;
+      min-height: 19px;
+
+      &:after {
+        border: 0 !important;
+      }
+
+      .ng-value-container {
+        border: 0;
+        padding: 0;
+        margin: 0;
+
+        .ng-input {
+          top: 0;
+          bottom: 0;
+
+          >input {
+            border: 0 !important;
+            padding: 0;
+            margin: 0;
+          }
+        }
+
+        .ng-value {
+          padding: 0;
+          margin: 0;
+          z-index: 999;
+        }
+      }
+
+      .ng-arrow-wrapper {
+        bottom: 3px !important;
+      }
+
+      .ng-clear-wrapper {
+        bottom: 0 !important;
+      }
+
+      .ng-spinner-loader {
+        bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.tooltip {
+  z-index: 9999999;
+}
+
+.ng-dropdown-panel.custom {
+  margin-top: 4px;
+  z-index: 10001; // For use in Modals
+}

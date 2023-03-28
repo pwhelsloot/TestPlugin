@@ -1,0 +1,53 @@
+@import '~sass/abstracts/variables';
+
+.mat-dialog-container {
+    padding: 0 !important;
+}
+
+.cdk-overlay-container {
+    z-index: 10000 !important;
+}
+
+.cdk-overlay-backdrop {
+    background-color: $amcs-modal-background-cover-color !important;
+}
+
+.modal-dialog {
+    margin: 0;
+
+    .portlet-body {
+        .row {
+            padding: 2px 0;
+        }
+    }
+
+    .portlet {
+        &.box {
+            &.child-portlet {
+                .portlet-body {
+                    .row {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .row {
+        div {
+            .row {
+                div {
+                    &:nth-child(2),
+                    &:nth-child(4) {
+                        padding-left: 0;
+                    }
+
+                    &:nth-child(1),
+                    &:nth-child(3) {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

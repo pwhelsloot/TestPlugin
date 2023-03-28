@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <connectionStrings>
+    <add name="PlatformFrameworkConnectionString" connectionString="Data Source=localhost,1431;Initial Catalog=PlatformFrameworkDevelopment;User ID=sa;Password=___sa_password_encrypted___;" providerName="System.Data.SqlClient" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+    <add name="BroadcastServiceBusConnectionString" connectionString="___SbnConnectionString___" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+    <add name="PlatformFrameworkServiceBusConnectionString" connectionString="___SbnConnectionString___" xdt:Transform="Replace" xdt:Locator="Match(name)"/>
+  </connectionStrings>
+
+  <broadcast
+      instanceName="server"
+      queuePrefix="platformframework-integration-test" xdt:Transform="Replace"/>
+
+  <jobSystem
+      scheduledJobUserId="admin"
+      scheduledJobQueueInterval="60"
+      instanceName="server"
+      queuePrefix="platformframework-integration-test"  xdt:Transform="Replace" />
+</configuration>

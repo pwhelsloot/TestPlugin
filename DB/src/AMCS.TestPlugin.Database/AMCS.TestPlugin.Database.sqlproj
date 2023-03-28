@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>AMCS.TestPlugin.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{afe2c9fc-5a86-4ce5-93d5-b789e19078ca}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>AMCS.TestPlugin.Database</RootNamespace>
+    <AssemblyName>AMCS.TestPlugin.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schema Objects" />
+    <Folder Include="Schema Objects\Database Level Objects" />
+    <Folder Include="Schema Objects\Database Level Objects\Security" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Schemas" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Filegroups" />
+    <Folder Include="Schema Objects\Schemas" />
+    <Folder Include="Schema Objects\Schemas\audit" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dbo" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Functions" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Development" />
+    <Folder Include="Templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\Database Level Objects\Storage\Filegroups\AuditTableFileGroup.sql" />
+    <PostDeploy Include="Scripts\Post-Development\Script.PostDeployment.sql" />
+    <None Include="Templates\AuditTables.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="Templates\InMemoryDatabaseModelInclude.tt" />
+    <None Include="Templates\GetComputedColumnType.tt" />
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\audit.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TranslationMappingOverride.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\AuditTable.sql" />
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\jobs.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\DBTimeZoneDatabase.sql" />
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\comms.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\fn_ColumnsForBulkInsert.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\fn_GlossaryTranslation.sql" />
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\ext.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\CompanyOutletIdTableType.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\GuidTableType.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\IdTableType.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\User.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\DBVersion.sql" />
+    <Build Include="Templates\AuditTables.sql">
+      <DependentUpon>Templates\AuditTables.tt</DependentUpon>
+    </Build>
+    <Build Include="Schema Objects\Schemas\audit\Programmability\Stored Procedures\spI_AuditRecord.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Database.publish.xml" />
+    <None Include="Scripts\Post-Development\Script.BasicUserTemplateSetUp.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="AMCS.TestPlugin.Database.refactorlog" />
+  </ItemGroup>
+</Project>

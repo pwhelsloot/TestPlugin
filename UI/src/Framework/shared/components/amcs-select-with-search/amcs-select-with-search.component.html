@@ -1,0 +1,65 @@
+<div
+  class="form-group form-md-line-input amcs-input"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-success': !hasError && edited,
+    'has-warning': hasWarning,
+    'secondary-ui': isSecondaryUi,
+    'small-mode': displayMode === FormControlDisplay.Small,
+    'grid-mode': displayMode === FormControlDisplay.Grid,
+    'dashboard-tile-header-mode': displayMode === FormControlDisplay.DashboardTileHeader
+  }"
+  appAutomationLocator
+  [compName]="compName"
+  [uniqueKey]="formControlName + '_' + uniqueKey"
+>
+  <div class="form-control" [ngClass]="{ edited: edited, 'append-to-body': appendToBody, 'disabled-dashed': isDisabled }">
+    <ng-select
+      #select
+      [items]="items"
+      [bindLabel]="bindLabel"
+      [bindValue]="bindValue"
+      [ngModel]="value"
+      [loading]="loading"
+      (ngModelChange)="writeValueFromView($event)"
+      (blur)="onTouchedCallback()"
+      [searchFn]="searchFn.bind(this)"
+      [clearable]="isOptional"
+      [ngClass]="{ edited: edited }"
+      [disabled]="isDisabled"
+      [takeFocus]="autoFocus"
+      notFoundText="{{ notFoundText }}"
+      [dropdownPosition]="dropdownPosition"
+      [virtualScroll]="true"
+      clearAllText="{{ 'tooltip.clearAll' | translate }}"
+      [appendTo]="appendTo"
+      class="custom {{ customClass }}"
+      (change)="onChange($event)"
+      [groupBy]="groupBy"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="formControlName + '_' + uniqueKey + '_select'"
+    >
+      <ng-template ng-label-tmp let-item="item">
+        <app-amcs-tooltip-on-truncate [text]="item[bindLabel] | glossary"> </app-amcs-tooltip-on-truncate>
+      </ng-template>
+      <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+        {{ item[groupBy] | glossary }}
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item">
+        <div class="display-option">
+          <ng-container
+            *ngIf="rowTemplate"
+            [ngTemplateOutlet]="rowTemplate"
+            [ngTemplateOutletContext]="{ item: item, index: i }"
+          ></ng-container>
+          <app-amcs-tooltip-on-truncate [text]="item[bindLabel] | glossary" xOffset="10"> </app-amcs-tooltip-on-truncate>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+  <ng-content select="error"></ng-content>
+  <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+  <ng-template #defaultLabel> <label app-amcs-form-label [label]="label" [isRequired]="isRequired"></label></ng-template>
+  <ng-template #customLabel><label><ng-content></ng-content></label></ng-template>
+</div>

@@ -1,0 +1,9 @@
+<div id="mapView" #map [class]="customClass" class="{{mapEngine.configuredDisplayProvider}}">
+</div>
+
+<div *ngIf="expandedMode" class="expandedMapControls">
+  <app-amcs-button customClass="button amcs-teal noMargin" (click)="fitToBounds()" [compName]="compName"
+    [uniqueKey]="'mapPin'">
+    <i class="fas fa-map-pin"></i>
+  </app-amcs-button>
+</div>

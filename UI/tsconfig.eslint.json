@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.html",
+    "e2e/**/*.ts",
+    "e2e/**/*.html",
+  ],
+  "exclude": [
+    "src/Framework/**/*.ts",
+    "src/Framework/**/*.html"
+  ]
+}

@@ -1,0 +1,6 @@
+div.truncated-text-container {
+  max-width: 1000px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

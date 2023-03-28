@@ -1,0 +1,55 @@
+<div
+  class="form-group form-md-line-input amcs-input"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-success': !hasError && !hasWarning && edited,
+    'has-warning': hasWarning,
+    'small-mode': displayMode === FormControlDisplay.Small,
+    'grid-mode': displayMode === FormControlDisplay.Grid
+  }"
+  appAutomationLocator
+  [compName]="compName"
+  [uniqueKey]="formControlName + '_' + uniqueKey"
+>
+  <div class="form-control" [ngClass]="{ edited: edited, 'append-to-body': appendToBody }">
+    <ng-select
+      [items]="items$ ? (items$ | async) : items"
+      [groupBy]="groupBy"
+      bindLabel="{{ bindLabel }}"
+      (keydown.Tab)="onTabPressed()"
+      [bindValue]="bindValue != null ? bindValue : null"
+      loadingText="{{ loadingText }}"
+      typeToSearchText="{{ typeToSearchText }}"
+      notFoundText="{{ notFoundText }}"
+      #select
+      [ngModel]="value"
+      [loading]="loading"
+      [virtualScroll]="true"
+      (ngModelChange)="writeValue($event)"
+      (blur)="onBlur($event)"
+      [ngClass]="{ edited: edited }"
+      [disabled]="isDisabled"
+      [selectableGroup]="selectableGroup"
+      clearAllText="{{ 'tooltip.clearAll' | translate }}"
+      [appendTo]="appendTo"
+      class="custom"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="formControlName + '_' + uniqueKey + '_select'"
+    >
+      <ng-template ng-label-tmp let-item="item">
+        <app-amcs-tooltip-on-truncate [text]="item[bindLabel] || item[groupBy]"> </app-amcs-tooltip-on-truncate>
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item">
+        <app-amcs-tooltip-on-truncate [text]="item[bindDropdownLabel] || item[bindLabel]"> </app-amcs-tooltip-on-truncate>
+      </ng-template>
+    </ng-select>
+  </div>
+  <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+  <ng-template #defaultLabel>
+    <label app-amcs-form-label [label]="label" [class]="labelClass" [isRequired]="isRequired"></label
+  ></ng-template>
+  <ng-template #customLabel>
+    <label> <ng-content></ng-content> </label
+  ></ng-template>
+</div>

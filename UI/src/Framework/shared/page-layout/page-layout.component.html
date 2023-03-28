@@ -1,0 +1,8 @@
+<app-header [compName]="'PageLayoutComponent'" appInstrumentation appInstrumentationListen></app-header>
+<app-header-menu [compName]="'PageLayoutComponent'">
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <router-outlet #routerOutlet="outlet"></router-outlet>
+    </div>
+  </div>
+</app-header-menu>

@@ -1,0 +1,43 @@
+@import "sass/abstracts/_variables.scss";
+
+.mat-menu-content {
+  padding: 0 !important;
+}
+
+.header-div {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.menu-items-div {
+  padding: 5px 0px 0px 15px;
+}
+
+.menu-item-div {
+  padding: 0px 15px 15px 0;
+}
+
+.menu-item-button {
+  border: 1px solid black;
+  height: 80px !important;
+  max-height: 80px !important;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+}
+
+.menu-item-button-selected {
+  background-color: $amcs-menu-selected-item-color;
+}
+
+.menu-item-icon {
+  margin: 0 !important;
+  margin: 4px !important;
+  line-height: 24px !important;
+}
+
+.menu-item-text {
+  padding: 0 !important;
+  margin: 0 0 4px 0 !important;
+  line-height: 18px !important;
+}

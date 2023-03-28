@@ -1,0 +1,46 @@
+{
+	"contract-search": {
+		"ResultsHeader": ""
+	},
+	"customer-search": {
+		"Add": "",
+		"ResultsHeader": ""
+	},
+	"home": {
+		"myProfile": {
+			"AutoPrinting": "",
+			"DefaultPrinter": "",
+			"cancel": "",
+			"change": "",
+			"image": {
+				"size": ""
+			},
+			"language": {
+				"en": "",
+				"en-GB": "",
+				"nb": ""
+			},
+			"languageTitle": "",
+			"noFileChosen": "",
+			"profileSettings": "",
+			"remove": "",
+			"save": "",
+			"selectImage": "",
+			"uploadMessage": ""
+		}
+	},
+	"search": {
+		"Contracts": "",
+		"component": {
+			"AllTab": "",
+			"ContractTab": "",
+			"CustomerTab": "",
+			"ServiceLocationTab": ""
+		},
+		"customers": "",
+		"serviceLocations": ""
+	},
+	"service-locations-search": {
+		"ResultsHeader": ""
+	}
+}

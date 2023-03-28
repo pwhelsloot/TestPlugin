@@ -1,0 +1,41 @@
+<div *ngIf="contact.customerId !== undefined && contact.customerId != null;" class="mt-element-list">
+  <div class="mt-list-container list-simple ext-1">
+    <ul>
+      <li class="d-inline-flex mt-list-item">
+        <div class="row">
+          <div class="col-md-6 col-xs-6">
+            <p>
+              <a (click)="openContact(contact)" appAutomationLocator [compName]="compName"
+                [uniqueKey]="formControlName+'_'+uniqueKey+'_name'">
+                {{contact.foreName}} {{contact.surName}}
+              </a>
+            </p>
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <p>
+              <i class="fa fa-phone fa-fw"></i>&nbsp;
+              <span *ngIf="contact.telExtension != null" appAutomationLocator [compName]="compName"
+                [uniqueKey]="formControlName+'_'+uniqueKey+'_telNo'">({{contact.telExtension}})
+              </span>{{contact.telNo}}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-6">
+            <p>{{contact.jobTitle}}</p>
+            <p>{{contact.siteName}}</p>
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <p class="email">
+              <i class="fas fa-envelope fa-fw" appAutomationLocator [compName]="compName"
+                [uniqueKey]="formControlName+'_'+uniqueKey+'_email'"></i>&nbsp;{{contact.email}}
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div *ngIf="contact.customerId === undefined || contact.customerId == null;" class="no-contact">
+  <span [translate]="'shared.contact.noContact'">No contact configured for this customer</span>
+</div>

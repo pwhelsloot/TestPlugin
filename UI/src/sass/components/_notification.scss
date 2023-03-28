@@ -1,0 +1,50 @@
+@import '~sass/abstracts/variables';
+
+
+
+%notification {
+  &.mat-snack-bar-handset {
+    width: unset;
+  }
+
+  &.mat-snack-bar-container {
+    color: $amcs-white;
+    background: $amcs-grey;
+    border-radius: 5px;
+    padding: 15px 24px;
+
+    &.mat-snack-bar-center {
+      margin: 0 0 20px;
+    }
+  }
+
+  .mat-simple-snackbar {
+    font-family: 'Nunito Sans';
+  }
+
+  .mat-simple-snackbar-action {
+    margin-left: 0;
+    margin-right: 0;
+    color: $amcs-snackbar-action-color;
+
+    button {
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}
+
+.notification-no-action {
+  @extend %notification;
+
+  .mat-simple-snackbar {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.notification-with-action {
+  @extend %notification;
+}

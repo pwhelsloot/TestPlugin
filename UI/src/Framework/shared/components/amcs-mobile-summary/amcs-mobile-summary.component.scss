@@ -1,0 +1,44 @@
+@import "sass/abstracts/_variables.scss";
+
+.heading {
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.main-div {
+  padding: 15px;
+  height: 70px;
+  text-align: center;
+  background-color: $amcs-mobile-summary-bg-color;
+  border-bottom: 1px solid $amcs-row-border-color;
+
+  .summary-value {
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  .error-summary {
+    color: $amcs-red;
+
+    a {
+      color: $amcs-red;
+    }
+  }
+}
+
+.item-div {
+  padding: 0 5px !important;
+}
+
+.no-border{
+  border: none !important;
+}

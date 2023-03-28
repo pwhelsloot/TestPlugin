@@ -1,0 +1,52 @@
+<div class="row mt-element-list" appAutomationLocator [compName]="compName" [uniqueKey]="'listView'">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-list-container list-simple"
+    [ngClass]="{'no-border': noBorder || noOuterBorder, 'no-padding': noPadding, 'no-margin': noMargin}">
+    <ul class="top-level-list" [ngClass]="{'no-border': noBorder, 'no-margin': noMargin, 'height-40': isMobile}">
+      <li (@expandAndCollapse.done)="tileUiService.innerTilesChanged.next()" [@expandAndCollapse]
+        *ngIf="addNewItem && formTemplate && !isBelowHeader" class="d-inline-flex mt-list-item selected-row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <ng-template #addFormTemplate [ngTemplateOutlet]="formTemplate">
+          </ng-template>
+        </div>
+      </li>
+      <li *ngIf="listItemHeaderTemplate" class="d-inline-flex mt-list-item header"
+        [ngClass]="{'no-selection-border': noSelectionBorder}">
+        <ng-template #itemHeaderTemplate [ngTemplateOutlet]="listItemHeaderTemplate"></ng-template>
+      </li>
+      <li *ngIf="listItemTotalTemplate" class="d-inline-flex mt-list-item header"
+        [ngClass]="{'no-selection-border': noSelectionBorder}">
+        <ng-template #itemTotalTemplate [ngTemplateOutlet]="listItemTotalTemplate"></ng-template>
+      </li>
+      <li (@expandAndCollapse.done)="tileUiService.innerTilesChanged.next()" [@expandAndCollapse]
+        *ngIf="addNewItem && formTemplate && isBelowHeader" class="d-inline-flex mt-list-item selected-row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <ng-template #addFormTemplate [ngTemplateOutlet]="formTemplate">
+          </ng-template>
+        </div>
+      </li>
+      <ng-container *ngIf="noDataAvailableTemplate && (!items || items.length < 1); else dataTemplate">
+        <ng-container [ngTemplateOutlet]="noDataAvailableTemplate"></ng-container>
+      </ng-container>
+      <ng-template #dataTemplate>
+        <ng-container *ngFor="let item of items; let i=index">
+          <li class="d-inline-flex mt-list-item" (click)="listItemClicked(item)"
+            [ngClass]="{'selected-row': item.editing, 'expandable': expandable, 'no-selection-border': noSelectionBorder, 'alternate-row-color': alternateRowColor}"
+            appAutomationLocator [compName]="compName" [uniqueKey]="'item_'+i">
+            <ng-template #itemTemplate [ngTemplateOutlet]="listItemTemplate"
+              [ngTemplateOutletContext]="{ item: item, index: i }">
+            </ng-template>
+          </li>
+          <li (@expandAndCollapse.done)="tileUiService.innerTilesChanged.next()" [@expandAndCollapse]
+            class="d-inline-flex detail-row selected-row" *ngIf="item.editing && formTemplate">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <ng-container *ngIf="item.editing && formTemplate">
+                <ng-template #editFormTemplate [ngTemplateOutlet]="formTemplate">
+                </ng-template>
+              </ng-container>
+            </div>
+          </li>
+        </ng-container>
+      </ng-template>
+    </ul>
+  </div>
+</div>

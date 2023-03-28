@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<section type="ServerConfiguration" namespace="AMCS.Data.Server.Configuration" sectionName="amcs.server" generateInterfaces="true">
+  <attribute name="dataAccessType" type="string" required="true" legacyName="DataAccessType"/>
+  <attribute name="commandTimeout" type="int?" required="true" legacyName="SQLCommandTimeout"/>
+  <attribute name="commandTimeoutExtended" type="int?" required="true" legacyName="SQLCommandTimeoutExtended"/>
+  <attribute name="bulkCopyTimeout" type="int?" required="false" legacyName="BulkCopyTimeout"/>
+  <attribute name="performanceMonitoringEnabled" type="bool" required="true" legacyName="IsPerformanceMonitoringEnabled"/>
+  <attribute name="azureCompatibilityEnabled" type="bool" required="true" legacyName="IsAzureCompatibilityEnabled"/>
+  <attribute name="dataSynchronizationDisabled" type="bool?" required="true" legacyName="IsDataSynchronisationDisabled"/>
+  <attribute name="certificateSubjectName" type="string" required="true"/>
+  <attribute name="certificatePath" type="string" required="false"/>
+  <attribute name="encryptionKey" type="string" required="true"/>
+  <attribute name="sessionExpiration" type="TimeSpan" required="true"/>
+  <attribute name="defaultCulture" type="string" required="false"/>
+  <attribute name="defaultUICulture" type="string" required="false"/>
+  <attribute name="parallelDataSessionThreadCount" type="int?" required="false"/>
+  <attribute name="auditTableEnabled" type="bool?" required="false"/>
+  <attribute name="applicationInsightsInstrumentationKey" type="string" required="true"/>
+  <attribute name="applicationInsightsLoggingLevel" type="string" required="false"/>
+  <attribute name="staticFilesOutputPath" type="string" required="false"/>
+  <attribute name="staticFilesPath" type="string" required="false"/>
+  <attribute name="defaultAppRegistrationUserName" type="string" required="false" />
+  <attribute name="pluginUpdateRetryAfterInSeconds" type="int?" required="false" />
+  <attribute name="maxPreCommitExecutionDurationInSeconds" type="int?" required="false" />
+  <attribute name="disableILGeneration" type="bool" required="false" />
+
+  <element name="pay" type="Pay" required="true">
+      <attribute name="completionURL" type="string" />
+      <attribute name="identifier" type="string"/>
+      <attribute name="credentialsKey" type="string"/>
+   </element>
+
+  <element name="platform" type="Platform" required="true">
+    <element name="mapProviderSettings" type="PlatformMapProviderSettings">
+      <attribute name="addressSearchProvider" type="string" legacyName="PlatformAPISettingMappingProvider"/>
+      <attribute name="hereMapsGeocodeUrl" type="string" legacyName="PlatformAPISettingHereMapsGeocodeUrl"/>
+      <attribute name="hereMapsReverseGeocodeUrl" type="string" legacyName="PlatformAPISettingHereMapsReverseGeocodeUrl"/>
+      <attribute name="hereMapsAppId" type="string" legacyName="PlatformAPISettingHereMapsAppId"/>
+      <attribute name="hereMapsAppCode" type="string" legacyName="PlatformAPISettingHereMapsAppCode"/>
+      <attribute name="herePlacesAutoSuggestUrl" type="string" legacyName="PlatformAPISettingHerePlacesAutoSuggestUrl"/>
+      <attribute name="googleMapsGeocodeUrl" type="string" legacyName="PlatformAPISettingGoogleMapsGeocodeUrl"/>
+      <attribute name="googleMapsPlaceAutoCompleteUrl" type="string" legacyName="PlatformAPISettingGoogleMapsPlaceAutoCompleteUrl"/>
+      <attribute name="googleMapsApiKey" type="string" legacyName="PlatformAPISettingGoogleMapsApiKey"/>
+      <attribute name="geonorgeAddressSearchBaseUrl" type="string" legacyName="PlatformAPISettingGeonorgeAddressSearchBaseUrl"/>
+      <attribute name="bregBaseUrl" type="string"/>
+      <attribute name="bregCustomerUrl" type="string"/>
+      <attribute name="bregSiteUrl" type="string"/>
+      <attribute name="pdokBaseUrl" type="string"/>
+    </element>
+    <element name="routePlanning" type="PlatformRoutePlanning">
+      <attribute name="routePlannerTimeout" type="int?" legacyName="PlatformUIRoutePlannerTimeout"/>
+      <attribute name="mapTraceTimeout" type="int?" legacyName="PlatformUIMapTraceTimeout"/>
+      <attribute name="nearbyRoutesSearchEnabled" type="bool" legacyName="PlatformUINearbyRoutesSearchEnabled"/>
+      <attribute name="nearbyRoutesSearchRadius" type="int?" legacyName="PlatformUINearbyRoutesSearchRadius"/>
+      <attribute name="nearbyLiftEventsSearchRadius" type="int?" legacyName="PlatformUINearbyLiftEventsSearchRadius"/>
+    </element>
+    <element name="fleetPlanning" type="PlatformFleetPlanning">
+      <attribute name="fleetPlannerTimeout" type="int?"/>
+      <attribute name="itemStatusesUrl" type="string"/>
+      <attribute name="itemDetailsUrl" type="string"/>
+      <attribute name="qualificationsUrl" type="string"/>
+    </element>
+  </element>
+
+  <element name="platformUI" type="PlatformUI" required="true">
+    <element name="applicationSettings" type="PlatformUIApplication">
+      <attribute name="pollingIntervalSeconds" type="int?" legacyName="PlatformUISettingPollingIntervalSeconds"/>
+      <attribute name="clickOnceExtensionURLChrome" type="string" legacyName="PlatformUISettingClickOnceExtensionURLChrome"/>
+      <attribute name="clickOnceExtensionURLFirefox" type="string" legacyName="PlatformUISettingClickOnceExtensionURLFirefox"/>
+      <attribute name="notificationDurationShort" type="int?" legacyName="PlatformUISettingNotificationDurationShort"/>
+      <attribute name="notificationDurationNormal" type="int?" legacyName="PlatformUISettingNotificationDurationNormal"/>
+      <attribute name="notificationDurationLong" type="int?" legacyName="PlatformUISettingNotificationDurationLong"/>
+      <attribute name="communicationCountPollingIntervalSeconds" type="int?" legacyName="PlatformUISettingCommunicationCountPollingIntervalSeconds"/>
+      <attribute name="canCancelCallLog" type="bool" legacyName="PlatformUISettingCanCancelCallLog"/>
+      <attribute name="maxJobDocuments" type="int?" />
+      <attribute name="maxJobDocumentSizeInMb" type="int?" />
+      <attribute name="maxJobDocumentsPerSave" type="int?" />
+      <attribute name="durationToDisplayCallLogNotification" type="int?" legacyName="PlatformUISettingDurationToDisplayCallLogNotification"/>
+      <attribute name="defaultCustomerNoteCommunicationType" type="int?" legacyName="PlatformAPISettingDefaultCustomerNoteCommunicationType"/>
+      <attribute name="maxManifestProfileDocumentsPerSave" type="int?" />
+      <attribute name="maxManifestProfileDocumentSizeInMb" type="decimal?" />
+      <attribute name="brregIntegrationEnabled" type="bool" />
+      <attribute name="enableCasualCustomerTemplateEmailFields" type="bool" />
+      <attribute name="maxServiceAgreementDocuments" type="int?" />
+      <attribute name="maxServiceAgreementDocumentSizeInMb" type="decimal?" />
+      <attribute name="maxHealthAndSafetyDocumentSizeInMb" type="int?" />
+      <attribute name="maxHealthAndSafetyDocuments" type="int?" />
+      <attribute name="wasteTransferNoteBiReportPath" type="string" />
+      <attribute name="enableHierarchyPrice" type="bool" />
+      <attribute name="disableZoneFeature" type="bool" />
+      <attribute name="manageAPinWebUI" type="bool" />
+    </element>
+    <element name="applicationInsightsSettings" type="PlatformUIApplicationInsights">
+      <attribute name="appInsightsOn" type="bool" legacyName="PlatformUISettingAppInsightsOn"/>
+      <attribute name="consoleLoggingOn" type="bool" legacyName="PlatformUISettingConsoleLoggingOn"/>
+      <attribute name="trackingOptionsPageViewLoadTimesUrlBased" type="bool" legacyName="PlatformUISettingTrackingOptionsPageViewLoadTimesUrlBased"/>
+      <attribute name="trackingOptionsPageViewLoadTimesManualComponentNameBased" type="bool" legacyName="PlatformUISettingTrackingOptionspageViewLoadTimesManualComponentNameBased"/>
+      <attribute name="trackingOptionsComponentLifecycle" type="bool" legacyName="PlatformUISettingTrackingOptionsComponentLifecycle"/>
+      <attribute name="trackingOptionsUIInteractionEvent" type="bool" legacyName="PlatformUISettingTrackingOptionsUIInteractionEvent"/>
+      <attribute name="trackingOptionsLoginEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsLoginEvents"/>
+      <attribute name="trackingOptionsDesktopEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsDesktopEvents"/>
+      <attribute name="trackingOptionsGlobalSearchEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsGlobalSearchEvents"/>
+      <attribute name="trackingOptionsGlobalSearchTerms" type="bool" legacyName="PlatformUISettingTrackingOptionsGlobalSearchTerms"/>
+      <attribute name="trackingOptionsCustomerContactEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsCustomerContactEvents"/>
+      <attribute name="trackingOptionsCustomerCalendarEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsCustomerCalendarEvents"/>
+      <attribute name="trackingOptionsCustomerOperationEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsCustomerOperationEvents"/>
+      <attribute name="trackingOptionsCustomerServiceLocationEvents" type="bool" legacyName="PlatformUISettingTrackingOptionsCustomerServiceLocationEvents"/>
+    </element>
+    <element name="mapProviders" type="PlatformUIMapProviders">
+      <attribute name="googleMapsUrl" type="string" legacyName="PlatformUISettingGoogleMapsUrl"/>
+      <attribute name="googleMapsSatelliteUrl" type="string" legacyName="PlatformUISettingGoogleMapsSatelliteUrl"/>
+      <attribute name="googleMapsTerrainUrl" type="string" legacyName="PlatformUISettingGoogleMapsTerrainUrl"/>
+      <attribute name="hereMapsUrl" type="string" legacyName="PlatformUISettingHereMapsUrl"/>
+      <attribute name="hereMapsSatelliteUrl" type="string" />
+      <attribute name="hereMapsTerrainUrl" type="string" />
+      <attribute name="mapDisplayProvider" type="string" legacyName="PlatformUISettingMapDisplayProvider"/>
+    </element>
+    <element name="general" type="PlatformUIGeneral">
+      <attribute name="isTabControlReadOnly" type="bool" legacyName="PlatformUISettingIsTabControlReadOnly"/>
+      <attribute name="hideSiteOrderActions" type="bool" legacyName="PlatformUISettingHideSiteOrderActions"/>
+    </element>
+    <element name="developerSettings" type="PlatformUIDeveloper">
+      <attribute name="showCommunicationsAdd" type="bool" legacyName="PlatformUISettingShowCommunicationsAdd"/>
+      <attribute name="showCommunicationsDropdown" type="bool" legacyName="PlatformUISettingShowCommunicationsDropdown"/>
+      <attribute name="showContactDelete" type="bool" legacyName="PlatformUISettingShowContactDelete"/>
+      <attribute name="showContractsAdd" type="bool" legacyName="PlatformUISettingShowContractsAdd"/>
+      <attribute name="showContractsExpander" type="bool" legacyName="PlatformUISettingShowContractsExpander"/>
+      <attribute name="showCustomerAdd" type="bool" legacyName="PlatformUISettingShowCustomerAdd"/>
+      <attribute name="showDashboardOverviewEdit" type="bool" legacyName="PlatformUISettingShowDashboardOverviewEdit"/>
+      <attribute name="showHeaderDevTools" type="bool" legacyName="PlatformUISettingShowHeaderDevtools"/>
+      <attribute name="showHeaderERPAbout" type="bool" legacyName="PlatformUISettingShowHeaderERPAbout"/>
+      <attribute name="showServiceLocationsAdd" type="bool" legacyName="PlatformUISettingShowServiceLocationsAdd"/>
+      <attribute name="showServiceLocationsDelete" type="bool" legacyName="PlatformUISettingShowServiceLocationsDelete"/>
+      <attribute name="showMissedCollectionLogEvent" type="bool" legacyName="PlatformUISettingShowMissedCollectionLogEvent"/>
+      <attribute name="showMissedCollectionCreateCallout" type="bool" legacyName="PlatformUISettingShowMissedCollectionCreateCallout"/>
+      <attribute name="showFrequentDashboardActions" type="bool" legacyName="PlatformUISettingShowFrequentDashboardActions"/>
+      <attribute name="showSiteOrderActionMenu" type="bool" legacyName="PlatformUISettingShowSiteOrderActionMenu"/>
+      <attribute name="showSiteOrderAdd" type="bool" legacyName="PlatformUISettingShowSiteOrderAdd" />
+      <attribute name="showLoadReceiving" type="bool" legacyName="PlatformUISettingShowLoadReceiving" />
+      <attribute name="showAddUnplannedLoads" type="bool" legacyName="PlatformUISettingShowAddUnplannedLoads" />
+    </element>
+    <element name="featureToggleSettings" type="PlatformUIFeatureToggle">
+      <attribute name="showFeatureCustomerService" type="bool" legacyName="PlatformUISettingShowFeatureCustomerService" />
+      <attribute name="showFeatureRouting" type="bool" legacyName="PlatformUISettingShowFeatureRouting" />
+      <attribute name="showFeatureScale" type="bool" legacyName="PlatformUISettingShowFeatureScale" />
+      <attribute name="showFeatureMaterials" type="bool" legacyName="PlatformUISettingShowFeatureMaterials" />
+      <attribute name="showFeatureEquipmentInventory" type="bool" legacyName="PlatformUISettingShowFeatureEquipmentInventory" />
+      <attribute name="showFeatureAccounting" type="bool" legacyName="PlatformUISettingShowFeatureAccounting" />
+      <attribute name="showFeaturePricesAndProducts" type="bool" legacyName="PlatformUISettingShowFeaturePricesAndProducts" />
+      <attribute name="showFeatureReportsAnalytics" type="bool" legacyName="PlatformUISettingShowFeatureReportsAnalytics" />
+      <attribute name="showFeatureSettings" type="bool" legacyName="PlatformUISettingShowFeatureSettings" />
+      <attribute name="showDesignLibrary" type="bool" legacyName="PlatformUISettingShowDesignLibrary"/>
+      <attribute name="ShowCustomerSiteHealthAndSafetyForms" type="bool" legacyName="PlatformUISettingShowCustomerSiteHealthAndSafetyForms"/>
+      <attribute name="showCustomerPaidToDateBrowser" type="bool" legacyName="PlatformUISettingShowCustomerPaidToDateBrowser"/>
+      <attribute name="showSiteOrderBrowserSoldWeight" type="bool"/>
+      <attribute name="showFeatureExtensibility" type="bool"/>
+    </element>
+  </element>
+
+  <element name="jobSystem" type="JobSystem" required="false">
+    <attribute name="queuePrefix" type="string" required="false"/>
+    <attribute name="scheduledJobQueueInterval" type="int?" required="false"/>
+    <attribute name="scheduledJobUserId" type="string" required="true"/>
+  </element>
+
+  <element name="broadcast" type="Broadcast" required="false">
+    <attribute name="queuePrefix" type="string" required="false"/>
+  </element>
+
+  <element name="azureAppConfiguration" type="AzureAppConfiguration" required="false">
+    <attribute name="topicName" type="string" required="false"/>
+    <collection name="keyPrefixes" type="KeyPrefix" required="true">
+      <attribute name="prefix" type="string" key="true" required="true"/>
+      <attribute name="type" type="string" key="true" required="true"/>
+    </collection>
+  </element>
+
+  <element name="diagnostics" type="Diagnostics" required="true">
+    <attribute name="disabledDiagnostics" type="string" required="true"/>
+    <attribute name="expectedDatabaseName" type="string" required="true"/>
+  </element>
+
+  <element name="commsServerProtocols" type="CommsServerProtocols" required="false">
+    <attribute name="serviceRoot" type="string" required="true"/>
+    <attribute name="key" type="string" required="true" legacyName="CommsServerPrivateKey"/>
+  </element>
+
+  <element name="systemConfigurations" type="SystemConfigurations" required="true">
+    <element name="password" type="SystemConfigurationPassword" required="true">
+      <attribute name="numberlockAfterAttempts" type="int" required="true"/>
+      <attribute name="maxLifeDays" type="int" required="true"/>
+      <attribute name="minLength" type="int" required="true"/>
+      <attribute name="minLower" type="int" required="true"/>
+      <attribute name="minUpper" type="int" required="true"/>
+      <attribute name="minDigits" type="int" required="true"/>
+      <attribute name="minSymbols" type="int" required="true"/>
+      <attribute name="distinctInterval" type="int" required="true"/>
+    </element>
+  </element>
+
+  <element name="commsServer" type="CommsServer">
+    <attribute name="userName" type="string"/>
+    <attribute name="allowAlteranteTransport" type="bool" />
+    <element name="scale" type="CommsServerScale">
+      <attribute name="url" type="string"/>
+      <attribute name="authKey" type="string" />
+      <attribute name="protocol" type="string" />
+      <attribute name="azureServiceBusConnectionStringName" type="string" />
+    </element>
+    <element name="transportDispatch" type="CommsServerTransportDispatch">
+      <attribute name="url" type="string"/>
+      <attribute name="instance" type="string" />
+      <attribute name="authKey" type="string" />
+      <attribute name="protocol" type="string" />
+      <attribute name="azureServiceBusConnectionStringName" type="string" />
+    </element>
+  </element>
+
+  <element name="blobStorage" type="BlobStorage">
+    <attribute name="mode" type="string" required="true"/>
+    <element name="azure" type="AzureBlobStorage">
+      <attribute name="container" type="string" required="true"/>
+    </element>
+    <element name="fileSystem" type="FileSystemBlobStorage">
+      <attribute name="store" type="string" required="true"/>
+    </element>
+  </element>
+
+  <element name="api" type="Api">
+    <collection name="enabledApis" type="EnabledApi" required="true">
+      <attribute name="name" type="string" key="true" required="true"/>
+    </collection>
+  </element>
+
+  <element name="tempFileStorage" type="TempFileStorage">
+    <attribute name="ttl" type="TimeSpan?" required="false"/>
+    <element name="azure" type="TempFileAzureStorage">
+      <attribute name="container" type="string" required="true"/>
+    </element>
+    <element name="fileSystem" type="TempFileFileStorage">
+      <attribute name="store" type="string" required="false"/>
+    </element>
+  </element>
+
+  <element name="dataSets" type="DataSets">
+    <element name="storage" type="DataSetStorage">
+      <attribute name="ttl" type="TimeSpan?" required="false"/>
+      <element name="azure" type="DataSetAzureStorage">
+        <attribute name="container" type="string" required="true"/>
+      </element>
+      <element name="fileSystem" type="DataSetFileStorage">
+        <attribute name="store" type="string" required="true"/>
+      </element>
+    </element>
+
+    <attribute name="concurrency" type="int?" required="false"/>
+    <attribute name="queue" type="string" required="true"/>
+  </element>
+
+  <element name="pluginSystem" type="PluginSystem">
+    <element name="metadataRegistries" type="MetadataRegistries">
+      <attribute name="uiComponentsMetadata" type="string" required="false"/>
+    </element>
+  </element>
+</section>

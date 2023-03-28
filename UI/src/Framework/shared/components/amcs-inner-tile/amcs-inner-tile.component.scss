@@ -1,0 +1,223 @@
+@import "sass/abstracts/_variables.scss";
+@import "sass/abstracts/_mixins.scss";
+
+.hidden {
+  display: none;
+}
+
+.portlet.box.amcs-black {
+  border: 1px solid $amcs-inner-portlet-black-color;
+}
+
+.portlet.box.amcs-black>.portlet-title {
+  background-color: $amcs-inner-portlet-black-color;
+}
+
+.portlet.box.amcs-black>.portlet-title>.caption {
+  color: #fff!important;
+  width: 100%;
+  span {
+    color: #fff;
+  }
+}
+
+.portlet-skeleton {
+  .portlet-title {
+    .portlet-skeleton-text-block {
+      background-color: darken($amcs-portlet-grey-title, 20);
+      top: 10px;
+      position: relative;
+      width: 120px !important;
+      height: 10px;
+    }
+  }
+
+  .portlet-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portlet-skeleton-body-load {
+    border: 0;
+    height: 90px;
+    width: 90px;
+
+    .square {
+      opacity: 0.2;
+      background: $amcs-portlet-grey-title;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+    }
+
+    .square-c {
+      @include loading-animation();
+      animation: loading-animation 2s infinite ease-in-out;
+      width: 30px;
+      height: 30px;
+      opacity: 0.8;
+    }
+
+    .square-c.state2c {
+      animation-delay: -1s;
+    }
+  }
+}
+
+.portlet {
+  .portlet-title {
+    display: block;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0;
+    padding-top: 0;
+    height: auto;
+
+    .caption {
+      padding-right: 5px;
+      padding-top: 15px;
+      width: unset;
+    }
+
+    .actions {
+      float: right;
+      width: unset;
+      padding-bottom: 6px;
+      padding-top: 14px;
+
+      a {
+        color: $pallette-primary-color;
+        text-decoration: none;
+
+        i {
+          vertical-align: middle !important;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      a:hover {
+        color: lighten($pallette-primary-color, 10);
+      }
+
+      .dropdown-container {
+        display: flex;
+        align-items: center;
+
+        span {
+          white-space: nowrap;
+          font-family: "DIN Next";
+          padding: 10px 10px 8px 0px;
+        }
+
+        .form-control {
+          padding: 0px;
+          height: 30px;
+          margin: 0px;
+          margin-bottom: 2px;
+          min-width: 300px;
+        }
+      }
+    }
+
+    .actions.has-buttons {
+      padding-top: 10px;
+    }
+
+    .actions.has-dropdown {
+      padding: 0px !important;
+    }
+
+    .actions.has-buttons-child {
+      padding-top: 6px !important;
+    }
+  }
+
+  .portlet-body {
+    height: 320px;
+
+    &.no-padding {
+      padding: 0;
+    }
+  }
+
+  .portlet-body.dynamic-height {
+    min-height: unset;
+    height: unset;
+    overflow: hidden;
+  }
+
+  .portlet-body.overflow-visible {
+    overflow: visible !important;
+  }
+
+  .portlet-body.overflow-auto {
+    overflow: auto !important;
+  }
+}
+
+.portlet.child-portlet {
+  .portlet-title {
+    min-height: unset;
+    height: 36px;
+
+    .caption {
+      color: $amcs-portlet-body-label-color !important;
+      padding: 10px 0 8px;
+
+      .caption-subject {
+        font-size: 14px;
+      }
+    }
+
+    .actions {
+      padding-top: 9px;
+
+      .btn-group>.dropdown-menu {
+        margin-top: 20px;
+      }
+
+      .btn-group>.dropdown-menu.pull-right:after,
+      .dropdown-toggle>.dropdown-menu.pull-right:after,
+      .dropdown>.dropdown-menu.pull-right:after {
+        border-bottom-color: $pallette-box-border-color;
+      }
+
+      .btn-group>.dropdown-menu:after,
+      .dropdown-toggle>.dropdown-menu:after,
+      .dropdown>.dropdown-menu:after {
+        display: inline-block !important;
+        content: '';
+        border-left: 7px solid transparent;
+        border-bottom: 7px solid #FFF;
+        border-right: 7px solid transparent;
+        right: 10px;
+        left: auto;
+        top: -7px;
+        position: absolute;
+      }
+
+      .btn-group>.dropdown-menu:before,
+      .dropdown-toggle>.dropdown-menu:before,
+      .dropdown>.dropdown-menu:before {
+        display: inline-block !important;
+        content: '';
+        border-left: 8px solid transparent;
+        border-bottom: 8px solid #E0E0E0;
+        border-right: 8px solid transparent;
+        right: 9px;
+        left: auto;
+        top: -8px;
+        position: absolute;
+      }
+    }
+  }
+}
+
+.no-fa-2x {
+  font-size: 1em;
+  padding-left: 5px;
+}

@@ -1,0 +1,24 @@
+<div dropdown class="btn-group" [container]="attachToBody ? 'body' : null" [placement]="dropDownPlacement"
+  [isDisabled]="isDisabled">
+  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic"
+    [style.height]="buttonHeight + 'px'" [style.min-width]="buttonMinWidth + 'px'" appAutomationLocator
+    [compName]="compName" [uniqueKey]="'dropdown'">
+    <i *ngIf="showIconInButton" [ngClass]="selectedItem.icon"></i>
+    <span class="selected-item-text" *ngIf="showTextInButton">{{selectedItem.text}}</span>
+    <span class="chevron fas fa-chevron-down"></span>
+  </button>
+  <ul *dropdownMenu style="left: auto;" class="dropdown-menu" [class.pull-right]="dropMenuRight" role="menu"
+    aria-labelledby="button-basic" [style.margin-top]="dropDownMarginTop" [style.min-width]="listMinWidth + 'px'">
+    <div class="list-header" [style.margin-top]="listHeaderText ? '12px' : '8px'">
+      {{ listHeaderText }}
+    </div>
+    <li role="menuitem" class="menuitem" *ngFor="let menuItem of items; let i = index" (click)="itemClicked(menuItem)"
+      appAutomationLocator [compName]="compName" [uniqueKey]="'text_'+i">
+      <a>
+        <i *ngIf="menuItem.icon.length > 0" [ngClass]="['item-icon', menuItem.icon]"></i>
+        <span class="dropdown-item-text">{{ menuItem.text }}</span>
+        <i *ngIf="menuItem.isSelected && showSelectIcon" class="fas fa-check selected-item"></i>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,82 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+
+var types = new[] {
+    typeof(sbyte),
+    typeof(byte),
+    typeof(short),
+    typeof(ushort),
+    typeof(int),
+    typeof(uint),
+    typeof(long),
+    typeof(ulong),
+    typeof(float),
+    typeof(double),
+    typeof(decimal)
+};
+
+var invalids = new HashSet<(Type, Type)>(new[] {
+    (typeof(sbyte), typeof(ulong)),
+    (typeof(short), typeof(ulong)),
+    (typeof(int), typeof(ulong)),
+    (typeof(long), typeof(ulong)),
+    (typeof(float), typeof(decimal)),
+    (typeof(double), typeof(decimal)),
+});
+
+#>
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AMCS.Data.EntityValidation.Rules
+{
+  internal static partial class ValueComparison
+  {
+    private static void AddGeneratedComparers(Dictionary<(Type, Type), IComparer> comparers)
+    {
+<#
+    foreach (var left in types) {
+        foreach (var right in types) {
+            if (invalids.Contains((left, right)) || invalids.Contains((right, left))) {
+                continue;
+            }
+#>
+      comparers.Add((typeof(<#= left.Name #>), typeof(<#= right.Name #>)), new <#= left.Name #><#= right.Name #>Comparer());
+<# } } #>
+    }
+
+<#
+    foreach (var left in types) {
+        foreach (var right in types) {
+            if (invalids.Contains((left, right)) || invalids.Contains((right, left))) {
+                continue;
+            }
+#>
+    private class <#= left.Name #><#= right.Name #>Comparer : IComparer
+    {
+        public int Compare(object x, object y)
+        {
+            if (x == null)
+                return y == null ? 0 : 1;
+            if (y == null)
+                return -1;
+            
+            var left = (<#= left.Name #>)x;
+            var right = (<#= right.Name #>)y;
+
+            if (left < right)
+                return -1;
+            if (left > right)
+                return 1;
+            return 0;
+        }
+    }
+
+<# } } #>
+  }
+}

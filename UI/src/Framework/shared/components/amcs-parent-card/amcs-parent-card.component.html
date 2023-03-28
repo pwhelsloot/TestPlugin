@@ -1,0 +1,24 @@
+<app-amcs-inner-container-group>
+  <div class="card card-skeleton" *ngIf="loading; else loadedTemplate">
+    <div class="card-title">
+      <div class="card-title-block"></div>
+    </div>
+    <div class="card-body">
+      <!-- CSS animation taken from https://codepen.io/trungk18/pen/yJggrL -->
+      <div class="card-skeleton-body-load">
+        <div class="square square-c state1c"></div>
+        <div class="square square-c state2c"></div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadedTemplate>
+    <div class="card">
+      <div class="card-title {{customClass}}">
+        <ng-content select="title"></ng-content>
+      </div>
+      <div class="card-body" [ngClass]="{'remove-padding': removePadding}">
+        <ng-content select="body"></ng-content>
+      </div>
+    </div>
+  </ng-template>
+</app-amcs-inner-container-group>

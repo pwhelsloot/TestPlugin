@@ -1,0 +1,46 @@
+{
+	"contract-search": {
+		"ResultsHeader": "Results for"
+	},
+	"customer-search": {
+		"Add": "Add",
+		"ResultsHeader": "Results for"
+	},
+	"home": {
+		"myProfile": {
+			"AutoPrinting": "Auto Printing",
+			"DefaultPrinter": "Default Printer",
+			"cancel": "Cancel",
+			"change": "Change",
+			"image": {
+				"size": "Image size should not be greater than 2MB."
+			},
+			"language": {
+				"en": "English (US)",
+				"en-GB": "English (GB)",
+				"nb": "Norwegian (Norway)"
+			},
+			"languageTitle": "Language",
+			"noFileChosen": "No file chosen",
+			"profileSettings": "Profile Settings",
+			"remove": "Remove",
+			"save": "Save",
+			"selectImage": "Select Image",
+			"uploadMessage": "You can upload a JPG, GIF or PNG image. Max file size: 2 MB."
+		}
+	},
+	"search": {
+		"Contracts": "Contracts",
+		"component": {
+			"AllTab": "ALL",
+			"ContractTab": "Contracts",
+			"CustomerTab": "Customers",
+			"ServiceLocationTab": "Service Locations"
+		},
+		"customers": "Customers",
+		"serviceLocations": "Service Locations"
+	},
+	"service-locations-search": {
+		"ResultsHeader": "Results for"
+	}
+}

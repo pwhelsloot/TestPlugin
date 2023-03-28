@@ -1,0 +1,12 @@
+<ag-grid-angular
+  class="ag-theme-material"
+  [columnDefs]="columnDefs"
+  [rowData]="rowData"
+  [gridOptions]="options"
+  [defaultColDef]="defaultColDef"
+  (pasteStart)="onPasteStart($event)"
+  (pasteEnd)="onPasteEnd($event)"
+  (gridReady)="onGridReadyEvent($event)"
+  (cellValueChanged)="onCellValueChanged($event)"
+>
+</ag-grid-angular>

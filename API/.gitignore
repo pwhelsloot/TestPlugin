@@ -1,0 +1,8 @@
+/packages
+/.vs
+/.idea
+/*/*/bin
+/*/*/obj
+/TestResults
+*.user
+StyleCop.Cache

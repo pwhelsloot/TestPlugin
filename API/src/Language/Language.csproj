@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Language</PackageId>
+  </PropertyGroup>
+  <Import Project="..\..\TestPlugin.targets" />
+  <ItemGroup>
+    <EmbeddedResource Remove="AmcsStrings.fr-fr.resx" />
+    <EmbeddedResource Remove="AmcsStrings.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AmcsStrings.fr-fr.resx" />
+    <None Include="AmcsStrings.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\AMCS.Data.Configuration\AMCS.Data.Configuration.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="**\*.resx" WithCulture="false" />
+    <EmbeddedResource Include="**\*.xml" WithCulture="false" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,41 @@
+<div class="timePicker" [ngClass]="{'disabledTimePicker' : disabled}">
+  <div>
+    <input type="text" maxlength="2" placeholder="HH" class="timeInput hourInput form-control" [disabled]="disabled"
+      [min]="minHour" [max]="maxHour" [value]="currentHour | number: '2.0-0'" (keydown)="onInputKeyDown('hour', $event)"
+      (keyup.ArrowUp)="onArrowUp('hour', $event)" (keyup.ArrowDown)="onArrowDown('hour', $event)"
+      (focus)="onInputFocus('hour', 'in')" (focusout)="onInputFocus('hour', 'out')"
+      (wheel)="onInputWheel('hour', $event)" (change)="onInputChange('hour', $event)" appAutomationLocator
+      [compName]="compName +  '_hh'" [uniqueKey]="formControlName+'_'+uniqueKey" #hourInput />
+
+    <span class="seperator">:</span>
+
+    <input type="text" maxlength="2" [disabled]="disabled" [value]="currentMinute | number: '2.0-0'" placeholder="MM"
+      class="timeInput minuteInput form-control" (focus)="onInputFocus('minute', 'in')"
+      (focusout)="onInputFocus('minute', 'out')" (keydown)="onInputKeyDown('minute', $event)"
+      (keyup.ArrowUp)="prevDefault($event); onArrowUp('minute', $event)"
+      (keyup.ArrowDown)="prevDefault($event); onArrowDown('minute', $event)"
+      (wheel)="prevDefault($event); onInputWheel('minute', $event)" (change)="onInputChange('minute', $event)"
+      #minuteInput appAutomationLocator [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey+'_mm'" />
+
+    <button class="btn btn-primary medium disabled" [ngClass]="{'disabled' : disabled}"
+      *ngIf="use12HourClock && showMerdians" (click)="toggleMerdian()" appAutomationLocator [compName]="compName"
+      [uniqueKey]="formControlName+'_'+uniqueKey+'_btn'">{{currentMerdian}}</button>
+  </div>
+
+  <div class="timepickerDropdown" *ngIf="showTimeDropdown">
+    <ul class="hourListing" *ngIf="showHourDropdown">
+      <li *ngFor="let hour of hours;let i = index" [ngClass]="{'selected': currentHour == hour}"
+        (click)="onHourClick(hour)" appAutomationLocator [compName]="compName"
+        [uniqueKey]="formControlName+'_'+uniqueKey+'_hh_' + i">
+        {{hour | number: '2.0-0'}}
+      </li>
+    </ul>
+    <ul class="minuteListing" *ngIf="showMinuteDropdown">
+      <li *ngFor="let minute of minutes;let i = index" [ngClass]="{'selected': currentMinute == minute}"
+        (click)="onMinuteClick(minute)" appAutomationLocator [compName]="compName"
+        [uniqueKey]="formControlName+'_'+uniqueKey+'_mm_' + i">
+        {{minute | number: '2.0-0'}}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <app-amcs-applied-filter-list [clearAllText]="clearAllText" [compName]="compName"></app-amcs-applied-filter-list>
+  <div class="row multi-filter-view">
+    <div *ngFor="let filterDef of this.filterService.filterDefinitions$ | async;let i = index"
+      class="col-lg-12 col-md-12 col-sm-12 col-xs-12 filter-definition">
+      <div *ngIf="displayMultiFilterView(filterDef)">
+        <a class="filter-header" (click)="handleExpansion(filterDef.id)" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'description_'+i">
+          <i class="fa" [ngClass]="{'fa-chevron-up': filterDef.expanded, 'fa-chevron-down': !filterDef.expanded}"
+            aria-hidden="true"></i>
+          <div class="filterDescriptionText">
+            <app-amcs-tooltip-on-truncate [text]="filterDef.description">
+            </app-amcs-tooltip-on-truncate>
+          </div>
+        </a>
+        <div class="filterOptions" [ngClass]="{'expanded': filterDef.expanded}">
+          <app-amcs-input type="text" [compName]="compName" [uniqueKey]="'pattern_'+i" [(ngModel)]="filterDef.pattern"
+            (keyup)="onFilterFilterKeyup(filterDef.id, $event.target.value)" [icon]="'search'"
+            [displayMode]="FormControlDisplay.Small" [noPadding]="true">
+          </app-amcs-input>
+          <ul class="list-unstyled">
+            <div *ngIf="filterDef.filterDisplayMode === AmcsFilterDisplayMode.CheckBox">
+              <li *ngFor="let option of filterDef.getOptionsToDisplay(); let j=index">
+                <label tooltip="{{option.description}}" placement="{{tooltipPlacement}}">
+                  <input type="checkbox" class="form-check-input" [checked]="option.selected"
+                    (change)="this.filterService.selectFilterOption($event.target.checked, filterDef.id, option.id)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="i+'_chk1_' + j">
+                  {{option.description}}</label>
+              </li>
+            </div>
+            <div *ngIf="filterDef.filterDisplayMode === AmcsFilterDisplayMode.RadioButton">
+              <li *ngFor="let option of filterDef.getOptionsToDisplay(); let k=index">
+                <label tooltip="{{option.description}}" placement="{{tooltipPlacement}}">
+                  <input type="radio" class="form-radio-input" [value]="option.selected" [checked]="option.selected"
+                    (change)="this.filterService.selectFilterOption($event.target.checked, filterDef.id, option.id)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="i+'_chk1_' + k" />
+                  {{option.description}}</label>
+              </li>
+            </div>
+          </ul>
+          <a (click)="openFilterExpandedView(filterDef.id)" class="filterMoreLink"
+            [ngClass]="{'expanded': filterDef.getNumberOfOptionsNotDisplayed() > 0}" appAutomationLocator
+            [compName]="compName" [uniqueKey]="'moreFilter_'+i">
+            {{ 'shared.filter.more' | translate:{'no':filterDef.getNumberOfOptionsNotDisplayed()} }}</a>
+        </div>
+      </div>
+
+      <!-- filter overlay -->
+      <div *ngIf="this.displaySingleFilterView(filterDef)" class="row single-filter-view"
+        [style.width.px]="singleFilterViewWidth">
+        <div class="filter-header">
+          <div class="filter-description">{{ this.filterService.singleFilterModeFilterDefinition.description }}</div>
+          <div class="close-icon">
+            <a (click)="this.filterService.switchToMultiFilterMode()" appAutomationLocator [compName]="compName"
+              [uniqueKey]="'multiFilterMode_'+i">
+              <i class="fa fa-lg fa-compress" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div class="options">
+          <app-amcs-input type="text" [compName]="compName" [uniqueKey]="'filter_'+i"
+            [(ngModel)]="this.filterService.singleFilterModeFilterDefinition.pattern"
+            (keyup)="onFilterSingleFilterKeyup(this.filterService.singleFilterModeFilterDefinition.id, $event.target.value)"
+            [icon]="'search'" [displayMode]="FormControlDisplay.Small" [noPadding]="true">
+          </app-amcs-input>
+          <div class="start-char-list">
+            <div *ngFor="let startChar of this.filterService.singleFilterModeFilterDefinition.startChars;let k=index"
+              (click)="scrollTo(startChar)" appAutomationLocator [compName]="compName" [uniqueKey]="i+'_startChar_'+k">
+              {{startChar}}</div>
+          </div>
+        </div>
+        <div class="filter-options-scroller">
+          <div *ngFor="let option of this.filterService.singleFilterModeFilterDefinition.groupedCharOptions;let l=index"
+            class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="option-container">
+              <div *ngIf="option.displayInitialCharacter" #letter [id]="option.initialCharacter"
+                class="option-start-letter">{{option.initialCharacter}}</div>
+              <div *ngIf="!option.displayInitialCharacter" class="option-start-letter">&nbsp;</div>
+              <div class="option" [style.width.px]="optionsWidth">
+                <label tooltip="{{option.description}}" placement="right" container="body" class="filter-option-label">
+                  <input type="checkbox" class="form-check-input" [checked]="option.selected"
+                    (change)="this.filterService.selectFilterOption($event.target.checked, this.filterService.singleFilterModeFilterDefinition.id, option.id)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="i+'_chk2_' + l">
+                  {{option.description}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-controls">
+          <a (click)="clearAllOptionsInSelectedFilterDefinition()" appAutomationLocator [compName]="compName"
+            [uniqueKey]="'clear_'+i">Clear</a>
+          <a (click)="this.filterService.switchToMultiFilterMode()" appAutomationLocator [compName]="compName"
+            [uniqueKey]="'apply_'+i">Apply</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

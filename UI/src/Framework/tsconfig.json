@@ -1,0 +1,33 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@environments/*": ["environments/*"],
+      "@auth-module/*": ["auth/*"],
+      "@core-module/*": ["core/*"],
+      "@testing/*": ["testing/*"],
+      "@translate/*": ["translate/*"],
+      "@shared-module/*": ["shared/*"],
+      "@corehelpers/*": ["core/helpers/*"],
+      "@coremodels/*": ["core/models/*"],
+      "@customermodels/*": ["app/customer/models/*"],
+      "@coreservices/*": ["core/services/*"],
+      "@coreconfig/*": ["core/config/*"],
+      "@storybook-util/*": ["storybook-util/*"],
+      "@sass/*": ["sass/*"],
+      "@routeconfig/*": ["core/config/routes/*"],
+      "@workflow/*": ["workflow/*"]
+    }
+  }
+}

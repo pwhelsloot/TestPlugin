@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PackageId>AMCS.TestPlugin.Server</PackageId>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+  <Import Project="..\..\TestPlugin.targets" />
+  <ItemGroup>
+    <None Remove="Entity\ApiMetadata.xml" />
+    <None Remove="Plugin\Workflows\GetTestMessage.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\CustomDictionary.xml" Link="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\ApiMetadata.xml" />
+    <EmbeddedResource Include="BusinessObjects.xml" />
+    <EmbeddedResource Include="Plugin\Workflows\GetTestMessage.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ConfigurationSectionGenerator" Version="1.0.6" />
+    <PackageReference Include="NBuilder" Version="6.1.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.26.0.34506">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\AMCS.ApiService.Abstractions\AMCS.ApiService.Abstractions.csproj" />
+    <ProjectReference Include="..\Framework\AMCS.ApiService\AMCS.ApiService.csproj" />
+    <ProjectReference Include="..\Framework\AMCS.Data.Server\AMCS.Data.Server.csproj" />
+    <ProjectReference Include="..\Framework\AMCS.Data\AMCS.Data.csproj" />
+    <ProjectReference Include="..\Language\Language.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Configuration\TestPluginConfiguration.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestPluginConfiguration.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ConfigurationSectionGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConfigurationSectionGenerator.cs</LastGenOutput>
+    </None>
+    <None Update="Configuration\TestPluginConfiguration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestPluginConfiguration.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

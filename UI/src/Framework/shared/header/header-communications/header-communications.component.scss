@@ -1,0 +1,176 @@
+@import "sass/abstracts/variables";
+@import "sass/abstracts/mixins";
+
+.loading-animation {
+    text-align: center;
+
+    .line {
+        @include bounce-up(15px);
+
+        &:nth-last-child(1) {
+            animation: bounce-up .6s .1s linear infinite;
+        }
+
+        &:nth-last-child(2) {
+            animation: bounce-up .6s .2s linear infinite;
+        }
+
+        &:nth-last-child(3) {
+            animation: bounce-up .6s .3s linear infinite;
+        }
+
+        display: inline-block;
+        background-color: #61C250;
+        border-radius: 15px;
+        height: 15px;
+        width: 15px;
+    }
+}
+
+div.dropdown-inbox-list {
+    display: none;
+    position: absolute;
+    min-width: 345px;
+    right: 0;
+    top: 50px;
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.3);
+    z-index: 2;
+
+    .dropdown-inbox-loading {
+        text-align: center;
+    }
+
+    .group-color {
+        color: $amcs-black;;
+    }
+
+    &::before {
+        position: absolute;
+        top: -4px;
+        right: 15px;
+        display: inline-block !important;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #eee;
+        border-left: 7px solid transparent;
+        border-bottom-color: $amcs-white;
+        content: '';
+        z-index: 1;
+    }
+
+    .dropdown-inbox-list-header {
+        padding: 12px;
+        background-color: $amcs-dropdown-toggle-header-background-color;
+        font-size: 13px;
+        font-family: "DIN Next", sans-serif;
+        line-height: 1.1;
+
+        span {
+            margin-right: 4px;
+            float: left;
+            font-weight: 600;
+            position: relative;
+            top: 2px;
+
+            &.bold {
+                font-weight: 700 !important;
+            }
+        }
+
+        a {
+            position: relative;
+            left: 75px;
+            top: 2px;
+
+            &:hover {
+              background: initial;
+            }
+        }
+    }
+
+    .dropdown-inbox-list-body {
+        list-style: none;
+        background-color: $amcs-white;
+        height: 100%;
+        overflow: hidden;
+        width: auto;
+        padding-right: 0 !important;
+        padding-left: 0;
+        font-family: "Nunito Sans";
+
+        li {
+            &.overdue {
+                border-left: 3px solid $pallette-error-tab-color;
+
+                a {
+                    .subject {
+                        .time {
+                            color: $pallette-error-tab-color !important;
+                            font-weight: bold !important;
+                        }
+                    }
+                }
+            }
+
+            a {
+                padding: 16px 9px 18px;
+                border-bottom: 1px solid $amcs-dropdown-toggle-border-bottom-color;
+                color: $amcs-settings-header-color;
+                display: block;
+                clear: both;
+                font-weight: 300;
+                line-height: 20px;
+                font-size: 13px;
+                text-decoration: none;
+
+                &:hover {
+                    background-color: $amcs-dropdown-list-item-selected-color;
+                }
+
+                .subject {
+                    margin-left: 0;
+                    display: block;
+
+                    .from {
+                        font-size: 13px;
+                        font-weight: 900;
+                        color: $amcs-settings-header-color;
+                    }
+
+                    .time {
+                        float: right;
+                        font-size: 12px;
+                        font-weight: 900;
+                    }
+                }
+
+                .secondary-information {
+                    display: block;
+                    height: 30px;
+
+                    > span {
+                        font-weight: 500;
+                        font-size: 13px;
+                    }
+
+                    .customer-name {
+                        max-width: 20ch;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .message {
+                    display: block;
+                    font-size: 12px;
+                    line-height: 1.3;
+                    color: $amcs-settings-header-color;
+                    font-weight: 300;
+                    white-space: normal;
+                    word-break: break-all;
+                    margin-top: 6px;
+                }
+            }
+        }
+    }
+}

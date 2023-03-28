@@ -1,0 +1,25 @@
+<app-amcs-inner-container-group>
+  <div class="row amcs-inner-container-layout">
+    <div *ngFor="let item of items" [class]="'amcs-inner-container-layout ' + outerDivClass">
+      <app-amcs-inner-container>
+        <div class="multi-select-card" [ngClass]="
+        {
+          'is-selected': item.isSelected,
+          'is-unselected': !item.isSelected,
+          'bold': item.isSelected
+        }" [ngStyle]="
+        {
+          'height': cardHeight,
+          'line-height': cardHeight
+        }" (click)="onItemClicked(item)" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'multi_select_card_' + item.id">
+          <span [ngClass]="{'bold': item.subText}">{{item.description}}</span>
+          <span *ngIf="item.subText"> {{item.subText}} </span>
+          <div *ngIf="item.isHighlighted && highlightIconClass" class="highlighted-container">
+            <i [ngClass]="highlightIconClass"></i>
+          </div>
+        </div>
+      </app-amcs-inner-container>
+    </div>
+  </div>
+</app-amcs-inner-container-group>

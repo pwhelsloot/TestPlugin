@@ -1,0 +1,31 @@
+<div class="form-group form-md-line-input amcs-input"
+  [ngClass]="{'has-error' : hasError, 'has-success' : !hasError && edited}" appAutomationLocator [compName]="compName"
+  [uniqueKey]="formControlName+'_'+uniqueKey+'_div'">
+  <input #input [(ngModel)]=" innerValue" [typeaheadSingleWords]="config.typeaheadSingleWords"
+    [typeahead]="config.typeaheadItems" [takeFocus]="autoFocus" [adaptivePosition]="true"
+    [typeaheadOptionField]="config.typeaheadOptionField" (typeaheadOnSelect)="itemSelected.next($event.item)"
+    [typeaheadGroupField]="config.typeaheadGroupField" [typeaheadOptionsLimit]="config.typeaheadOptionsLimit"
+    [typeaheadMinLength]="config.typeaheadMinLength" [typeaheadAsync]="config.typeaheadAsync"
+    placeholder="{{placeholder}}" tooltip="{{inputTooltip}}" [disabled]="isDisabled" (blur)="onTouchedCallback()"
+    (keyup)="keyUp($event)" (keydown)="keyDown($event)" class="form-control" [ngClass]="{'edited' : edited}"
+    [optionsListTemplate]="listTemplate" autocomplete="{{autocomplete}}" appAutomationLocator [compName]="compName"
+    [uniqueKey]="formControlName+'_'+uniqueKey">
+  <span class="help-block help-block-error">
+    <ng-content select="errors"></ng-content>
+  </span>
+  <label>
+    <ng-content select="label"></ng-content>
+  </label>
+</div>
+<ng-template #listTemplate let-matches="matches">
+  <ul class="dropdown-menu">
+    <ng-template ngFor let-match let-i="index" [ngForOf]="matches">
+      <li [class.active]="i === activeItemIndex">
+        <a (click)="selectMatch(match)" appAutomationLocator [compName]="compName"
+          [uniqueKey]="formControlName+'_'+uniqueKey+'_matches_' + index">
+          <h5>{{match.value}}</h5>
+        </a>
+      </li>
+    </ng-template>
+  </ul>
+</ng-template>

@@ -1,0 +1,104 @@
+@import 'sass/abstracts/variables';
+
+.timePicker {
+    margin: 0 auto;
+    white-space: nowrap;
+
+    .disabledTimePicker {
+        input {
+            width: 60px;
+            border: 0;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    input {
+        display: inline-block;
+        padding: 10px;
+        text-align: center;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid $amcs-input-border-bottom-color;
+        width: 50px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    .input:focus {
+        .timepickerDropdown {
+            display: inline;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        background: rgba(152, 152, 152, 0.6);
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background-color: rgba(152, 152, 152, 0.6);
+    }
+
+    .timepickerDropdown {
+        position: absolute;
+        width: 115px;
+        height: 200px;
+
+        ul {
+            margin: 0;
+            padding: 1px 0 5px 0;
+            border-bottom-right-radius: 10px;
+            text-align: center;
+            z-index: 10000;
+            position: absolute;
+            border-bottom-left-radius: 10px;
+            border-top: 0;
+            border: 1px solid $amcs-input-border-bottom-color;
+            overflow-x: hidden;
+            max-height: 194px;
+            font-size: 14pt;
+            list-style: none;
+            background-color: $amcs-white;
+            overflow-y: auto;
+
+            &.minuteListing {
+                left: 60px;
+            }
+
+            li {
+                width: 48px;
+                cursor: pointer;
+            }
+
+            li:hover {
+                background-color: $amcs-list-hover-background-color;
+            }
+
+            li.selected {
+                background-color: $amcs-list-selected-background-color;
+            }
+        }
+    }
+}

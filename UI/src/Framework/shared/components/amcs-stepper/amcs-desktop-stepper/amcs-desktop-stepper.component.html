@@ -1,0 +1,87 @@
+<!-- eslint-disable amcs-html-plugin/deprecated-tag-ban -->
+<app-amcs-container-tile *ngIf="!hideParentTile"  appAutomationLocator [compName]="compName" [uniqueKey]="'stepper'">
+  <ng-container ngProjectAs="title">
+    <div class="caption">
+      <i class="fal fa-layer-group"></i>
+      <span class="caption-subject bold uppercase"> {{stepperService.title}}
+        <span class="step-title" [translate]="'shared.stepper.stepsummary'">
+          {{ 'shared.stepper.stepsummary' | translate:{'stepNo': +stepperService.currentStepIndex + 1, 'totalStepNo':
+          stepperService.steps.length}
+          }}
+        </span>
+      </span>
+    </div>
+  </ng-container>
+  <ng-container ngProjectAs="body">
+    <ng-container [ngTemplateOutlet]="stepperBody">
+    </ng-container>
+  </ng-container>
+</app-amcs-container-tile>
+
+<ng-container *ngIf="hideParentTile" [ngTemplateOutlet]="stepperBody">
+</ng-container>
+
+<ng-template #stepperBody>
+  <div class="form-wizard">
+    <div class="form-body">
+      <!-- HEADERS -->
+      <ul class="nav nav-pills nav-justified steps">
+        <ng-container *ngFor="let step of stepperService.steps; let i = index; let isLast = last">
+          <li (click)="!lockStepper ? stepperService.selectStep(i) : null" class="step-heading"
+            [ngClass]="{'active': step.state.active, 'error': step.state.error, 'completed': step.state.completed, 'disabled': lockStepper }"
+            appAutomationLocator [compName]="compName" [uniqueKey]="'step_' + i">
+            <a data-toggle="tab" class="step" aria-expanded="true">
+              <div class="number"> {{+i + 1}} </div>
+              <div *ngIf="step.innerComponent.heading != null" class="desc">
+                <i *ngIf="step.state.completed" class="fa fa-check"></i>
+                {{step.innerComponent.heading}}
+              </div>
+              <div class="sub">
+                <i *ngIf="step.innerComponent.heading == null && step.state.completed" class="fa fa-check"></i>
+                {{step.innerComponent.subHeading}}
+              </div>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+      <app-amcs-progressbar [compName]="compName" [uniqueKey]="'progress'" class="progress-bar-item" [ngClass]="{'noText': stepperService.noHeadings && stepperService.noSubHeadings,
+      'noHeadings': stepperService.noHeadings && !stepperService.noSubHeadings,
+      'noSubHeadings': stepperService.noSubHeadings && !stepperService.noHeadings }" [max]="100"
+        [value]="stepperService.progress"></app-amcs-progressbar>
+    </div>
+
+    <!-- STEPS -->
+    <div class="tab-content">
+      <div *ngFor="let step of stepperService.steps; let i = index" [ngClass]="{'active': step.state.active }"
+        class="amcs-step-animation" (@stepTransition.done)="tileUiService.innerTilesChanged.next()"
+        [@stepTransition]="stepperService.getAnimationDirection(i)">
+        <div class="amcs-step-body" [ngStyle]="{'min-height': stepperService.stepContentHeight}">
+          <ng-container *ngIf="step.state.active" [ngTemplateOutlet]="step.content"></ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="form-actions">
+      <app-amcs-button [compName]="compName" [uniqueKey]="'stepper-continue'"
+        *ngIf="!stepperService.isLastStepSelected" customClass="btn amcs-green pull-right" [disabled]="lockStepper"
+        (click)="!lockStepper ? stepperService.next(): null">
+        <span [translate]="'shared.stepper.continue'">Continue</span>
+      </app-amcs-button>
+      <app-amcs-save-button [compName]="compName" [uniqueKey]="'stepper-save'"
+        *ngIf="stepperService.isLastStepSelected" customClass="btn amcs-green pull-right"
+        (click)="!lockStepperSave ? stepperService.submit(): null" [disabled]="lockStepperSave">
+        <span [translate]="'shared.stepper.save'">Save</span>
+      </app-amcs-save-button>      
+      <app-amcs-button [compName]="compName" [uniqueKey]="'stepper-back'" *ngIf="!stepperService.isFirstStepSelected"
+        customClass="btn btn-default amcs-grey pull-right" [disabled]="lockStepper"
+        (click)="!lockStepper ? stepperService.previous() : null">
+        <span [translate]="'shared.stepper.back'">Back</span>
+      </app-amcs-button>
+      <app-amcs-button [compName]="compName" [uniqueKey]="'stepper-cancel'" customClass="btn btn-default "
+        (click)="stepperService.cancel()">
+        <span [translate]="'shared.stepper.cancel'">Cancel</span>
+      </app-amcs-button>
+    </div>
+  </div>
+</ng-template>

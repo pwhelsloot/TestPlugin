@@ -1,0 +1,21 @@
+@import 'sass/abstracts/variables';
+@import 'sass/abstracts/mixins';
+
+.amcs-form-grid {
+  .amcs-flex-item {
+    flex: 1 0 0%;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+  }
+
+  .amcs-grid-cell {
+    padding: 8px;
+    border-left: 1px solid $amcs-grid-border-color;
+    border-bottom: 1px solid $amcs-grid-border-color;
+    border-collapse: collapse;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

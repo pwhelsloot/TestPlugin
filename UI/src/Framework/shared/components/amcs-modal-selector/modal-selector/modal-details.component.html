@@ -1,0 +1,36 @@
+<ng-container *ngIf="service.modalLoading; else loadedTemplate">
+  <!-- Loading animation taken from https://codepen.io/Manoz/pen/pydxK/ -->
+  <div class="loading-animation">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</ng-container>
+<ng-template #loadedTemplate>
+  <app-amcs-grid
+    [includePaging]="true"
+    [totalItemCount]="service.items.count"
+    [pageSize]="10"
+    [data]="service.items.results"
+    [columns]="service.columns"
+    [showSelectedCheckbox]="true"
+    [allowMultiSelect]="service.isMultiselect"
+    (selectedPageChanged)="service.onPageChange($event)"
+    (rowsSelected)="service.rowSelected($event)"
+  >
+  </app-amcs-grid>
+  <div *ngIf="!service.autoClose" class="buttonWrapper">
+    <app-amcs-button [compName]="type" [uniqueKey]="'cancel'" customClass="cancel noMargin" (click)="service.cancel()">{{
+      'shared.modal.cancel' | translate
+    }}</app-amcs-button>
+
+    <app-amcs-button
+      [compName]="type"
+      [uniqueKey]="'confirm'"
+      customClass="ok amcs-green pull-right noMargin"
+      [disabled]="!service.isAnItemSelected"
+      (click)="service.closeModal()"
+      >{{ 'shared.modal.confirm' | translate }}</app-amcs-button
+    >
+  </div>
+</ng-template>

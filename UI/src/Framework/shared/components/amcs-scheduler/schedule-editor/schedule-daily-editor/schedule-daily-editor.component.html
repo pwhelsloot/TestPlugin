@@ -1,0 +1,14 @@
+<app-amcs-form [form]="form" [options]="options">
+  <ng-template>
+    <div class="recur-container">
+      <app-amcs-quantity-selector
+        [label]="'scheduleEditor.dailySettings.recurrence' | translate"
+        [compName]="'ScheduleDailyEditorComponent'"
+        formControlName="dailyOccurence"
+        [minValue]="1"
+      >
+      </app-amcs-quantity-selector>
+      <label [translate]="'scheduleEditor.dailySettings.recurrencedays'"></label>
+    </div>
+  </ng-template>
+</app-amcs-form>

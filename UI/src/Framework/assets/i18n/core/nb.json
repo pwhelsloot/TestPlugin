@@ -1,0 +1,89 @@
+{
+	"app": {
+		"initialising": "Starter applikasjon"
+	},
+	"columnCustomiser": {
+		"accordianTile": {
+			"title": "Trekkspill"
+		},
+		"gridTile": {
+			"title": "Rutenett"
+		},
+		"left": "Venstre",
+		"right": "Høyre",
+		"unusedTile": {
+			"title": "Ubrukt"
+		}
+	},
+	"csrAuthentication": {
+		"userNotAllowedWebUi": "Denne brukeren har ikke tilgang til nettgrensesnittet. Brukere med en primær driver av medarbeidertype kan ikke få tilgang til nettgrensesnittet."
+	},
+	"globalsearch": {
+		"searchkeyword": {
+			"acc": "AAC – Søk basert på kode for kundefordringer",
+			"bcn": "BCN – Søk basert på strekkodenummer",
+			"con": "CON – Søk basert på serienummer og ID-nummer på container",
+			"fed": "FED – Søk basert på føderal-ID",
+			"inv": "INV – Søk basert på kundefakturanumre",
+			"key": {
+				"acc": "ACC",
+				"bcn": "BCN",
+				"con": "CON",
+				"fed": "FED",
+				"inv": "INV",
+				"mat": "MAT",
+				"pon": "PON",
+				"ppc": "PPC",
+				"rpt": "RPT",
+				"son": "OON",
+				"stn": "STN",
+				"tna": "TNA",
+				"wdn": "WDN"
+			},
+			"mat": "MAT – Søk basert på matrikkelnummer",
+			"noresults": "Ingen matcher funnet.",
+			"placeholder": {
+				"acc": "Oppgi kode for kundefordringer (minst 3 tegn)",
+				"bcn": "Angi strekkodenummer (min. 3 tegn)",
+				"con": "Angi serienummer/ID-nummer på container (min. 3 tegn)",
+				"fed": "Angi føderal-ID (min. 3 tegn)",
+				"inv": "Angi fakturanummer (min. 3 tegn)",
+				"mat": "Skriv inn matrikkelnummer i formatet Knr-Gnr/Bnr/Fnr/Snr (minimum 3 tegn)",
+				"pon": "Angi innkjøpsordrenummer (min. 3 tegn)",
+				"ppc": "Angi nummer på forhåndsbetalingskort (min. 3 tegn)",
+				"rpt": "Angi rapportnavn, beskrivelse eller nøkkelord (min. 3 tegn)",
+				"son": "Enter Outbound Order Number (Minimum 3 Characters)",
+				"stn": "Angi vektkvitteringsnummer (min. 3 tegn)",
+				"tna": "Angi handelsnavn (min. 3 tegn)",
+				"wdn": "Angi avfallserklæringsnummer (min. 3 tegn)"
+			},
+			"pon": "PON – søk basert på innkjøpsordrenummer",
+			"ppc": "PPC – søk basert på numre på forhåndsbetalingskort",
+			"rpt": "RPT – søk basert på rapportnavn, beskrivelse eller nøkkelord",
+			"son": "OON - Search based on outbound order number",
+			"stn": "STN – søk basert på vektkvitteringsnummer",
+			"tna": "TNA – søk basert på handelsnavn",
+			"wdn": "WDN – søk basert på avfallserklæringsnumre"
+		}
+	},
+	"headerMenu": {
+		"accounting": "Regnskap",
+		"customerService": "Kundeservice",
+		"design": "Design",
+		"equipmentInventory": "Utstyrsinventar",
+		"erp": "",
+		"extensibility": "Utvidbarhet",
+		"inventory": "",
+		"materials": "Avfall",
+		"pricesAndProducts": "Priser og produkter",
+		"reportsAnalytics": "Rapporter og analyser",
+		"routing": "Planlegging",
+		"scale": "Vekt",
+		"settings": "Innstillinger",
+		"transportdispatch": "",
+		"vendors": "Leverandører"
+	},
+	"workflow": {
+		"started": "Arbeidsflyt startet"
+	}
+}

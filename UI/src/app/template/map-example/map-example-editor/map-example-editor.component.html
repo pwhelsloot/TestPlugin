@@ -1,0 +1,26 @@
+<app-amcs-form
+  [form]="mapExampleFormService.form"
+  [options]="mapExampleFormService.formOptions"
+  (onSave)="onSave()"
+  (onCancel)="onCancel()"
+>
+  <ng-template>
+    <app-amcs-input
+      [autoFocus]="true"
+      formControlName="description"
+      [maxLength]="50"
+      [label]="'template.mapExample.editor.name' | translate"
+    >
+    </app-amcs-input>
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <app-amcs-input [maxLength]="22" formControlName="latitude" [label]="'template.mapExample.editor.latitude' | translate">
+        </app-amcs-input>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <app-amcs-input [maxLength]="22" formControlName="longitude" [label]="'template.mapExample.editor.longitude' | translate">
+        </app-amcs-input>
+      </div>
+    </div>
+  </ng-template>
+</app-amcs-form>

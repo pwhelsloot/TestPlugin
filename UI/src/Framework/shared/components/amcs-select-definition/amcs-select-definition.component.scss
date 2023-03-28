@@ -1,0 +1,26 @@
+.form-group.form-md-line-input {
+  padding-top: 0 !important;
+}
+
+.form-group.form-md-line-input .form-control {
+  font-family: "Nunito Sans", sans-serif !important;
+  padding-right: 0 !important;
+
+  .mat-select-trigger {
+    bottom: 0;
+  }
+}
+
+.form-group.form-md-line-input {
+  label {
+    margin-bottom: 0;
+  }
+}
+
+.form-group.form-md-line-input label>div {
+  padding-left: 52px;
+}
+
+.form-group.form-md-line-input>.input-icon>label {
+  margin-top: -30px;
+}

@@ -1,0 +1,47 @@
+<div class="dropdown-inbox-list" [ngClass]="{'show': opened}" *ngIf="opened">
+  <ng-container *ngIf="loading; else loadedTemplate">
+    <div class="dropdown-inbox-list-header dropdown-inbox-loading"></div>
+    <ul class="dropdown-inbox-list-body dropdown-inbox-loading">
+      <li>
+        <a>
+          <div class="loading-animation">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #loadedTemplate>
+    <div class="dropdown-inbox-list-header">
+      <span [translate]="'shared.header.communications.youHave'">You have</span>
+      <span class="bold">{{ 'shared.header.communications.open' | translate:{'count': count} }}</span>
+      <span [translate]="'shared.header.communications.communications'">Communications</span>
+      <a (click)="onViewAllSelected()" [translate]="'shared.header.communications.viewAll'" appAutomationLocator
+        [compName]="compName" [uniqueKey]="'viewAll'">View All</a>
+    </div>
+    <ul class="dropdown-inbox-list-body">
+      <li *ngFor="let communication of userCommunications; let i = index;"
+        [ngClass]="{'overdue': communication.overdue}">
+        <a (click)="onRowSelected(communication)" appAutomationLocator [compName]="compName"
+          [uniqueKey]="'communication_' + i">
+          <span class="subject">
+            <span class="from" *ngIf="communication.isgroup"><i class="fas fa-users group-color"></i> {{
+              communication.groupName }}</span>
+            <span class="from" *ngIf="!communication.isgroup">{{ communication.fullName }}</span>
+            <span class="time" *ngIf="communication.reviewDate">{{communication.reviewDate | localizedDate:
+              'mediumDate'}}</span>
+          </span>
+          <span class="secondary-information">
+            <span class="customer-name pull-left">{{ communication.customerName }}</span>
+            <span class="communication-type pull-right">{{ communication.communicationType }}</span>
+          </span>
+          <span class="message" *ngIf="communication.notes">
+            {{ communication.notes }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </ng-template>
+</div>

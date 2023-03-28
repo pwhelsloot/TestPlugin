@@ -1,0 +1,5 @@
+/bin
+/obj
+/*.user
+/*.dbmdl
+/StyleCop.Cache

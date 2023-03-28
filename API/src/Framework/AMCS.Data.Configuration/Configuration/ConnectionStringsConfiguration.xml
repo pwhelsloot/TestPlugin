@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<section type="ConnectionStringsConfiguration" namespace="AMCS.Data" sectionName="connectionStrings" generateInterfaces="true">
+  <collection name="connectionStrings" type="ConnectionString" default="true">
+    <attribute name="name" type="string" key="true" required="true"/>
+    <attribute name="connectionString" type="string" required="true"/>
+    <attribute name="providerName" type="string"/>
+  </collection>
+</section>

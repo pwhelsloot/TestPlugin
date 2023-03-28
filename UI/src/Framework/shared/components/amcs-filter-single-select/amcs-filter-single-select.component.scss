@@ -1,0 +1,80 @@
+@import "sass/abstracts/_variables.scss";
+.container-fluid {
+    padding-right: 5px;
+    padding-left: 5px;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    div.single-filter-view {
+        div.filterOptions {
+            div.start-char-list {
+                display: inline-block;
+                padding-top: 5px;
+                margin-left: 5px;
+                vertical-align: top;
+                height: 40px;
+                div {
+                    display: inline-block;
+                    margin: 2px;
+                    font-weight: bold;
+                    vertical-align: top;
+                    text-align: center;
+                    margin-left: 0;
+                    height: 20px;
+                    width: 20px;
+                }
+
+                div:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        div.filter-options-scroller {
+            display: flex;
+            margin-left: 5px;
+            flex-direction: column;
+            flex-wrap: wrap;
+            white-space: nowrap;
+            overflow-x: scroll;
+            height: 150px;
+            .no-left-pad {
+                padding-left: 0;
+            }
+
+            div {
+                div.option-container {
+                    vertical-align: middle;
+                    div.option-start-letter {
+                        display: block;
+                        text-align: center;
+                        font-weight: bold;
+                        float: left;
+                        width: 20px;
+                    }
+
+                    div.option {
+                        display: block;
+                        label.filter-option-label {
+                            display: block;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        }
+                    }
+
+                    .option label {
+                        cursor: pointer;
+                    }
+
+                    .option label:hover {
+                        background-color: $amcs-selected-row-color;
+                    }
+                }
+            }
+        }
+    }
+}

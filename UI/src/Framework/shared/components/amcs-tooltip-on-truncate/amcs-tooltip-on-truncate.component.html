@@ -1,0 +1,8 @@
+<div #truncatableElement [ngStyle]="{'max-width': maxWidth}"
+  [ngClass]="{ 'text-truncator': truncateText, 'hide-text': hideText }" [tooltip]="isTruncated ? tooltipTemplate: null"
+  container="{{containerbody}}" [placement]="toolTipPlacement" #pop="bs-tooltip">
+  {{tooltipText}}
+</div>
+<ng-template #tooltipTemplate>
+  <div class="tooltip-text">{{tooltipText}}</div>
+</ng-template>

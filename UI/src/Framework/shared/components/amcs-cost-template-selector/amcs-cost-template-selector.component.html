@@ -1,0 +1,17 @@
+<div #wrapper class="form-group form-md-line-input amcs-input"
+  [ngClass]="{'has-error' : hasError, 'has-success' : !hasError && edited, 'small-mode': displayMode === FormControlDisplay.Small, 'grid-mode': displayMode === FormControlDisplay.Grid}">
+  <div class="input-icon right">
+    <input #defaultInput container="body" type="input" placement="bottom" class="form-control" [disabled]="isDisabled"
+      [value]="description" [ngClass]="{'edited' : edited }" onkeydown="return false" appAutomationLocator
+      [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey+'_description'">
+    <ng-content select="errors"></ng-content>
+    <label>
+      <ng-content select="label"></ng-content>
+    </label>
+  </div>
+  <div class="mask" (click)="onFocus()" appAutomationLocator [compName]="compName" [uniqueKey]="'focus'">&nbsp;</div>
+  <div class="close-mask" *ngIf="isValueSet" (click)="reset()" appAutomationLocator [compName]="compName"
+    [uniqueKey]="formControlName+'_'+uniqueKey+'_reset'">
+    <i class="fal fa-times"></i>
+  </div>
+</div>

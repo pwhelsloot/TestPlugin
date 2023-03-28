@@ -1,0 +1,56 @@
+@import "sass/abstracts/_variables.scss";
+
+app-amcs-multi-select {
+  .label-definitions {
+    padding-top: 24px !important;
+  }
+
+  .grid-mode {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: white;
+
+    ng-select {
+      margin-top: 0px;
+    }
+
+    .form-control {
+      padding: 5px 5px 0px 5px;
+    }
+  }
+
+  .display-option {
+    display: flex;
+  }
+  
+  .mat-select-trigger {
+    height: 90%;
+    bottom: -6px;
+    padding-left: 4px;
+  }
+
+  .form-control {
+    font-family: "Nunito Sans", sans-serif !important;
+    padding-right: 0 !important;
+
+    .mat-select-trigger {
+      bottom: 0;
+    }
+  }
+
+  .help-block-error {
+    opacity: 1 !important;
+  }
+
+  // this is to match the colour-scheme on the customer billing settings component (only place isSelectAll is used currently)
+  .is-select-all {
+    .mat-select-placeholder {
+      color: $amcs-dropdown-black !important;
+    }
+  }
+
+  .mat-select-placeholder {
+    font-weight: 400;
+    color: $amcs-form-input-text-color;
+  }
+}

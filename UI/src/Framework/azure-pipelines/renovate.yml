@@ -1,0 +1,46 @@
+pool:
+  vmImage: 'ubuntu-20.04'
+
+trigger: none
+schedules:
+  - cron: '0 6 * * *'
+    displayName: 'Run at 6 UTC every day'
+    branches:
+      include:
+        - develop
+    always: true
+
+variables:
+  - group: depandabot
+  - name: PNPM_CACHE_FOLDER
+    value: $(Pipeline.Workspace)/.pnpm-store
+
+steps:
+  - checkout: self
+    submodules: true
+    clean: true
+    persistCredentials: true
+
+  - task: npmAuthenticate@0
+    displayName: 'Set credentials in .npmrc'
+    inputs:
+      workingFile: '.npmrc'
+
+  - task: NodeTool@0
+    displayName: 'Use Node 14.x'
+    inputs:
+      versionSpec: 14.x
+
+  - bash: |
+      npm i -g pnpm@6.32.11
+      pnpm add only-allow --global
+      New-Item -Path "$(PNPM_CACHE_FOLDER)" -ItemType Directory -Force
+      pnpm config set store-dir $(PNPM_CACHE_FOLDER)
+      npm install -g renovate
+      git config --global user.email 'dependabot@amcsgroup.com'
+      git config --global user.name 'Renovate Bot'
+      npx --userconfig .npmrc renovate
+    displayName: 'Run renovate'
+    env:
+      TOKEN: $(dependabot_pat)
+      GITHUB_COM_TOKEN: $(github_pat)

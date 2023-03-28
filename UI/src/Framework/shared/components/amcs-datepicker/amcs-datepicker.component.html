@@ -1,0 +1,64 @@
+<div
+  class="form-group form-md-line-input amcs-input"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-field-defs': hasFieldDefs,
+    'has-success': !hasError && edited,
+    'small-mode': displayMode === FormControlDisplay.Small,
+    'grid-mode': displayMode === FormControlDisplay.Grid,
+    'secondary-color': isSecondaryColor,
+    'no-margin': noMargin,
+    'no-padding': noPadding
+  }"
+>
+  <div class="input-icon right">
+    <input
+      name="datepicker"
+      container="body"
+      (blur)="onTouchedCallback()"
+      type="text"
+      [ngClass]="{ edited: edited }"
+      class="form-control {{ customClass }}"
+      bsDatepicker
+      #dp="bsDatepicker"
+      placement="{{ placement }}"
+      [disabled]="disabled || ngxConfig.isDisabled"
+      [bsConfig]="ngxConfig"
+      [ngModel]="value"
+      [autocomplete]="autocomplete"
+      (ngModelChange)="writeValueFromView($event)"
+      [minDate]="ngxConfig.minDate"
+      [maxDate]="ngxConfig.maxDate"
+      [daysDisabled]="ngxConfig.daysDisabled"
+      tooltip="{{ dateTooltip }}"
+      [takeFocus]="autoFocus"
+      [readonly]="readonly"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="formControlName + '_' + uniqueKey"
+      (click)="openCal()"
+      (focus)="toggle()"
+      (keydown.Tab)="onTab()"
+      (keydown)="forShiftTab($event)"
+      (onShown)="onOpenCalendar($event)"
+    />
+    <div *ngIf="errors !== null">
+      <span class="help-block help-block-error"> {{ errors }}</span>
+    </div>
+    <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+    <ng-template #defaultLabel> <label app-amcs-form-label [label]="label" [isRequired]="isRequired"></label></ng-template>
+    <ng-template #customLabel>
+      <label>
+        <ng-content></ng-content>
+      </label>
+    </ng-template>
+    <i
+      (click)="toggle()"
+      class="fa fa-calendar calendar-icon"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="formControlName + '_' + uniqueKey + '_icon'"
+      [class.grid-mode-calendar-icon]="displayMode === FormControlDisplay.Grid"
+    ></i>
+  </div>
+</div>

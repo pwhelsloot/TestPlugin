@@ -1,0 +1,117 @@
+@import '../node_modules/angular-calendar/css/angular-calendar.css';
+
+div.calendar-search-box {
+  i.fa-search {
+    float: right;
+    position: relative;
+    top: -25px;
+    padding-right: 10px;
+  }
+}
+
+.amcs-calendar-legend-option {
+  border-left: 8px solid;
+}
+
+.cal-month-view {
+  .cal-cell-row {
+
+    &:hover {
+      background-color: inherit;
+    }
+
+    .cal-cell {
+      &:hover {
+        background-color: inherit;
+      }
+    }
+
+    .cal-day-cell {
+      &.cal-today {
+        &.cal-today {
+          background-color: unset;
+          color: unset;
+          border: 1px solid $amcs-black;
+
+          &:hover {
+            background-color: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .cal-cell {
+    &.cal-has-events {
+
+      &.cal-open,
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+
+  .cal-day-cell {
+    &.cal-today {
+      .cal-day-number {
+        margin-right: 25px;
+        color: $amcs-black;
+        font-size: 1em;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .cal-open-day-events {
+    background-color: lighten($pallette-icon-secondary-color, 25);
+    box-shadow: unset;
+  }
+}
+
+.cal-day-view {
+  .cal-hour-segment {
+    &:hover {
+      background-color: inherit;
+    }
+  }
+
+  .cal-drag-over {
+    .cal-hour-segment {
+      background-color: inherit;
+    }
+  }
+}
+
+.cal-week-view {
+  .cal-day-headers {
+    .cal-header {
+      &:hover {
+        background-color: inherit;
+      }
+
+      &.cal-today {
+        background-color: $pallette-secondary-color;
+        color: $amcs-white;
+
+        &:hover {
+          background-color: $pallette-secondary-color;
+        }
+      }
+    }
+
+    .cal-drag-over {
+      background-color: inherit;
+    }
+  }
+}
+
+.cal-cell {
+  &.cal-has-events {
+    background-color: unset;
+  }
+}
+
+.portlet.light.bordered {
+  border: 1px solid $amcs-box-border-color !important;
+  background-color: $amcs-white !important;
+}

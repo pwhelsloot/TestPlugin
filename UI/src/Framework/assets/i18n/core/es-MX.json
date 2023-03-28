@@ -1,0 +1,89 @@
+{
+	"app": {
+		"initialising": "Inicializando la aplicación"
+	},
+	"columnCustomiser": {
+		"accordianTile": {
+			"title": "Acordeón"
+		},
+		"gridTile": {
+			"title": "Matriz"
+		},
+		"left": "Izquierdo",
+		"right": "Derecho",
+		"unusedTile": {
+			"title": "No usado"
+		}
+	},
+	"csrAuthentication": {
+		"userNotAllowedWebUi": "Este usuario no tiene acceso a la interfaz web. Los usuarios con un tipo de personal primario de conductor no pueden acceder a la interfaz web."
+	},
+	"globalsearch": {
+		"searchkeyword": {
+			"acc": "ACC: búsqueda basada en código de cuenta de CC",
+			"bcn": "BCN: búsqueda basada en el número de código de barras",
+			"con": "CON: búsqueda con base en el número de serie del contenedor y el número del rótulo",
+			"fed": "FED: búsqueda con base en la identificación federal",
+			"inv": "INV: búsqueda con base en números de facturas de cliente",
+			"key": {
+				"acc": "ACC",
+				"bcn": "BCN",
+				"con": "CON",
+				"fed": "FED",
+				"inv": "INV",
+				"mat": "MAT",
+				"pon": "PON",
+				"ppc": "PPC",
+				"rpt": "RPT",
+				"son": "OON",
+				"stn": "STN",
+				"tna": "TNA",
+				"wdn": "WDN"
+			},
+			"mat": "MAT: búsqueda basada en Matrikkelnummer",
+			"noresults": "No se han encontrado coincidencias.",
+			"placeholder": {
+				"acc": "Introduzca el código de cuenta de CC (mínimo 3 caracteres)",
+				"bcn": "Introduzca el número de código de barras (mínimo 3 caracteres)",
+				"con": "Introduzca el número de serie del contenedor/el número del rótulo (mínimo 3 caracteres)",
+				"fed": "Introduzca la identificación federal (mínimo 3 caracteres)",
+				"inv": "Introduzca el número de factura (mínimo 3 caracteres)",
+				"mat": "Introduzca el Matrikkelnummer en formato Knr-Gnr/Bnr/Fnr/Snr (mínimo 3 caracteres)",
+				"pon": "Introduzca el número de orden de compra (mínimo 3 caracteres)",
+				"ppc": "Introduzca el número de la tarjeta de prepago (mínimo 3 caracteres)",
+				"rpt": "Introduzca el nombre del informe, la descripción o las palabras clave (mínimo 3 caracteres)",
+				"son": "Enter Outbound Order Number (Minimum 3 Characters)",
+				"stn": "Introduzca el número de boleto de báscula (mínimo 3 caracteres)",
+				"tna": "Introduzca el nombre de comercio (mínimo 3 caracteres)",
+				"wdn": "Introduzca el número de declaración de residuos (mínimo 3 caracteres)"
+			},
+			"pon": "PON: búsqueda basada en el número de orden de compra",
+			"ppc": "PPC: búsqueda con base en números de tarjetas de prepago del cliente",
+			"rpt": "RPT: búsqueda basada en el nombre del informe, la descripción o las palabras clave",
+			"son": "OON - Search based on outbound order number",
+			"stn": "STN: búsqueda basada en el número de boleto de báscula",
+			"tna": "TNA: búsqueda basada en el nombre de comercio",
+			"wdn": "WDN: Búsqueda basada en los números de declaración de residuos"
+		}
+	},
+	"headerMenu": {
+		"accounting": "Contabilidad",
+		"customerService": "Servicio al cliente",
+		"design": "Diseño",
+		"equipmentInventory": "Inventario de equipos",
+		"erp": "",
+		"extensibility": "Extensibilidad",
+		"inventory": "",
+		"materials": "Materiales",
+		"pricesAndProducts": "Precios y productos",
+		"reportsAnalytics": "Informes y análisis",
+		"routing": "Enrutamiento",
+		"scale": "Escala",
+		"settings": "Ajustes",
+		"transportdispatch": "",
+		"vendors": "Proveedores"
+	},
+	"workflow": {
+		"started": "Flujo de trabajo iniciado"
+	}
+}

@@ -1,0 +1,230 @@
+<!-- eslint-disable amcs-html-plugin/ng-project-label-ban --> 
+<!-- html-hint-disable form-tag-ban -->
+<form [formGroup]="directDebitForm.htmlFormGroup" *ngIf="directDebitForm !== null" (submit)="save()" appFocusOnError>
+  <app-amcs-inner-tile [compName]="compName" [isDynamicHeight]="true" [isForm]="true"
+    [caption]="'directDebit.bankAddressTitle' | translate">
+    <div class="form-body">
+      <div class="row">
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-select-compact-typeahead [compName]="compName" formControlName="bankName" [allowCreation]="true"
+            [autoFocus]="true" [items$]="service.bankNameResults$" [inputSubject]="service.bankNameRequestSubject"
+            [hasError]="directDebitForm.hasErrors(directDebitForm.bankName)" bindLabel="description">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.bankName'">Bank Name</span>
+              <span class="required" aria-required="true" *ngIf="metadata.isPropertyMandatory('bankName')">*</span>
+            </ng-container>
+          </app-amcs-select-compact-typeahead>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-datepicker placement="bottom" [compName]="compName" formControlName="firstDateForPaymentRequest"
+            [disabled]="directDebitForm.requestPaymentThisMonth.value"
+            [config]="directDebitForm.firstDateForPaymentRequestConfig"
+            [hasError]="directDebitForm.hasErrors(directDebitForm.firstDateForPaymentRequest)">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.requestPaymentFrom'">Request Payments From</span>
+            </ng-container>
+          </app-amcs-datepicker>
+        </div>
+        <div class="col-lg-{{colSpan}}" *ngIf="directDebitForm.customerId.value === null">
+          <app-amcs-input [compName]="compName" formControlName="requestPaymentThisMonth" type="checkbox">
+          </app-amcs-input>
+          <ng-container ngProjectAs="label">
+            <span [translate]="'directDebit.requestPaymentNow'">Request Payment this Month</span>
+          </ng-container>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <ng-container ngProjectAs="label">
+
+            <div class="row payment-padding-top"
+              *ngIf="directDebitForm.paymentText && directDebitForm.paymentText.amountLeftToPay && directDebitForm.paymentText.rentalStartDate && directDebitForm.paymentText.rentalEndDate">
+              <div class="col-sm-12">
+                {{ directDebitForm.paymentText.amountLeftToPay | number : '.2-2' }}
+                <span [translate]="'directDebit.totalAmountLeft'">to collect for</span>
+                {{ directDebitForm.paymentText.rentalStartDate | localizedDate: 'shortDate' }}
+                - {{ directDebitForm.paymentText.rentalEndDate | localizedDate: 'shortDate' }}
+              </div>
+            </div>
+
+            <div class="row payment-padding-top"
+                    *ngIf="directDebitForm.paymentText && directDebitForm.paymentText.amountLeftToPay === 0 && 
+                    directDebitForm.paymentText.rentalStartDate && directDebitForm.paymentText.rentalEndDate">
+                    <div class="col-sm-12">
+                        <span [translate]="'directDebit.coverDirectDebit'"></span>
+                        {{ directDebitForm.paymentText.advancePayment | number : '.2-2' }}
+                        <span [translate]="'directDebit.totalAmountLeft'"></span>
+                        {{ directDebitForm.paymentText.rentalStartDate | localizedDate: 'shortDate' }}
+                        - {{ directDebitForm.paymentText.rentalEndDate | localizedDate: 'shortDate' }}
+                        <br>
+                        <span [translate]="'directDebit.advancePaymentOf'"></span>
+                        {{ directDebitForm.paymentText.advancePayment | number : '.2-2' }}
+                    </div>
+                </div>
+
+            <div class="row payment-padding-top"
+              *ngIf="directDebitForm.paymentText && directDebitForm.paymentText.firstBlockTotalAmountToCollect > 0">
+              <div class="col-sm-12">
+                <span [translate]="'directDebit.firstPayment'" *ngIf="!directDebitForm.paymentText.isAutoProrate">First
+                  Payment of</span>
+                <span [translate]="'directDebit.onePayment'" *ngIf="directDebitForm.paymentText.isAutoProrate">One
+                  Payment of</span>
+                {{ directDebitForm.paymentText.firstBlockTotalAmountToCollect | number : '.2-2' }}
+                <span [translate]="'directDebit.collectedAfter'">collected after</span>
+                {{ directDebitForm.paymentText.firstDateForCollection | localizedDate: 'shortDate' }}
+              </div>
+            </div>
+
+            <div class="row payment-padding-top"
+              *ngIf="directDebitForm.paymentText && directDebitForm.paymentText.fullBlocksLeftToCollect > 0 && !directDebitForm.paymentText.isAutoProrate">
+              <div class="col-sm-12">
+                {{ directDebitForm.paymentText.fullBlocksLeftToCollect }}
+                <span [translate]="'directDebit.paymentsOf'">payment(s) of </span>
+                {{ directDebitForm.paymentText.recurringAmountToCollect | number : '.2-2' }}
+                {{ directDebitForm.paymentText.paymentFrequency }}
+              </div>
+            </div>
+
+            <div class="row payment-padding-top"
+              *ngIf="directDebitForm.paymentText && directDebitForm.paymentText.fullBlocksLeftToCollect === 0 && !directDebitForm.paymentText.isAutoProrate">
+              <div class="col-sm-12"> (
+                {{ directDebitForm.paymentText.recurringAmountToCollect | number : '.2-2' }}
+                {{ directDebitForm.paymentText.paymentFrequency }} )
+              </div>
+            </div>
+
+            <div class="row payment-padding-top"
+              *ngIf="directDebitForm.paymentText && directDebitForm.paymentText.isAutoProrate">
+              <div class="col-sm-12">
+                ({{ directDebitForm.paymentText.recurringAmountToCollect | number : '.2-2' }}
+                {{ directDebitForm.paymentText.paymentFrequency }}
+                <span [translate]="'directDebit.followingServicePeriod'">for following service period</span>)
+              </div>
+            </div>
+
+            <hr class="total-hr">
+
+
+          </ng-container>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-input [compName]="compName" formControlName="address1" [maxLength]="50">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.address1'">Address1</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-input [compName]="compName" formControlName="address2" [maxLength]="50">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.address2'">Address2</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-input [compName]="compName" formControlName="address3" [maxLength]="50">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.address3'">Address3</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-input [compName]="compName" formControlName="address4" [maxLength]="50">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.address4'">Address4</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-input [compName]="compName" formControlName="address5" [maxLength]="50">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.address5'">Address5</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+        <div class="col-lg-{{colSpan}}">
+          <app-amcs-input [compName]="compName" formControlName="postcode" [maxLength]="12">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'directDebit.postCode'">postCode</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+      </div>
+    </div>
+  </app-amcs-inner-tile>
+  <app-amcs-inner-tile [compName]="compName+ '_2'" [isDynamicHeight]="true" [isForm]="true"
+    [caption]="'directDebit.bankAccountTitle' | translate">
+    <div class="form-body">
+      <div class="row">
+        <div *ngFor="let control of dynamicControls;" [ngSwitch]="control.type">
+          <div *ngIf="control.isDisplay" class="col-lg-{{colSpan}}">
+            <ng-container *ngSwitchCase="DirectDebitControlTypeEnum.input">
+              <app-amcs-input [compName]="compName" [formControlName]="control.name"
+                [hasError]="directDebitForm.hasErrors(control.control)" [maxLength]="control.maxLength">
+                <ng-container ngProjectAs="label">
+                  <span>{{ control.label }}</span>
+                  <span class="required" aria-required="true"
+                    *ngIf="metadata.isPropertyMandatory(control.name)">*</span>
+                </ng-container>
+              </app-amcs-input>
+            </ng-container>
+            <ng-container *ngSwitchCase="DirectDebitControlTypeEnum.date">
+              <app-amcs-datepicker placement="bottom" [compName]="compName" [formControlName]="control.name"
+                [readonly]="true" [hasError]="directDebitForm.hasErrors(control.control)">
+                <label>{{ control.label }}</label>
+                <span class="required" aria-required="true" *ngIf="metadata.isPropertyMandatory(control.name)">*</span>
+              </app-amcs-datepicker>
+            </ng-container>
+            <ng-container *ngSwitchCase="DirectDebitControlTypeEnum.checkBox">
+              <div class="checkBox">
+                <app-amcs-input [compName]="compName" [formControlName]="control.name" type="checkbox"
+                  [hasError]="directDebitForm.hasErrors(control.control)">
+                </app-amcs-input>
+                <label>{{ control.label }}</label><span class="required" aria-required="true"
+                  *ngIf="metadata.isPropertyMandatory(control.name)">*</span>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="DirectDebitControlTypeEnum.select">
+              <app-amcs-select [compName]="compName" [formControlName]="control.name" [options]="control.options"
+                [hasError]="directDebitForm.hasErrors(control.control)">
+                <span>{{ control.label }}</span>
+                <span class="required" aria-required="true" *ngIf="metadata.isPropertyMandatory(control.name)">*</span>
+              </app-amcs-select>
+            </ng-container>
+            <ng-container *ngSwitchCase="DirectDebitControlTypeEnum.umr">
+              <div class="umrInput">
+                <app-amcs-input [compName]="compName" [formControlName]="control.name" customClass="removeDashBorder"
+                  [hasError]="directDebitForm.hasErrors(control.control)" [isDisabled]="true">
+                  <ng-container ngProjectAs="label">
+                    <span>{{ control.label }}</span>
+                    <span class="required" aria-required="true"
+                      *ngIf="metadata.isPropertyMandatory(control.name)">*</span>
+                  </ng-container>
+                </app-amcs-input>
+              </div>
+              <a class="umrIcon umrPosition {{umrCustomClass}}"
+                (click)="service.getUMRNumber(editorData.directDebit.umrPrefix, directDebitForm)" appAutomationLocator
+                [compName]="compName" [uniqueKey]="'umr'">
+                <i class="fas fa-sync-alt"></i>
+              </a>
+            </ng-container>
+            <ng-container *ngSwitchCase="DirectDebitControlTypeEnum.rib">
+              <div class="umrInput">
+                <app-amcs-input [compName]="compName" [formControlName]="control.name" customClass="removeDashBorder"
+                  [hasError]="directDebitForm.hasErrors(control.control)" [isDisabled]="true">
+                  <ng-container ngProjectAs="label">
+                    <span>{{ control.label }}</span>
+                    <span class="required" aria-required="true"
+                      *ngIf="metadata.isPropertyMandatory(control.name)">*</span>
+                  </ng-container>
+                </app-amcs-input>
+              </div>
+              <a class="umrIcon umrPosition {{umrCustomClass}}" (click)="service.getRIBNumber('RIB', directDebitForm)"
+                appAutomationLocator [compName]="compName" [uniqueKey]="'rib'">
+                <i class="fas fa-sync-alt"></i>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-amcs-inner-tile>
+</form>

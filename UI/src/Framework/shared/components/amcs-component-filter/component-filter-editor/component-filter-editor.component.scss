@@ -1,0 +1,30 @@
+@import "sass/abstracts/variables";
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+.right-button {
+  float: right;
+}
+
+.editor {
+  background-color: $amcs-parent-card-background-color;
+  color: $amcs-parent-card-color;
+  border-radius: 3px;
+  box-shadow: 0 4px 15px 0 rgba(19, 30, 40, 0.025), 0 0 0 1px $amcs-parent-card-box-shadow-color;
+  padding: 15px;
+}
+
+.auto-margin-right {
+  margin-right: auto !important;
+}
+
+.special-margin-right {
+  margin-right: 1px !important;
+}
+
+.special-width {
+  width: 160px !important;
+  color: green !important;
+}

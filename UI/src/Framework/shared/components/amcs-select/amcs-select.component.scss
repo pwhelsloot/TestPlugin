@@ -1,0 +1,122 @@
+@import "sass/abstracts/_variables.scss";
+
+.form-group.form-md-line-input.secondary-ui {
+  .form-control {
+    background: #fff;
+  }
+}
+
+.form-group.form-md-line-input.grid-mode {
+  .form-control {
+    padding: 4px 0;
+  }
+}
+
+.small-mode {
+  margin: 0 !important;
+  margin-bottom: 15px !important;
+}
+
+.grid-mode {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: white;
+}
+
+.dashboard-tile-header-mode {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  select option {
+    color: $amcs-dropdown-black;
+  }
+}
+
+.form-group.form-md-line-input.dashboard-tile-header-mode {
+  .form-control {
+    color: white;
+    border: 0;
+  }
+}
+
+.large-select {
+  min-width: 270px;
+}
+
+mat-spinner {
+  position: relative;
+  right: 20px;
+  bottom: 25px;
+  float: right;
+
+  &.hide-content {
+    display: none;
+  }
+}
+
+.title-menu {
+  margin: -5px 0 0 15px !important;
+  padding-top: 0px;
+}
+
+.global-search-drp {
+  height: 34px !important;
+  padding: 0 0 0 3px !important;
+  border: 0px !important;
+  border-right: 1px solid #eee !important;
+  border-bottom-left-radius: 3px !important;
+  border-top-left-radius: 3px !important;
+  background-color: #fff;
+  margin: 0 !important;
+}
+
+.form-group.form-md-line-input.title-menu {
+  .form-control {
+    color: #fff;
+    padding-right: 4px;
+    cursor: pointer;
+    option {
+      color: black;
+    }
+  }
+}
+
+.callout-distance {
+  background-color: #fff;
+  padding: 0;
+  margin: 4px 0 !important;
+}
+
+.no-padding-right {
+  .form-control {
+    padding-right: 0 !important;
+  }
+}
+
+.mobile-input {
+  margin: 0 0 10px 0 !important;
+  padding-top: 0px !important;
+}
+
+.mobile-select {
+  height: 46px !important;
+  border: 1px solid $amcs-form-input-border-color !important;
+  padding: 4px 34px 4px 10px !important;
+  border-radius: 3px !important;
+}
+
+.grid-header-filter-dropdown {
+  background-color: #fff;
+  min-width: 150px;
+  padding: 0px 0px 0px 0px !important;
+  margin: 3px 0px 2px 0px !important;
+}
+
+.customer-nav-selector {
+  max-width: 200px;
+}
+.tooltip-icon {
+  pointer-events: all;
+  margin-left: 5px;
+  color: $amcs-black;
+}

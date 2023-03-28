@@ -1,0 +1,35 @@
+<label class="m-option {{customClass}}" [ngClass]="{'has-error' : hasError, 'disabled': isDisabled, 'no-margin': noMargin}"
+  *ngIf="bigRadio; else smallRadio">
+  <span class="m-option__control">
+    <span class="m-radio m-radio--brand m-radio--check-bold">
+      <input #input type="radio" value="{{value}}" (change)="onChange()" (blur)="onTouched()" [disabled]="isDisabled"
+        appAutomationLocator [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey">
+      <span [ngClass]="{ 'disabled': isDisabled}"></span>
+    </span>
+  </span>
+  <span class="m-option__label">
+    <span class="m-option__head">
+      <span class="m-option__title">
+        {{label}}
+      </span>
+    </span>
+    <span class="m-option__extra" *ngIf="state && extraOptions != null && extraOptions.length > 0"
+      [ngClass]="{ 'disabled': isDisabled}">
+      <label [ngClass]="{ 'disabled': isDisabled}" class="mt-checkbox mt-checkbox-outline"
+        *ngFor="let option of extraOptions;let i=index">
+        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="option.isSelected" type="checkbox"
+          (change)="selectedExtrasChange()" [disabled]="isDisabled" appAutomationLocator [compName]="compName"
+          [uniqueKey]="formControlName+'_'+uniqueKey+'_' +i">{{option.description}}
+        <span></span>
+      </label>
+    </span>
+  </span>
+</label>
+<ng-template #smallRadio>
+  <label class=" mt-radio mt-radio-outline inline-radio"
+    [ngClass]="{'has-error' : hasError, 'disabled': isDisabled, 'secondary-color': isSecondaryColor, 'radio-blue-color': isBlueRadio, 'no-margin': noMargin}">
+    <input #input type="radio" [disabled]="isDisabled" value="{{value}}" (change)="onChange()" (blur)="onTouched()"
+      appAutomationLocator [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey+'_small'">{{label}}
+    <span [ngClass]="{'disabled': isDisabled}"></span>
+  </label>
+</ng-template>

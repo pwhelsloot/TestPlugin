@@ -1,0 +1,42 @@
+<div *ngIf="formService.listItems.length > 0" class="row amcs-inner-container-layout">
+  <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 amcs-inner-container-layout">
+    <app-dinner-plan-summary
+      [dinnerPlan]="formService.dinnerPlan"
+      [difficultyLevel]="formService.difficultyLevel"
+      [requestStepChangeSubject]="formService.requestStepChangeSubject"
+    ></app-dinner-plan-summary>
+  </div>
+  <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 amcs-inner-container-layout">
+    <app-amcs-inner-tile
+      *ngFor="let item of formService.listItems"
+      [isDynamicHeight]="true"
+      [isRemovePadding]="true"
+      [caption]="item.course.description"
+    >
+      <ng-container ngProjectAs="body">
+        <app-amcs-form [form]="item.form" [options]="formService.formOptions">
+          <ng-template>
+            <div class="row">
+              <div class="col-lg-3">
+                <app-amcs-select formControlName="recipe" [hasError]="item.form.hasErrors(item.form.recipe)" [options]="item.recipes">
+                  <span [translate]="'template.recipeStepper.dinnerRecipesStep.recipe'">Recipe</span>
+                  <span class="required" aria-required="true">*</span>
+                </app-amcs-select>
+              </div>
+              <div class="col-lg-3">
+                <app-amcs-datepicker
+                  formControlName="preparationDate"
+                  [config]="formService.dateConfig"
+                  [previewChanges]="item.form.previewPreparationDateChangeSubject"
+                  [hasError]="item.form.hasErrors(item.form.preparationDate)"
+                >
+                  <span [translate]="'template.recipeStepper.dinnerRecipesStep.preperationDate'">Preperation Date</span>
+                </app-amcs-datepicker>
+              </div>
+            </div>
+          </ng-template>
+        </app-amcs-form>
+      </ng-container>
+    </app-amcs-inner-tile>
+  </div>
+</div>

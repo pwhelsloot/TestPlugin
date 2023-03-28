@@ -1,0 +1,68 @@
+<div
+  class="form-group form-md-line-input amcs-input"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-success': !hasError && edited,
+    'label-definitions': displayMode === FormControlDisplay.LabelDefinitions,
+    'grid-mode': displayMode === FormControlDisplay.Grid
+  }"
+  appAutomationLocator
+  [compName]="compName"
+  [uniqueKey]="formControlName + '_' + uniqueKey"
+>
+  <mat-select
+    #select
+    class="form-control"
+    [disabled]="isDisabled"
+    multiple
+    [ngModel]="value"
+    (ngModelChange)="writeValue($event)"
+    [ngClass]="{ edited: edited, 'is-select-all': isSelectAll }"
+    (blur)="onTouchedCallback()"
+    placeholder="{{ selectTranslation }}"
+    appAutomationLocator
+    [compName]="compName"
+    [uniqueKey]="formControlName + '_' + uniqueKey + '_select'"
+    disableOptionCentering
+    panelClass="mat-multi-select-panel"
+  >
+    <ng-container *ngIf="isSelectAll">
+      <app-amcs-select-all-checkbox
+        [compName]="compName"
+        [uniqueKey]="formControlName + '_' + uniqueKey + '_selectAll'"
+        text="{{ 'multiSelect.all' | translate }}"
+      >
+      </app-amcs-select-all-checkbox>
+    </ng-container>
+    <ng-container *ngIf="!isCheckbox">
+      <ng-container *ngIf="!rowTemplate">
+        <mat-option *ngFor="let option of options" class="no-mat-checkbox" [value]="option.id">{{ option.description | glossary }}</mat-option>
+      </ng-container>
+      <ng-container *ngIf="rowTemplate">
+        <mat-option *ngFor="let option of options; let index = index" class="no-mat-checkbox" [value]="option.id">
+          <div class="display-option">
+            <ng-container *ngTemplateOutlet="rowTemplate; context: { option: option, index: index }"> </ng-container></div
+        ></mat-option>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="isCheckbox">
+      <ng-container *ngIf="!rowTemplate">
+        <mat-option *ngFor="let option of options" checkboxPosition="before" [value]="option.id">{{ option.description | glossary }} </mat-option>
+      </ng-container>
+      <ng-container *ngIf="rowTemplate">
+        <mat-option *ngFor="let option of options; let index = index" checkboxPosition="before" [value]="option.id">
+          <div class="display-option">
+            <ng-container *ngTemplateOutlet="rowTemplate; context: { option: option, index: index }"> </ng-container></div
+        ></mat-option>
+      </ng-container>
+    </ng-container>
+  </mat-select>
+  <div class="help-block help-block-error">
+    <ng-content select="errors"></ng-content>
+  </div>
+  <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+  <ng-template #defaultLabel> <label app-amcs-form-label [label]="label" [isRequired]="isRequired"></label></ng-template>
+  <ng-template #customLabel>
+    <label> <ng-content select="label"></ng-content> </label
+  ></ng-template>
+</div>

@@ -1,0 +1,27 @@
+<app-amcs-inner-container [loading]="loading">
+  <div class="portlet portlet-skeleton box grey child-portlet" *ngIf="loading; else loadedTemplate">
+    <div class="portlet-title">
+      <div class="caption portlet-skeleton-text-block">
+      </div>
+    </div>
+    <div class="portlet-body" [ngStyle]="{'min-height': bodyMinHeight}"
+      [ngClass]="{'dynamic-height': isDynamicHeight, 'no-padding': noPadding }">
+      <!-- CSS animation taken from https://codepen.io/trungk18/pen/yJggrL -->
+      <div class="portlet-skeleton-body-load">
+        <div class="square square-c state1c"></div>
+        <div class="square square-c state2c"></div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadedTemplate>
+    <div class="portlet box grey child-portlet" [ngClass]="{'portlet-form': isForm}">
+      <div class="portlet-title">
+        <ng-content select="title"></ng-content>
+      </div>
+      <div class="portlet-body" [ngStyle]="{'min-height': bodyMinHeight}"
+        [ngClass]="{'dynamic-height': isDynamicHeight, 'no-padding': noPadding }">
+        <ng-content select="body"></ng-content>
+      </div>
+    </div>
+  </ng-template>
+</app-amcs-inner-container>

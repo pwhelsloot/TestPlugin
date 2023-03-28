@@ -1,0 +1,24 @@
+name: 0.0.1$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+      - develop
+      - feature*
+  paths:
+    include:
+    - 'API/*'
+
+variables:
+  - template: templates/variables.yml
+jobs:
+  - job: Build
+    timeoutInMinutes: 60
+    pool:
+      name: 'AMCS VS2022'
+    steps:
+      - template: templates/API/prep.yml
+      - template: templates/API/build.yml
+      - template: templates/API/test.yml

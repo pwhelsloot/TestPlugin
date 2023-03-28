@@ -1,0 +1,47 @@
+@import "sass/abstracts/variables";
+@import "sass/abstracts/mixins";
+
+   /* Animate items as they're being sorted. */
+   .cdk-drop-list-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  /* Animate an item that has been dropped. */
+  .cdk-drag-animating {
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+.multi-selector-container {
+  display: flex;
+  align-items: flex-start;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  ul.disabled-list {
+    li {
+      padding: 10px;
+      cursor: not-allowed;
+      background-color: $amcs-grey-opacity-40;
+    }
+  }
+
+  app-amcs-inner-tile {
+    display: inline-block;
+  }
+
+  .move-button-container {
+    width: 10%;
+
+    app-amcs-button {
+      display: flex;
+    }
+  }
+}
+
+.cdk-drop-list{
+  overflow: auto;
+}

@@ -1,0 +1,139 @@
+<a class="popover-button" [ngClass]="{'secondary-ui': isSecondaryUi}" container="body" appAutomationLocator
+    [compName]="compName" [uniqueKey]="'togglePopover'" (click)="togglePopover(); pop.toggle()" [outsideClick]="true"
+    (onHidden)="hidePopover()" (onShown)="showPopover = true" [popover]="columnCustomiserTemplate" placement="bottom"
+    #pop="bs-popover" triggers="" containerClass="column-customiser-popover" appAutomationLocator [compName]="compName"
+    [uniqueKey]="'toggle'">
+    <i class="fas fa-cogs" [ngClass]="{'active': showPopover}"></i>
+</a>
+<ng-template #columnCustomiserTemplate>
+    <app-amcs-button [compName]="compName" [uniqueKey]="'reset'" customClass="btn btn-default column-customiser"
+        (click)="service.resetColumns()">
+        <span [translate]="'sharedColumnCustomiser.resetToDefault'">Reset to Default</span>
+    </app-amcs-button>
+    <app-amcs-multi-tile-selector [compName]="compName" [isDynamicHeight]="true" [minHeight]="300"
+        [maxHeight]="columnListMaxHeight" [itemTextTemplate]="itemTextTemplate">
+    </app-amcs-multi-tile-selector>
+    <ng-template #itemTextTemplate let-item="item">
+        <app-amcs-tooltip-on-truncate [text]="item.title">
+        </app-amcs-tooltip-on-truncate>
+    </ng-template>
+</ng-template>
+<ng-template #defaultAccordianTemplate let-row="row">
+    <div class="accordian-container"
+        *ngIf="service.disabledAccordianColumns.length > 0 || service.enabledAccordianColumns.length > 0">
+        <app-amcs-inner-tile [compName]="compName" [caption]="accordianTitle" [isDynamicHeight]="true"
+            [isRemovePadding]="true">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" *ngIf="service.disabledAccordianColumns.length > 0">
+                    <div class="row">
+                        <div class="disabled-container">
+                            <ng-container *ngFor="let column of service.disabledAccordianColumns">
+                                <div [class]="service.disabledColumnClass">
+                                    <div class="accordian-column"
+                                        [ngClass]="{'amcs-grid-column-customiser-center-align': column.align === GridColumnAlignment.center}">
+                                        <strong *ngIf="!service.truncateText">{{column.title}}</strong>
+                                        <app-amcs-tooltip-on-truncate [ngClass]="'bold-text'" [text]="column.title"
+                                            *ngIf="service.truncateText" [toolTipPlacement]="'bottom'"
+                                            [manualResize]="column.tooltipManualResizeSubject">
+                                        </app-amcs-tooltip-on-truncate>
+                                        <ng-template [ngTemplateOutlet]="accordianColumnSwitch"
+                                            [ngTemplateOutletContext]="{ row: row, column: column }">
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div [ngClass]="{'col-lg-9 col-md-9 col-sm-12 col-xs-12': service.disabledAccordianColumns.length > 0, 
+                'col-lg-12 col-md-12 col-sm-12 col-xs-12': service.disabledAccordianColumns.length === 0
+                }">
+                    <div class="row">
+                        <ng-container *ngFor="let column of service.enabledAccordianColumns">
+                            <div [class]="service.enabledColumnClass">
+                                <div class="accordian-column"
+                                    [ngClass]="{'amcs-grid-column-customiser-center-align': column.align === GridColumnAlignment.center}">
+                                    <app-amcs-tooltip-on-truncate *ngIf="service.truncateText" [ngClass]="'bold-text'"
+                                        [text]="column.title" [toolTipPlacement]="'bottom'"
+                                        [manualResize]="column.tooltipManualResizeSubject">
+                                    </app-amcs-tooltip-on-truncate>
+                                    <strong *ngIf="!service.truncateText">{{column.title}}</strong>
+                                    <ng-template [ngTemplateOutlet]="accordianColumnSwitch"
+                                        [ngTemplateOutletContext]="{ row: row, column: column }">
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </app-amcs-inner-tile>
+    </div>
+</ng-template>
+<ng-template #accordianColumnSwitch let-row="row" let-column="column">
+    <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="ColumnType.text">
+            <span>{{ row[column.key] }}</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.superScript">
+            <span>{{ row[column.key] }}<sup class="superscript superscript-green badge" *ngIf="row.rowHighlighted">{{
+                    column.superScriptText }}</sup></span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.enumeration">
+            <span>{{ row[column.key] | gridEnumeration:column.enumerations}}</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.email">
+            <a href="mailto:{{ row[column.key] }}">{{ row[column.key] }}</a>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.boolean">
+            <div class="text-center">
+                <i class="fa fa-check" aria-hidden="true" *ngIf="row[column.key]"></i>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.currency">
+            <span class="currency-column">
+                {{ row[column.key] | currency: column.currencyCode :'symbol':column.noOfDecimalPlaces |
+                minusToParenthesis }}
+                <sup *ngIf="row.additionalPrice">{{ column.superScriptText }}</sup>
+            </span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.weight">
+            <span class="currency-column">
+                {{ row[column.key] | number: column.noOfDecimalPlaces }}
+            </span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.shortDate">
+            <span>{{ row[column.key] | localizedDate : 'shortDate' }}</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.shortDateTime">
+            <span>{{ row[column.key] | localizedDate : 'shortDate' }}
+                {{ row[column.key] | localizedDate : 'shortTime' }}</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.truncatedText">
+            <app-amcs-tooltip-on-truncate [manualResize]="column.tooltipManualResizeSubject" [text]="row[column.key]">
+            </app-amcs-tooltip-on-truncate>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.truncatedDateTime">
+            <app-amcs-tooltip-on-truncate [manualResize]="column.tooltipManualResizeSubject" [text]="row[column.key]">
+            </app-amcs-tooltip-on-truncate>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.template">
+            <ng-container [ngTemplateOutlet]="column.template"
+                [ngTemplateOutletContext]="{ row: row, tooltipManualResizeSubject: column.tooltipManualResizeSubject }">
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.rateNumber">
+            <span class="currency-column">{{ row[column.key] | number:'.4-4' | minusToParenthesis }}</span>
+        </ng-container>
+        <ng-container *ngSwitchCase="ColumnType.link">
+            <span>
+                <a (click)="!disableSelection ? onLinkClicked(column.key, row) : null" appAutomationLocator
+                    [compName]="compName" [uniqueKey]="'rowLink_' + column.key">
+                    {{ row[column.key] | glossary}}
+                </a>
+            </span>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+        </ng-container>
+    </ng-container>
+</ng-template>

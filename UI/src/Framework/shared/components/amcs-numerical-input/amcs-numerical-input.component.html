@@ -1,0 +1,52 @@
+<div
+  class="form-group form-md-line-input amcs-input"
+  [class]="customWrapperClass"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-success': !hasError && !hasWarning && edited,
+    'has-warning': hasWarning,
+    'small-mode': displayMode === FormControlDisplay.Small,
+    'grid-mode': displayMode === FormControlDisplay.Grid,
+    'no-margin': noMargin,
+    'no-padding': noPadding,
+    'mobile-form-group': isMobile
+  }"
+>
+  <input
+    currencyMask
+    [class]="customClass"
+    [options]="{
+      prefix: inputPrefix,
+      suffix: inputSuffix,
+      align: alignment,
+      precision: precision,
+      decimal: decimalsDeliminator,
+      thousands: thousandsDeliminator,
+      inputMode: inputMode,
+      nullable: true,
+      allowNegative: allowNegative
+    }"
+    maxlength="{{ maxLength }}"
+    [takeFocus]="autoFocus"
+    class="form-control"
+    [disabled]="isDisabled"
+    [ngModel]="inputValue"
+    (ngModelChange)="writeValue($event)"
+    [ngClass]="{ edited: edited, 'mobile-input': isMobile, 'mobile-error': hasError && isMobile }"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    appAutomationLocator
+    [compName]="compName"
+    [uniqueKey]="formControlName + '_' + uniqueKey"
+    inputmode="decimal"
+  />
+  <mat-spinner [ngClass]="{ 'hide-content': !loading }" [strokeWidth]="3" [diameter]="20"></mat-spinner>
+  <ng-content select="errors"></ng-content>
+  <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+  <ng-template #defaultLabel>
+    <label app-amcs-form-label [label]="label" [isRequired]="isRequired"></label
+  ></ng-template>
+  <ng-template #customLabel>
+    <label> <ng-content select="label"></ng-content> </label
+  ></ng-template>
+</div>

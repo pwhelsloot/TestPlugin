@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>AMCS.PlatformFramework.Server.ApiDocumentation</PackageId>
+  </PropertyGroup>
+  <Import Project="..\..\PlatformFramework.targets" />
+  <ItemGroup>
+    <None Remove="**\*.md" />
+    <EmbeddedResource Include="**\*.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="**\*.html" />
+    <EmbeddedResource Include="**\*.html" />
+  </ItemGroup>
+</Project>

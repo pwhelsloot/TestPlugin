@@ -1,0 +1,403 @@
+<div
+  class="portlet light portlet-fit bordered"
+  [class.eventsOpened]="isActiveDayIsOpen"
+  [class.dayView]="view === 'day'"
+  [class.weekView]="view === 'week'"
+  [class.monthView]="view === 'month'"
+  [class.noMargin]="noMargin"
+>
+  <div class="portlet-title">
+    <div class="col-sm-12" *ngIf="mobileQuery.matches">
+      <div class="mobileEventSelection" [ngStyle]="{ display: this.filteredEventTypes.length > 0 ? 'block' : 'none' }">
+        <mat-select
+          [(ngModel)]="selectedEventTypes"
+          multiple
+          #mobileEventTypeList
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'events'"
+        >
+          <mat-select-trigger>
+            <span class="eventText">
+              <span [translate]="'shared.calendar.events'">Events</span>
+              <span>: {{ mobileSelectedEventsDisplay }}</span>
+            </span>
+          </mat-select-trigger>
+          <div class="calendar-search-box">
+            <input
+              class="form-control"
+              placeholder="{{ searchPlaceHolderText }}"
+              type="text"
+              (keyup)="onMobileEventTypeFilter($event)"
+              appAutomationLocator
+              [compName]="compName"
+              [uniqueKey]="'searchPlaceHolderText'"
+            />
+            <i class="fa fa-search"></i>
+          </div>
+          <mat-option
+            appAutomationLocator
+            [compName]="compName"
+            [uniqueKey]="'eventFilterOption_' + type.description"
+            (click)="eventSelectionChanged()"
+            class="amcs-calendar-legend-option"
+            *ngFor="let type of filteredEventTypes"
+            checkboxPosition="before"
+            [value]="type.id"
+            [style.border-color]="type.color"
+            #eventItemsMobile
+            >{{ type.description }}</mat-option
+          >
+        </mat-select>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <div class="btn-group pullLeft">
+        <a
+          *ngIf="allowFilterToggle"
+          (click)="toggleShowFilter()"
+          class="filter-button"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'toggleShowFilter'"
+        >
+          <i class="far fa-filter" [ngClass]="{ 'show-filter': showFilter }"></i>
+        </a>
+        <span [ngClass]="{ calendarLoading: loading }">
+          <app-amcs-button
+            [compName]="compName"
+            [uniqueKey]="'view_today'"
+            customClass="amcs-light-green small noMargin circle"
+            mwlCalendarToday
+            [(viewDate)]="viewDate"
+            (viewDateChange)="viewDateChanged($event)"
+          >
+            {{ 'shared.calendar.today' | translate }}
+          </app-amcs-button>
+        </span>
+
+        <i
+          mwlCalendarPreviousView
+          class="fal fa-angle-left fa-3x"
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (click)="closeOpenDay()"
+          (viewDateChange)="viewDateChanged($event)"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'viewLeft'"
+          [excludeDays]="excludeDays"
+        ></i>
+
+        <i
+          mwlCalendarNextView
+          class="fal fa-angle-right fa-3x"
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (click)="closeOpenDay()"
+          (viewDateChange)="viewDateChanged($event)"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'viewRight'"
+          [excludeDays]="excludeDays"
+        ></i>
+      </div>
+
+      <h4 class="textAlign">{{ viewDate | calendarDate: (view || 'month') + 'ViewTitle':translationService.locale }}</h4>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" [ngClass]="{ calendarLoading: loading }">
+      <div class="btn-group pullRight">
+        <app-amcs-button
+          [compName]="compName"
+          [uniqueKey]="'month'"
+          [customClass]="view === 'month' ? 'amcs-light-green small noMargin circle' : 'amcs-grey-rounded small noMargin circle'"
+          (click)="changeView('month')"
+          [class.active]="view === 'month'"
+        >
+          <span [translate]="'shared.calendar.month'">Month</span>
+        </app-amcs-button>
+        <app-amcs-button
+          [compName]="compName"
+          [uniqueKey]="'week'"
+          [customClass]="view === 'week' ? 'amcs-light-green small noMargin circle' : 'amcs-grey-rounded small noMargin circle'"
+          (click)="changeView('week')"
+          [class.active]="view === 'week'"
+        >
+          <span [translate]="'shared.calendar.week'">Week</span>
+        </app-amcs-button>
+        <app-amcs-button
+          [compName]="compName"
+          [uniqueKey]="'day'"
+          [customClass]="view === 'day' ? 'amcs-light-green small noMargin circle' : 'amcs-grey-rounded small noMargin circle'"
+          (click)="changeView('day')"
+          [class.active]="view === 'day'"
+        >
+          <span [translate]="'shared.calendar.day'">Day</span>
+        </app-amcs-button>
+      </div>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <ng-container *ngIf="showFilter">
+      <div class="col-md-2 col-sm-12 bodyColumnPadding" *ngIf="!mobileQuery.matches">
+        <mat-calendar
+          class="mat-calendar-viewport"
+          #calendar
+          [selected]="tileViewDate"
+          (selectedChange)="tileDateChanged($event)"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'tiledate'"
+          [dateFilter]="dateFilter"
+        >
+        </mat-calendar>
+        <div *ngIf="loading; else loadedTemplate">
+          <!-- Loading animation taken from https://codepen.io/Manoz/pen/pydxK/ -->
+          <div class="loading-animation">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+        <ng-template #loadedTemplate>
+          <div class="row filters-title-row">
+            <div class="col-xs-12">
+              <div class="pull-left filters-title">
+                <span class="bold" [translate]="'shared.calendar.filters'">Filters</span>
+              </div>
+              <div *ngIf="filterPersist" class="pull-right persist-switch">
+                <span [translate]="'shared.calendar.persist'">Persist</span>
+                <app-amcs-switch
+                  [(ngModel)]="enablePersist"
+                  (ngModelChange)="persistChange($event)"
+                  [config]="switchConfig"
+                  [compName]="compName"
+                  [uniqueKey]="'persist'"
+                >
+                </app-amcs-switch>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="filteredEventTypesList.length === 0">
+            <div class="search-box" [ngStyle]="{ display: this.filteredEventTypes.length > 0 ? 'block' : 'none' }">
+              <input
+                class="form-control"
+                placeholder="{{ searchPlaceHolderText }}"
+                type="text"
+                (keyup)="onEventTypeFilter($event)"
+                appAutomationLocator
+                [compName]="compName"
+                [uniqueKey]="'filter'"
+              />
+              <i class="fa fa-search"></i>
+            </div>
+            <mat-selection-list
+              #eventTypeList
+              [(ngModel)]="selectedEventTypes"
+              appAutomationLocator
+              [compName]="compName"
+              [uniqueKey]="'eventTypes'"
+            >
+              <mat-list-option
+                *ngIf="selectAllEnabled"
+                appAutomationLocator
+                [compName]="compName"
+                [uniqueKey]="'eventTypeSelectAll'"
+                class="amcs-calendar-legend-option"
+                checkboxPosition="before"
+                (click)="selectAllChanged()"
+                [value]="selectAllType.id"
+                [style.border-color]="selectAllType.color"
+              >
+                {{ 'shared.calendar.selectAll' | translate }}</mat-list-option
+              >
+              <mat-list-option
+                appAutomationLocator
+                [compName]="compName"
+                [uniqueKey]="'singleCalendarLegendFilter' + type.description"
+                class="amcs-calendar-legend-option"
+                *ngFor="let type of filteredEventTypes"
+                (click)="eventSelectionChanged()"
+                checkboxPosition="before"
+                [value]="type.id"
+                [selected]="true"
+                [style.border-color]="type.color"
+                #eventItems
+              >
+                {{ type.description }}
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+          <div class="multiple-filters" *ngIf="filteredEventTypesList.length !== 0">
+            <div *ngFor="let eventTypes of filteredEventTypesList; let i = index">
+              <div
+                class="search-box multiple-filter"
+                [ngStyle]="{ display: eventTypes.length > 0 && placeHolderList[i] ? 'inline-block' : 'none' }"
+              >
+                <input
+                  class="form-control"
+                  placeholder="{{ placeHolderList[i] }}"
+                  type="text"
+                  (keyup)="onEventTypeFilter($event, i)"
+                  appAutomationLocator
+                  [compName]="compName"
+                  [uniqueKey]="'eventFilter_' + i"
+                />
+                <i class="fa fa-search"></i>
+              </div>
+              <mat-selection-list
+                #eventTypeList
+                [(ngModel)]="selectedEventTypes"
+                appAutomationLocator
+                [compName]="compName"
+                [uniqueKey]="'eventSelect_' + i"
+              >
+                <mat-list-option
+                  *ngIf="selectAllEnabled"
+                  appAutomationLocator
+                  [compName]="compName"
+                  [uniqueKey]="'legendSelectAll'"
+                  class="amcs-calendar-legend-option"
+                  checkboxPosition="before"
+                  (click)="selectAllChanged()"
+                  [value]="selectAllType.id"
+                  [style.border-color]="selectAllType.color"
+                >
+                  {{ 'shared.calendar.selectAll' | translate }}</mat-list-option
+                >
+                <mat-list-option
+                  [ngStyle]="{ display: placeHolderList[i] ? 'inline-block' : 'none' }"
+                  class="amcs-calendar-legend-option"
+                  *ngFor="let type of eventTypes"
+                  (click)="eventSelectionChanged($event, i, type)"
+                  appAutomationLocator
+                  [compName]="compName"
+                  [uniqueKey]="'multipleCalendarLegendFilter' + type.description"
+                  checkboxPosition="before"
+                  [value]="getSelectValue(type, i)"
+                  [selected]="true"
+                  [style.border-color]="type.color"
+                  #eventItems
+                >
+                  <div class="custom-option" tooltip="{{ type.description }}">{{ type.description }}</div>
+                </mat-list-option>
+              </mat-selection-list>
+            </div>
+          </div>
+        </ng-template>
+        <ng-content select="sidebarContent"> </ng-content>
+      </div>
+    </ng-container>
+
+    <div
+      class="bodyColumnPadding"
+      [ngClass]="{
+        calendarLoading: loading,
+        'col-md-12 col-sm-12': mobileQuery.matches,
+        'col-md-10 col-sm-12': !mobileQuery.matches,
+        'col-lg-12': !showFilter
+      }"
+    >
+      <br />
+      <div class="calendarBody" [ngSwitch]="view">
+        <mwl-calendar-month-view
+          *ngSwitchCase="'month'"
+          [viewDate]="viewDate"
+          [events]="calendarEvents"
+          [activeDayIsOpen]="isActiveDayIsOpen"
+          [openDayEventsTemplate]="monthOpenCellTemplate"
+          [locale]="translationService.locale"
+          [cellTemplate]="monthCellTemplate"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'monthSwitch'"
+          [excludeDays]="excludeDays"
+        >
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+          *ngSwitchCase="'week'"
+          [viewDate]="viewDate"
+          [locale]="translationService.locale"
+          [eventTemplate]="weekEventTemplate"
+          [events]="calendarEvents"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'weekSwitch'"
+          [excludeDays]="excludeDays"
+        >
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view
+          *ngSwitchCase="'day'"
+          [viewDate]="viewDate"
+          [locale]="translationService.locale"
+          [eventTemplate]="dayEventTemplate"
+          [events]="calendarEvents"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'datSwitch'"
+        >
+        </mwl-calendar-day-view>
+      </div>
+    </div>
+    <div class="clearall"></div>
+  </div>
+</div>
+<ng-template #monthCellTemplate let-day="day">
+  <app-amcs-calendar-desktop-cell
+    [widthToggle]="showFilter"
+    [tooltipPlacement]="tooltipPlacement"
+    [compName]="compName"
+    [ngClass]="{ calendarLoading: loading }"
+    [viewDate]="viewDate"
+    [day]="day"
+    [locale]="translationService.locale"
+    [isActiveDayIsOpen]="isActiveDayIsOpen"
+    (seeMoreClicked)="dayClicked($event)"
+    (activitySelected)="onActivitySelected(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityEdited)="onEventEdit(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityDeleted)="onEventDelete(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityCompleted)="onEventComplete(getFullEvent($event.meta.id, $event.meta.typeId))"
+  >
+  </app-amcs-calendar-desktop-cell>
+</ng-template>
+<ng-template #monthOpenCellTemplate let-isOpen="isOpen">
+  <app-calendar-open-day-events
+    [compName]="compName"
+    [ngClass]="{ calendarLoading: loading }"
+    [locale]="translationService.locale"
+    (activityEdited)="onEventEdit(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activitySelected)="onActivitySelected(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityCompleted)="onEventComplete(getFullEvent($event.meta.id, $event.meta.typeId))"
+    [day]="dayOpen"
+    [isOpen]="isOpen"
+    (activityDeleted)="onEventDelete(getFullEvent($event.meta.id, $event.meta.typeId))"
+  >
+  </app-calendar-open-day-events>
+</ng-template>
+<ng-template #weekEventTemplate let-weekEvent="weekEvent">
+  <app-amcs-calendar-week-event
+    [tooltipPlacement]="tooltipPlacement"
+    [compName]="compName"
+    [ngClass]="{ calendarLoading: loading }"
+    [weekEvent]="weekEvent"
+    (activitySelected)="onActivitySelected(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityEdited)="onEventEdit(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityDeleted)="onEventDelete(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityCompleted)="onEventComplete(getFullEvent($event.meta.id, $event.meta.typeId))"
+  >
+  </app-amcs-calendar-week-event>
+</ng-template>
+<ng-template #dayEventTemplate let-weekEvent="weekEvent">
+  <app-amcs-calendar-week-event
+    [tooltipPlacement]="tooltipPlacement"
+    [compName]="compName + '_2'"
+    [ngClass]="{ calendarLoading: loading }"
+    [weekEvent]="weekEvent"
+    (activitySelected)="onActivitySelected(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityEdited)="onEventEdit(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityDeleted)="onEventDelete(getFullEvent($event.meta.id, $event.meta.typeId))"
+    (activityCompleted)="onEventComplete(getFullEvent($event.meta.id, $event.meta.typeId))"
+  >
+  </app-amcs-calendar-week-event>
+</ng-template>

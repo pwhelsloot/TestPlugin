@@ -1,0 +1,35 @@
+<div class="cal-event">
+    <mat-nav-list class="displayEventsList">
+        <a (mouseenter)="showstatus(weekEvent.event)" (mouseleave)="hideStatus(weekEvent.event)" mat-list-item
+            [style.border-color]="weekEvent.event.color.primary" placement="{{tooltipPlacement}}"
+            tooltip="{{weekEvent.event.meta.isShowButton ? weekEvent.event.meta.buttonTooltip : weekEvent.event.title}}"
+            container="body"
+            (click)="weekEvent.event.meta.selectOnTileClick ? activitySelected.emit(weekEvent.event) : null"
+            appAutomationLocator [compName]="compName" [uniqueKey]="'week_link'">
+            <span class="constrainedContent"
+                (click)="!weekEvent.event.meta.selectOnTileClick ? activitySelected.emit(weekEvent.event) : null"
+                appAutomationLocator [compName]="compName" [uniqueKey]="'week'">{{weekEvent.event.title}}
+                <button *ngIf="weekEvent.event.meta.isShowButton" #btn type="button" class="amcs-green-confirm"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="uniqueKey">
+                    <span class="button-text">{{weekEvent.event.meta.buttonText}}</span>
+                </button>
+            </span>
+
+            <div *ngIf="showOptions && (weekEvent.event.meta.isViewable || weekEvent.event.meta.isEditable || weekEvent.event.meta.isDeletable || weekEvent.event.meta.isCompletable)"
+                class="cal-event-actions">
+                <a *ngIf="weekEvent.event.meta.isViewable" (click)="activitySelected.emit(weekEvent.event)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="'week_view'"><i
+                        class="far fa-eye fa-sm"></i></a>
+                <a *ngIf="weekEvent.event.meta.isEditable" (click)="activityEdited.emit(weekEvent.event)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="'week_edit'"><i
+                        class="far fa-pencil fa-sm"></i></a>
+                <a *ngIf="weekEvent.event.meta.isDeletable" (click)="activityDeleted.emit(weekEvent.event)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="'week_delete'"><i
+                        class="fas fa-trash fa-sm"></i></a>
+                <a *ngIf="weekEvent.event.meta.isCompletable" (click)="activityCompleted.emit(weekEvent.event)"
+                    appAutomationLocator [compName]="compName" [uniqueKey]="'week_complete'"><i
+                        class="fas fa-check fa-sm"></i></a>
+            </div>
+        </a>
+    </mat-nav-list>
+</div>

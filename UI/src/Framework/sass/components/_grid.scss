@@ -1,0 +1,98 @@
+@import 'sass/abstracts/variables';
+
+.date-cell-invalid-date,
+.numeric-cell-invalid {
+  background-color: lightcoral !important;
+}
+
+.row-has-errors {
+  background-color: #ffdde0 !important;
+}
+
+.ag-tooltip {
+  padding: 3px 8px !important;
+  color: #fff !important;
+  text-align: center !important;
+  background-color: #000 !important;
+  border-radius: 4px !important;
+}
+
+.table {
+  margin-bottom: 0;
+  cursor: pointer;
+  border-color: $amcs-grid-border-color;
+  border-collapse: collapse;
+
+  tr.expanded-row,
+  td.expanded-row {
+    border: 0 !important;
+  }
+
+  td {
+    padding: 8px;
+    line-height: 1.42857;
+    vertical-align: top;
+  }
+
+  tr {
+    border: 0;
+  }
+
+  th {
+    background-color: $amcs-grid-header-color;
+    border-color: $amcs-grid-border-color;
+    color: $amcs-grid-header-text-color;
+    border-collapse: collapse;
+  }
+
+  td {
+    border-color: $amcs-grid-border-color;
+    border-collapse: collapse;
+    vertical-align: baseline;
+    color: $amcs-grid-row-text-color;
+
+    a {
+      color: $amcs-grid-row-link-text-color;
+    }
+  }
+
+  td.iconTableData {
+    padding: 10px;
+  }
+
+  tr.selectedRow > td,
+  tr.selectedRow:hover > td {
+    background-color: $amcs-grid-selected-row-color !important;
+  }
+
+  td.expanded-row {
+    padding: 0;
+
+    &:hover {
+      background-color: $amcs-grid-selected-row-color !important;
+    }
+  }
+
+  .padded-tile {
+    padding: 5px 10px 5px 10px;
+
+    &.routeAssignments {
+      padding-top: 10px !important;
+    }
+
+    &.containerInventory {
+      padding-bottom: 10px !important;
+    }
+  }
+
+  .iconTableData {
+    min-width: 55px;
+    text-align: center;
+
+    i {
+      position: relative;
+      top: 4px;
+      color: $amcs-grid-row-expanded-icon-color;
+    }
+  }
+}

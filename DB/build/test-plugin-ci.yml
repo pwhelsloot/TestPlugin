@@ -1,0 +1,132 @@
+﻿# This YAML can be used as a template for your project's pipeline
+# Useful links:
+# - YAML schema reference   https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema
+# - Predefined variables    https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
+# - Task conditions         https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml
+name: 0.0.1$(Rev:.r)
+
+# Triggers to run the pipeline automatically.
+# Read more about triggers: https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+      - develop
+      - feature*
+  paths:
+    include:
+    - 'DB/*'
+
+variables:
+  projectName: 'TestPlugin'
+  root: '$(Build.SourcesDirectory)/DB'
+  solution: '$(root)/TestPluginDB.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  NUGET_PACKAGES: $(root)/packages
+  cacheKey: 'test-plugin'
+
+jobs:
+  - job: Build
+    timeoutInMinutes: 0
+    pool:
+      name: 'Azure Pipelines'
+      vmImage: 'windows-2019'
+    steps:
+      - checkout: self
+        submodules: true
+        clean: true
+
+      # Append branch name to the version if the branch name is not main
+      - powershell: |
+          $cleanSourceBranchName = $env:Build_SourceBranchName -replace "[^A-Za-z0-9\-]+","-"
+          Write-Host "##vso[build.updatebuildnumber]$($env:Build_BuildNumber)-$($cleanSourceBranchName)"
+        displayName: 'Update build number with metadata'
+        condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
+
+      - task: NuGetToolInstaller@1
+        displayName: 'Install NuGet'
+
+      # This task will cache NuGet packages at the very end of the build.
+      # The cache will be restored at the beginning of consequential builds.
+      # The cache is invalidated if any of packages.config is changed
+      # Read more about caching: https://docs.microsoft.com/en-us/azure/devops/pipelines/caching/?view=azure-devops
+      #- task: Cache@2
+      #  displayName: 'Populate/restore NuGet packages cache'
+      #  inputs:
+      #    key: '"$(cacheKey)" | "$(Agent.OS)" | **/*.csproj'
+      #    path: '$(NUGET_PACKAGES)'
+      #    cacheHitVar: NUGET_CACHE_RESTORED
+      #    restoreKeys: '$(cacheKey) | "$(Agent.OS)"'
+
+      - task: NuGetAuthenticate@1
+      
+      - task: NuGetCommand@2
+        displayName: 'Restore NuGet packages'
+        inputs:
+          feedsToUse: 'config'
+          nugetConfigPath: '$(root)/.nuget/Nuget.config'
+          restoreSolution: '$(solution)'
+
+      # Set version number and other info to all AssemblyInfo files
+      - task: Assembly-Info-NetFramework@2
+        displayName: 'Update AssemblyInfo'
+        inputs:
+          Path: '$(root)'
+          FileNames: '**\AssemblyInfo.cs'
+          InsertAttributes: false
+          FileEncoding: 'auto'
+          WriteBOM: false
+          Company: 'AMCS'
+          Copyright: 'Copyright © AMCS $(date:YYYY)'
+          VersionNumber: '$(Build.BuildNumber)'
+          FileVersionNumber: '$(Build.BuildNumber)'
+          InformationalVersion: '$(Build.BuildNumber)'
+
+      - task: VSBuild@1
+        inputs:
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+          vsVersion: 'latest'
+          #msbuildArgs: '/p:DeployOnBuild=true;WebPublishMethod=Package;AutoParameterizationWebConfigConnectionStrings=false'
+
+      - task: VSTest@2
+        displayName: 'Run tests'
+        inputs:
+          testSelector: 'testAssemblies'
+          searchFolder: '$(root)'
+          testAssemblyVer2: |
+            **\*Test*.dll
+            !**\*TestAdapter.dll
+            !**\obj\**
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+          vsTestVersion: 'latest'
+
+# The following tasks compress and publish the build artifact.
+# Since the template doesn't have any release pipeline, the tasks are disabled to speed up the build.
+# Feel free to comment it out in your own pipeline.
+
+#      - task: CopyFiles@2
+#        displayName: 'Copy Web Package to Binaries Directory'
+#        inputs:
+#          sourceFolder: '$(root)'
+#          contents: '**\obj\$(buildConfiguration)\Package\*.*'
+#          flattenFolders: true
+#          targetFolder: '$(Build.BinariesDirectory)'
+#          cleanTargetFolder: true
+#
+#      - task: ArchiveFiles@2
+#        inputs:
+#          rootFolderOrFile: '$(Build.BinariesDirectory)'
+#          includeRootFolder: false
+#          archiveType: 'zip'
+#          archiveFile: '$(Build.ArtifactStagingDirectory)/$(projectName)_$(Build.BuildNumber).zip'
+#          replaceExistingArchive: true
+#
+#      - task: PublishBuildArtifacts@1
+#        inputs:
+#          pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(projectName)_$(Build.BuildNumber).zip'
+#          artifactName: '$(projectName)'

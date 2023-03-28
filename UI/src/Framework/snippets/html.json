@@ -1,0 +1,50 @@
+{
+    "amcs-form-tile-snippet": {
+        "prefix": "amcs-form-tile",
+        "body": [
+            "<app-amcs-form-tile [form]=\"form\" [options]=\"formTileOptions\" (onSave)=\"handleSave()\" (onCancel)=\"handleCancel()\">",
+            "<ng-template>",
+            "<!-- Form controls here -->",
+            "</ng-template>",
+            "</app-amcs-form-tile>"
+        ],
+        "description": "Creates amcs-form-tile html element"
+    },
+    "amcs-form-snippet": {
+        "prefix": "amcs-form",
+        "body": [
+            "<app-amcs-form [form]=\"form\" [options]=\"formOptions\" (onSave)=\"handleSave()\" (onCancel)=\"handleCancel()\">",
+            "<ng-template>",
+            "<!-- Form controls here -->",
+            "</ng-template>",
+            "</app-amcs-form>"
+        ],
+        "description": "Creates amcs-form html element"
+    },
+    "amcs-modal-form-snippet": {
+        "prefix": "amcs-form-modal",
+        "body": [
+            "<app-amcs-form-modal [triggerModalSubject]=\"triggerModalSubject\">",
+            "<app-some-form-component #modal>",
+            "</app-some-form-component>",
+            "</app-amcs-form-modal>"
+        ],
+        "description": "Creates amcs-form-modal html element"
+    },
+    "amcs-row-snippet": {
+        "prefix": "amcs-row",
+        "body": [
+            "<app-amcs-row>",
+            "  <app-amcs-column></app-amcs-column>",
+            "</app-amcs-row>"
+        ],
+        "description": "Creates amcs-row html element"
+    },
+    "amcs-column-flexible-snippet": {
+        "prefix": "amcs-column-flexible",
+        "body": [
+            "<app-amcs-column></app-amcs-column>"
+        ],
+        "description": "Creates a flexible amcs-column html element"
+    }
+}

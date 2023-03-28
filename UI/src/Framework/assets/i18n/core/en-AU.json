@@ -1,0 +1,89 @@
+{
+	"app": {
+		"initialising": "Initialising Application"
+	},
+	"columnCustomiser": {
+		"accordianTile": {
+			"title": "Accordion"
+		},
+		"gridTile": {
+			"title": "Grid"
+		},
+		"left": "Left",
+		"right": "Right",
+		"unusedTile": {
+			"title": "Unused"
+		}
+	},
+	"csrAuthentication": {
+		"userNotAllowedWebUi": "This user does not have access to Web UI. Users with a primary staff type of driver cannot access Web UI."
+	},
+	"globalsearch": {
+		"searchkeyword": {
+			"acc": "ACC - Search based on AR Account code",
+			"bcn": "BCN - Search based on barcode number",
+			"con": "CON - Search based on container serial number and tag number",
+			"fed": "ABN - Search based on ABN",
+			"inv": "INV - Search based on customer invoice numbers",
+			"key": {
+				"acc": "ACC",
+				"bcn": "BCN",
+				"con": "CON",
+				"fed": "ABN",
+				"inv": "INV",
+				"mat": "MAT",
+				"pon": "PON",
+				"ppc": "PPC",
+				"rpt": "RPT",
+				"son": "OON",
+				"stn": "STN",
+				"tna": "TNA",
+				"wdn": "WDN"
+			},
+			"mat": "MAT - Search based on Matrikkelnummer",
+			"noresults": "No matches found.",
+			"placeholder": {
+				"acc": "Enter AR Account Code (Minimum 3 Characters)",
+				"bcn": "Enter Barcode Number (Minimum 3 Characters)",
+				"con": "Enter Container Serial Number / Tag Number (Minimum 3 Characters)",
+				"fed": "Enter ABN (Minimum 3 Characters)",
+				"inv": "Enter Invoice Number (Minimum 3 Characters)",
+				"mat": "Enter Matrikkelnummer in format Knr-Gnr/Bnr/Fnr/Snr  (Minimum 3 Characters)",
+				"pon": "Enter Purchase Order Number (Minimum 3 Characters)",
+				"ppc": "Enter Pre Pay Card Number (Minimum 3 Characters)",
+				"rpt": "Enter Report Name, Description, or Keywords (Minimum 3 Characters)",
+				"son": "Enter Outbound Order Number (Minimum 3 Characters)",
+				"stn": "Enter Scale Ticket Number (Minimum 3 Characters)",
+				"tna": "Enter Trading Name (Minimum 3 Characters)",
+				"wdn": "Enter Waste Declaration Number (Minimum 3 Characters)"
+			},
+			"pon": "PON - Search based on purchase order number",
+			"ppc": "PPC - Search based on customer pre pay card numbers",
+			"rpt": "RPT - Search based on report name, description, or keywords",
+			"son": "OON - Search based on outbound order number",
+			"stn": "STN - Search based on scale ticket number",
+			"tna": "TNA - Search based on trading name",
+			"wdn": "WDN - Search based on waste declaration numbers"
+		}
+	},
+	"headerMenu": {
+		"accounting": "Accounting",
+		"customerService": "Customer Service",
+		"design": "Design",
+		"equipmentInventory": "Equipment Inventory",
+		"erp": "",
+		"extensibility": "Extensibility",
+		"inventory": "",
+		"materials": "Materials",
+		"pricesAndProducts": "Prices & Products",
+		"reportsAnalytics": "Reports & Analytics",
+		"routing": "Routing",
+		"scale": "Scale",
+		"settings": "Settings",
+		"transportdispatch": "",
+		"vendors": "Vendors"
+	},
+	"workflow": {
+		"started": "Workflow started"
+	}
+}

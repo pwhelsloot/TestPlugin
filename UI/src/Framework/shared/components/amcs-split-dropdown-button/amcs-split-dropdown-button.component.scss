@@ -1,0 +1,72 @@
+@import 'sass/abstracts/variables';
+
+.layout {
+  margin: 5px;
+}
+
+.main-button {
+  margin-right: 0 !important;
+  border-radius: 0 !important;
+}
+
+.dropdown-button {
+  padding: 9px 4px 1px !important;
+  border-radius: 0 !important;
+}
+
+.menu-item {
+  padding: 6px 12px;
+  cursor: pointer;
+
+  &:hover {
+    background: $amcs-actions-control-bg-hover-color;
+  }
+
+  &.amcs-yellow {
+    background-color: $amcs-yellow-button-backgrond-color !important;
+    color: $amcs-yellow-button-text-color !important;
+
+    &:hover {
+      background-color: $amcs-yellow-button-background-color-hover !important;
+      color: $amcs-yellow-button-text-color !important;
+    }
+  }
+
+  &.amcs-red {
+    background-color: $amcs-red-button-background-color;
+    color: $amcs-white;
+
+    &:hover {
+      background-color: $amcs-red-button-background-color-hover;
+      color: $amcs-white;
+    }
+  }
+
+  &.amcs-teal {
+    background-color: $amcs-teal-button-background-color;
+    color: $amcs-white;
+
+    &:hover {
+      background-color: $amcs-teal-button-background-color-hover;
+      color: $amcs-white;
+    }
+  }
+
+  &.amcs-green {
+    background-color: $amcs-green-button-backgrond-color;
+    color: $amcs-green-button-text-color;
+
+    &:hover {
+      background-color: $amcs-green-button-background-color-hover;
+    }
+  }
+
+  &.amcs-grey {
+    background-color: $amcs-grey-button-background-color;
+    color: $amcs-grey-button-text-color;
+
+    &:hover {
+      background-color: $amcs-grey-button-background-color-hover;
+    }
+  }
+}

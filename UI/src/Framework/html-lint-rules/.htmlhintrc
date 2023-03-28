@@ -1,0 +1,9 @@
+{
+    "form-tag-ban": true,
+    "tags-needing-automation-directive": true,
+    "tags-needing-automation-inputs": true,
+    "automation-unique-key-uniqueness": true,
+    "automation-directive-valid": true,
+    "form-control-automation-inputs": true,
+    "click-events-needing-automation-directive": true
+}

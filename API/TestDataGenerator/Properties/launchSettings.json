@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "TestDataGenerator-Export": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "commandLineArgs": "--export-schema-filepath \"C:/SHARED/sampleoutput.json\""
+    },
+    "TestDataGenerator-Import": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "commandLineArgs": "--import-seed \"sampleSeed\" --import-json-filepath \"C:/SHARED/sampleinput.json\" --connection-string \"Data Source=.;Initial Catalog=TestPluginDevelopment;User ID=sa;Password=T7axEiTYigXtE4ap/Z7Wbw==\""
+    }
+  }
+}

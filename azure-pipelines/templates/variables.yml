@@ -1,0 +1,10 @@
+﻿variables:
+  projectName: 'TestPlugin'
+  root: '$(Build.SourcesDirectory)/API'
+  solution: '$(root)/TestPlugin.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  NUGET_PACKAGES: $(root)/packages
+  cacheKey: 'test-plugin'
+  sa_password: 'Test@123'
+  sa_password_encrypted: 'pdHZIU5AfWbtE4ap/Z7Wbw=='

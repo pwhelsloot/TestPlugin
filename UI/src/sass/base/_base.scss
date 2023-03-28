@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+body {
+  background-color: $theme-page-background;
+  color: $amcs-grey;
+  font-size: 14px;
+}
+
+.amcs-inner-tile {
+  margin-top: -10px !important;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+#walkme-player {
+  width: 55px !important;
+  height: 55px !important;
+  margin-right: 2% !important;
+  margin-bottom: 15px !important;
+}

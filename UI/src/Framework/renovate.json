@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable",
+    ":prImmediately",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":noUnscheduledUpdates",
+    ":ignoreModulesAndTests",
+    ":autodetectPinVersions",
+    "group:monorepos",
+    "group:recommended",
+    "workarounds:all",
+    ":pinAllExceptPeerDependencies",
+    ":automergeDisabled",
+    ":preserveSemverRanges"
+  ],
+  "labels": ["dependencies"],
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{footer}}}",
+  "prConcurrentLimit": 10,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["nuget"],
+      "addLabels": [".NET"]
+    },
+    {
+      "matchManagers": ["npm"],
+      "addLabels": ["NPM"],
+      "matchFiles": ["package.json"]
+    },
+    {
+      "matchManagers": ["terraform"],
+      "addLabels": ["terraform"]
+    }
+  ]
+}

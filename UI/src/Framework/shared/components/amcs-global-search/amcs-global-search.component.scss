@@ -1,0 +1,145 @@
+@import "sass/abstracts/variables";
+
+app-amcs-global-search {
+
+  .close-button {
+    color: $amcs-white !important;
+  }
+
+  .close-icon {
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .search-bar {
+    padding: unset;
+    background-color: unset;
+
+    .business-type-div {
+      width: 25%;
+    }
+
+    .input-group {
+      display: flex;
+    }
+
+    .clear-btn {
+      border: 0;
+      background-color: #FFF;
+      color: #A0A9B4;
+      font-size: 14px !important;
+      outline: none !important;
+    }
+
+    .search-box {
+      width: 100%;
+      display: inline-flex;
+    }
+
+    .con {
+      background-color: $pallette-seach-keyword-con !important;
+    }
+
+    .inv {
+      background-color: $pallette-seach-keyword-inv !important;
+    }
+
+    .ppc {
+      background-color: $pallette-seach-keyword-ppc !important;
+    }
+
+    .fed {
+      background-color: $pallette-seach-keyword-fed !important;
+    }
+
+    .son {
+      background-color: $pallette-seach-keyword-son !important;
+    }
+
+    .pon {
+      background-color: $pallette-seach-keyword-pon !important;
+    }
+
+    .tna {
+      background-color: $pallette-seach-keyword-tna !important;
+    }
+
+    .rpt {
+      background-color: $pallette-seach-keyword-rpt !important;
+    }
+
+    .wdn {
+      background-color: $pallette-seach-keyword-wdn !important;
+    }
+
+    .stn {
+      background-color: $pallette-seach-keyword-stn !important;
+    }
+
+    .bcn {
+      background-color: $pallette-seach-keyword-bcn !important;
+    }
+
+    .acc {
+      background-color: $pallette-seach-keyword-acc !important;
+    }
+
+    .mat {
+      background-color: $pallette-seach-keyword-mat !important;
+    }
+
+    input.form-control {
+      &.keyword-input {
+        float: right;
+      }
+
+      &.read-only-keyword {
+        width: 55px;
+        cursor: unset !important;
+        padding: 6px 6px 6px 12px !important;
+
+        &::-webkit-input-placeholder {
+          color: #fff;
+          font-weight: bold;
+        }
+
+        &:-moz-placeholder {
+          color: #fff;
+          font-weight: bold;
+        }
+
+        &::-moz-placeholder {
+          color: #fff;
+          font-weight: bold;
+        }
+
+        &:-ms-input-placeholder {
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+    }
+
+
+    input {
+      background-color: $amcs-white !important;
+      border-bottom-left-radius: 3px;
+      border-top-left-radius: 3px;
+    }
+
+    .amcs-search-button {
+      background-color: $amcs-green-button-backgrond-color;
+      color: $amcs-white;
+      border-bottom-left-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 3px !important;
+      border-bottom-right-radius: 3px !important;
+      box-shadow: unset !important;
+
+      i {
+        color: $amcs-white;
+      }
+    }
+  }
+}

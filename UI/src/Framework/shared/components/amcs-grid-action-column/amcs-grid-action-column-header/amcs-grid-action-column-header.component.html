@@ -1,0 +1,7 @@
+<div *ngIf="options" [ngSwitch]="options.icon" [class.align-right]="options.align === GridColumnAlignment.end"
+[class.align-center]="options.align === GridColumnAlignment.center">
+    <a *ngSwitchCase="GridActionColumnHeaderIconEnum.Add" (click)="options.onIconClicked.next(options.icon)"
+     appAutomationLocator [compName]="compName" [uniqueKey]="'gridActionHeaderIcon'">
+        <i class="far fa-plus-circle fa-lg"></i>
+    </a>
+</div>

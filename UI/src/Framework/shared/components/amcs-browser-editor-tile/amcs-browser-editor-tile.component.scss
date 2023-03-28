@@ -1,0 +1,125 @@
+@import "sass/abstracts/_variables";
+@import "sass/abstracts/_mixins";
+
+.portlet-skeleton {
+  .portlet-title {
+    .portlet-skeleton-text-block {
+      top: 10px;
+      position: relative;
+      width: 120px !important;
+      height: 10px;
+    }
+  }
+
+  .loading-animation {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .line {
+    display: inline-block;
+    background-color: #61c250;
+    border-radius: 15px;
+    height: 15px;
+    width: 15px;
+  }
+
+  .loading-animation .line {
+    @include bounce-up(15px);
+  }
+
+  .loading-animation .line:nth-last-child(1) {
+    animation: bounce-up 0.6s 0.1s linear infinite;
+  }
+
+  .loading-animation .line:nth-last-child(2) {
+    animation: bounce-up 0.6s 0.2s linear infinite;
+  }
+
+  .loading-animation .line:nth-last-child(3) {
+    animation: bounce-up 0.6s 0.3s linear infinite;
+  }
+
+  .portlet-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .portlet-skeleton-text-block {
+      margin: 15px;
+      padding: 10px;
+      background-color: #a8bbcc;
+      width: 90%;
+      height: 10px;
+      background-image: linear-gradient(to left, #f6f7f8 0%, #edeef1 10%, #eaeaea 100%);
+      animation: loading 1.7s infinite linear;
+
+      &.newRow {
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .portlet-skeleton-body-load {
+    border: 0;
+    height: 90px;
+    width: 90px;
+
+    .square {
+      opacity: 0.2;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+    }
+
+    .square-c {
+      @include loading-animation();
+      animation: loading-animation 2s infinite ease-in-out;
+      width: 30px;
+      height: 30px;
+      opacity: 0.8;
+    }
+
+    .square-c.state2c {
+      animation-delay: -1s;
+    }
+  }
+}
+
+.portlet {
+  margin-bottom: 15px !important;
+  .portlet-body.dynamic-height {
+    overflow: hidden;
+    min-height: unset;
+    height: unset;
+  }
+
+  &.inner-tiles {
+    margin-bottom: 0 !important;
+  }
+}
+
+.portlet.child-portlet {
+  .portlet-title {
+    min-height: unset;
+    height: 38px;
+
+    .caption {
+      color: $pallette-portlet-title-text-color !important;
+      padding-top: 10px;
+
+      .caption-subject {
+        line-height: 22px;
+        font-size: 16px;
+      }
+    }
+
+    .actions {
+      padding: 7px 0 5px;
+    }
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}

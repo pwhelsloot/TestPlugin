@@ -1,0 +1,63 @@
+@import "sass/abstracts/variables";
+
+app-amcs-address-validator {
+
+    .margin-spacer {
+        margin-bottom: 20px !important;
+    }
+
+    @media (min-width: 993px)
+    {
+        .load-brreg-button-container {
+            padding: 0 !important;
+            position: relative;
+            top: 16px;
+            left: -10px;
+        }
+    }
+
+    app-amcs-button {
+        button {
+            &.get-brreg-results {
+                width: 100%;
+
+                >.loading-animation {
+                    .line {
+                        background-color: rgba(0, 0, 0, 0.87) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    label {
+        color: $amcs-form-label-colour !important;
+
+        >.dark {
+            color: rgba(0, 0, 0, 0.87) !important;
+        }
+    }
+
+    .secondary-address {
+        display: flex;
+        height: 60px;
+        align-items: center;
+
+        .secondary-address-label {
+            position: relative;
+            padding-left: 10px;
+        }
+    }
+
+    .address-search-type-container {
+        margin-bottom: -15px;
+
+        .address-search-type {
+            margin-right: 15px;
+        }
+    }
+
+    .checkbox label, .radio label {
+        min-height: 14px;
+    }
+}

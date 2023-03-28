@@ -1,0 +1,29 @@
+@import 'sass/abstracts/variables';
+
+.amcs-datepicker {
+    .bs-datepicker-head {
+        background-color: $pallette-primary-color;
+    }
+
+    .bs-datepicker-body {
+        table {
+            td {
+                &.week {
+                    span {
+                        color: $pallette-datepicker-week-color;
+                    }
+                }
+
+                span {
+                    &.selected {
+                        color: $pallette-datepicker-selected-day-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+bs-daterangepicker-container {
+    left: 120px !important;
+}

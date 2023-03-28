@@ -1,0 +1,123 @@
+<!-- eslint-disable amcs-html-plugin/ng-project-label-ban -->
+<!-- html-hint-disable form-tag-ban -->
+<form [formGroup]="formService.form.formGroup" *ngIf="formService.form">
+  <div class="row">
+    <div class="col-lg-4 col-md-4">
+      <div class="form-group address-search-type-container" *ngIf="formService.brregIntegrationEnabled">
+        <label class="mt-radio mt-radio-outline inline-radio address-search-type">
+          <input type="radio" name="addressSelection" value="1" (change)="onAddressSearchTypeChanged($event)"
+            [checked]="true" appAutomationLocator [compName]="compName"
+            [uniqueKey]="formControlName+'_'+uniqueKey+'_BRREG'" />
+          <label [translate]="'addressValidation.brreg'">BRREG</label>
+          <span></span>
+        </label>
+        <label class="mt-radio mt-radio-outline inline-radio">
+          <input type="radio" name="addressSelection" value="2" (change)="onAddressSearchTypeChanged($event)"
+            appAutomationLocator [compName]="compName" [uniqueKey]="formControlName+'_'+uniqueKey+'_addressSearch'" />
+          <label [translate]="'addressValidation.addressSearch'">Address Search</label>
+          <span></span>
+        </label>
+      </div>
+      <div class="form-group"
+        *ngIf="formService.brregIntegrationEnabled && formService.currentSearchMethod === AddressSearchMethod.Brreg; else addressSearch">
+        <div class="row">
+          <div class="col-md-8">
+            <app-amcs-input [compName]="compName" formControlName="federalId" [hasError]="formService.brregError"
+              placeholder="{{ 'addressValidation.brregSearch' | translate}}">
+              <ng-container ngProjectAs="errors">
+                <span class="help-block help-block-error" *ngIf="formService.brregError"
+                  [translate]="'addressValidation.orgNotFound'">Organization number entered could not be found</span>
+              </ng-container>
+            </app-amcs-input>
+          </div>
+          <div class="col-md-4 load-brreg-button-container">
+            <app-amcs-button [compName]="compName" [uniqueKey]="'brregGetAddress'"
+              [disabled]="!formService.form.formGroup.get('federalId').value"
+              [loading]="formService.loadingBrregContent" customClass="btn amcs-grey get-brreg-results"
+              (click)="formService.onBrregGetAddressClick(addressSearchType)" [compName]="compName"
+              [uniqueKey]="'getAddress'">
+              <span [translate]="'addressValidation.getAddress'">Get Address</span>
+            </app-amcs-button>
+          </div>
+        </div>
+        <div class="row" *ngIf="formService.secondarySite">
+          <div class="col-lg-12 secondary-address">
+            <div class="mt-checkbox-inline">
+              <app-amcs-input type="checkbox" [compName]="compName" formControlName="createSecondarySite">
+                <label class="secondary-address-label">
+                  <span [translate]="'addressValidation.additionalSite'">Also create a site for Postal Address </span>
+                  <span>: </span>
+                  <span class="dark">{{formService.secondarySiteAddress}}, {{formService.secondarySite.postcode}}
+                    {{formService.secondarySite.address2}}</span>
+                </label>
+              </app-amcs-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #addressSearch>
+        <div class="form-group" *ngIf="formService.form.formGroup.status !== 'DISABLED'">
+          <app-amcs-select-typeahead [compName]="compName"
+            [uniqueKey]="formControlName+'_'+uniqueKey+'_addressTypeAhead'" [autoFocus]="true"
+            bindLabel="formattedAddress" [items$]="formService.validationService.addressSearchResults$"
+            (change)="formService.addressSelected($event)" [selectOnTab]="true"
+            [loading]="formService.validationService.searchingAddress" [inputSubject]="formService.searchTextSubject">
+          </app-amcs-select-typeahead>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div *ngFor="let control of formService.dynamicControls;" [ngSwitch]="control.type">
+          <div *ngIf="control.isDisplay" class="col-lg-{{formService.colSpan}}">
+            <ng-container *ngSwitchCase="AddressControlTypeEnum.input">
+              <app-amcs-input [compName]="compName" [formControlName]="control.name" autocomplete="new-password"
+                [hasError]="formService.form.hasErrors(control.name)" [maxLength]="control.maxLength">
+                <ng-container ngProjectAs="label">
+                  <span>{{ control.label }}</span>
+                  <span class="required" aria-required="true" *ngIf="control.isMandatory">*</span>
+                </ng-container>
+              </app-amcs-input>
+            </ng-container>
+            <ng-container *ngSwitchCase="AddressControlTypeEnum.select">
+              <!-- eslint-disable amcs-html-plugin/deprecated-tag-ban -->
+              <app-amcs-select-deprecated [compName]="compName" [formControlName]="control.name"
+                [hasError]="formService.form.hasErrors(control.name)">
+                <ng-container ngProjectAs="label">
+                  <span>{{ control.label }}</span>
+                  <span class="required" aria-required="true" *ngIf="control.isMandatory">*</span>
+                </ng-container>
+                <ng-container ngProjectAs="options">
+                  <option *ngFor="let option of control.options" [value]="option.description">
+                    {{option.description}}</option>
+                </ng-container>
+              </app-amcs-select-deprecated>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+          <app-amcs-input [maxLength]="22" autocomplete="new-password" [compName]="compName" formControlName="latitude"
+            [hasError]="formService.form.hasErrors('latitude')">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'addressValidation.latitude'">Latitude</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+          <app-amcs-input [maxLength]="22" autocomplete="new-password" [compName]="compName" formControlName="longitude"
+            [hasError]="formService.form.hasErrors('longitude')">
+            <ng-container ngProjectAs="label">
+              <span [translate]="'addressValidation.longitude'">Longitude</span>
+            </ng-container>
+          </app-amcs-input>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-8">
+      <app-amcs-leaflet-map (markerDragged)="formService.markerDragged($event)" [zoom]="formService.mapZoomLevel"
+        [mapHeight]="620" [latitude]="formService.countryLat" [longitude]="formService.countryLong"
+        [expandedMode]="false" [compName]="compName">
+      </app-amcs-leaflet-map>
+    </div>
+  </div>
+</form>

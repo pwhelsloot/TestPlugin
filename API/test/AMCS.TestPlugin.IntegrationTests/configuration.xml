@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <amcs
+    projectId="AMCS" />
+
+  <amcs.serviceRoots>
+    <add name="TestPluginServiceRoot" url="http://localhost:16932/" />
+    <add name="CoreServiceRoot" url="http://localhost:26519/" />
+  </amcs.serviceRoots>
+
+  <!-- Set azureCompatibilityEnabled to `true` to enable runtime Azure compatibility translation, removing group_concat and GETDATE calls -->
+  <!-- performanceMonitoringEnabled should always be false (change it and checkin if you see it set to true) as it's comes with overhead-->
+  <!-- bulkCopyTimeout with a value of 0 indicates no limit; the bulk copy will wait indefinitely. -->
+
+  <amcs.server
+    dataAccessType="SQL"
+    commandTimeout="240"
+    commandTimeoutExtended="600"
+    bulkCopyTimeout="600"
+    performanceMonitoringEnabled="false"
+    azureCompatibilityEnabled="false"
+    dataSynchronizationDisabled="true"
+    sessionExpiration="1.00:00:00"
+    encryptionKey="supersecret!supersecret!"
+    certificateSubjectName=""
+    certificatePath=""
+    applicationInsightsInstrumentationKey="" />
+
+  <amcs.core
+    sessionExpiration="1.00:00:00"
+    neutralTimeZoneId="Europe/Dublin" />
+
+  <connectionStrings>
+    <add name="TestPluginConnectionString" connectionString="Data Source=.;Initial Catalog=TestPluginDevelopment;User ID=sa;Password=T7axEiTYigXtE4ap/Z7Wbw==" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+
+</configuration>

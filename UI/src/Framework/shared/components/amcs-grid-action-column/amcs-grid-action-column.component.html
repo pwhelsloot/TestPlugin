@@ -1,0 +1,40 @@
+<app-amcs-dropdown
+  *ngIf="filteredItems && !displayInline"
+  [compName]="compName"
+  [uniqueKey]="'grid_dropdown'"
+  class="dropdown-button"
+  [dropdownIcon]="dropdownIconEnum"
+  [loading]="row.taskLoading"
+  [dropup]="dropup"
+  (openChange)="onOpenActionMenu.emit({ event: $event, row: row })"
+>
+  <ng-container ngProjectAs="menu">
+    <li
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="index + '_item_' + i"
+      [class.disabled]="button.isDisabled"
+      *ngFor="let button of filteredItems; let i = index"
+      (click)="emitClicked(button, row)"
+    >
+      <a>
+        <i *ngIf="button.icon" [class]="button.icon" [class.disabled]="button.isDisabled"></i>
+        <span *ngIf="button.description">{{ button.description }}</span>
+      </a>
+    </li>
+  </ng-container>
+</app-amcs-dropdown>
+<ng-container *ngIf="filteredItems && displayInline">
+  <a
+    appAutomationLocator
+    [compName]="compName"
+    [uniqueKey]="index + '_inlineitem_' + i"
+    [class.disabled]="button.isDisabled"
+    [class.rowTextHighlighted]="row.rowTextHighlighted"
+    *ngFor="let button of filteredItems; let i = index"
+    (click)="emitClicked(button, row)"
+  >
+    <i *ngIf="button.icon" [class]="button.icon" [class.disabled]="button.isDisabled"></i>
+    <span *ngIf="button.description">{{ button.description }}</span>
+  </a>
+</ng-container>

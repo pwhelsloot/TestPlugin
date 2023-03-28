@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PackageId>AMCS.Data.Server.AppApi</PackageId>
+  </PropertyGroup>
+  <Import Project="..\PlatformFramework.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.ApiService\AMCS.ApiService.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Server\AMCS.Data.Server.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="3.1.0" />
+  </ItemGroup>
+</Project>

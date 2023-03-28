@@ -1,0 +1,38 @@
+<div
+  class="form-group form-md-line-input amcs-input"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-success': !hasError && edited,
+    'label-definitions': displayMode === FormControlDisplay.LabelDefinitions,
+    'small-mode': displayMode === FormControlDisplay.Small,
+    'grid-mode': displayMode === FormControlDisplay.Grid
+  }"
+>
+  <div class="input-icon right">
+    <textarea
+      #input
+      autocomplete="off"
+      [ngModel]="value"
+      (ngModelChange)="writeValue($event)"
+      [ngStyle]="{ 'min-height': minheight, height: height }"
+      [takeFocus]="autoFocus"
+      class="form-control"
+      tooltip="{{ inputTooltip }}"
+      [disabled]="isDisabled"
+      [ngClass]="{ edited: edited }"
+      (blur)="onTouchedCallback()"
+      maxlength="{{ maxLength }}"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="formControlName + '_' + uniqueKey"
+    ></textarea>
+    <ng-content select="errors"></ng-content>
+    <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+    <ng-template #defaultLabel>
+      <label app-amcs-form-label [label]="label" [class]="labelClass" [isRequired]="isRequired"></label
+    ></ng-template>
+    <ng-template #customLabel>
+      <label> <ng-content select="label"></ng-content> </label
+    ></ng-template>
+  </div>
+</div>

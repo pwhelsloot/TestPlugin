@@ -1,0 +1,86 @@
+name: 0.0.1$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+      - develop
+      - feature*
+  paths:
+    include:
+    - 'UI/*'
+
+variables:
+  root: '$(Build.SourcesDirectory)/UI'
+  PNPM_CACHE_FOLDER: $(Pipeline.Workspace)/.pnpm-store
+
+jobs:
+  - job: Build
+    timeoutInMinutes: 0
+    pool:
+      name: 'Default scale set'
+    steps:
+      - checkout: self
+        submodules: true
+        clean: true
+
+      # Append branch name to the version if the branch name is not main
+      - powershell: |
+          $cleanSourceBranchName = $env:Build_SourceBranchName -replace "[^A-Za-z0-9\-]+","-"
+          Write-Host "##vso[build.updatebuildnumber]$($env:Build_BuildNumber)-$($cleanSourceBranchName)"
+        displayName: 'Update build number with metadata'
+        condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
+
+      - task: NodeTool@0
+        displayName: 'Install Node.js'
+        inputs:
+          versionSpec: '14.x'
+
+      - task: npmAuthenticate@0
+        displayName: 'Set credentials in .npmrc'
+        inputs:
+          workingFile: '$(Build.SourcesDirectory)/UI/.npmrc'
+
+      - powershell: |
+          npm i -g pnpm
+          pnpm add only-allow --global
+          New-Item -Path "$(PNPM_CACHE_FOLDER)" -ItemType Directory -Force
+          pnpm config set store-dir $(PNPM_CACHE_FOLDER)
+        displayName: 'Configure PNPM'
+
+      - script: pnpm install --frozen-lockfile --shamefully-hoist
+        displayName: 'PNPM install'
+        workingDirectory: '$(Build.SourcesDirectory)/UI'
+
+      - script: pnpm run ng lint
+        displayName: 'Lint'
+        workingDirectory: '$(Build.SourcesDirectory)/UI'
+
+      - script: pnpm run build-high-mem
+        displayName: 'Build app'
+        workingDirectory: '$(Build.SourcesDirectory)/UI'
+
+      - script: pnpm run test -- --watch=false --code-coverage --reporters=junit --browsers=ChromeHeadless
+        displayName: 'Run tests'
+        workingDirectory: '$(Build.SourcesDirectory)/UI'
+
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish code coverage results'
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/UI/coverage/cobertura-coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/UI/coverage'
+
+      - task: PublishTestResults@2
+        displayName: 'Publish test results'
+        condition: succeededOrFailed()
+        inputs:
+          testRunner: JUnit
+          testResultsFiles: '$(System.DefaultWorkingDirectory)/UI/test-results/junit.xml'
+
+      - task: CheckForUnstagedFiles@0
+        displayName: Check build for unstaged changes
+        inputs:
+          repository: '$(Build.SourcesDirectory)'
+          exceptions: 'UI/.npmrc'

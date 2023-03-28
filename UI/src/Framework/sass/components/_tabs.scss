@@ -1,0 +1,31 @@
+@import 'sass/abstracts/variables';
+
+.mat-tab-header {
+  background-color: $amcs-white;
+}
+
+.mat-tab-label-container {
+  .mat-tab-label {
+    font-size: 14px;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    color: $pallette-inactive-tab-color;
+    background-color: unset !important;
+    opacity: 1 !important;
+  }
+
+  .mat-tab-label-active {
+    color: $pallette-active-tab-color;
+  }
+
+  .mat-ink-bar {
+    background-color: $pallette-active-tab-color !important;
+  }
+}
+
+app-amcs-tab-control {
+  .mat-tab-header {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}

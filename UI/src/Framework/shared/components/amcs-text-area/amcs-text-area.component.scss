@@ -1,0 +1,32 @@
+@import "sass/abstracts/variables";
+
+.label-definitions {
+    padding-top: 0px !important;
+}
+
+textarea.form-control {
+    height: 34px;
+}
+
+.small-mode {
+    margin: 0 !important;
+    margin-bottom: 15px !important;
+}
+
+.grid-mode {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: white;
+}
+
+.comment-mobile {
+    margin: 0;
+    padding: 0 !important;
+    height: calc(100vh - 205px) !important;
+}
+
+.notes-mobile {
+  border: 1px solid $amcs-form-input-border-color !important;
+  border-radius: 3px !important;
+  padding-left: 5px !important;
+}

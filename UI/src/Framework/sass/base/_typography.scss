@@ -1,0 +1,148 @@
+.amcs-title {
+  font-size: 16px;
+  padding: 15px 0;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-light.eot?#iefix') format('eot'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/DINNext-Light.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-light.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-light.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-lightitalic.eot?#iefix') format('eot'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-lightitalic.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-lightitalic.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-lightitalic.svg') format('svg');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/DINNext-Regular.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-regular.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-regular.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-regularitalic.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-regularitalic.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-regularitalic.svg') format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-medium.eot?#iefix') format('eot'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/DINNext-Medium.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-medium.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-medium.svg') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-mediumitalic.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-mediumitalic.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-mediumitalic.svg') format('svg');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-bold.eot?#iefix') format('eot'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/DINNext-Bold.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-bold.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-bold.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DIN Next';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-bolditalic.woff') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-bolditalic.ttf') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/dinnext-bolditalic.svg') format('svg');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'AMCS';
+  src: url('https://cdn.amcsgroup.io/din-next-fonts/2008/amcs.ttf?j0lljc') format('truetype'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/amcs.woff?j0lljc') format('woff'),
+  url('https://cdn.amcsgroup.io/din-next-fonts/2008/amcs.svg?j0lljc#AMCS') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'DIN Next', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: $amcs-grey;
+  text-rendering: optimizeLegibility;
+}
+
+.mt-element-step {
+  .step-no-background {
+    .active {
+
+      .mt-step-number,
+      .mt-step-title {
+        color: $amcs-green !important;
+      }
+    }
+  }
+}
+
+.fa-filter {
+  font-size: 22px;
+}
+
+.fa-ellipsis-v {
+  font-size: 20px;
+}
+
+.fa-angle-up,
+.fa-angle-down {
+  font-size: 24px;
+}
+
+.portlet {
+  >.portlet-title {
+    >.actions {
+      i {
+        &.fa-calendar-alt {
+          vertical-align: top;
+        }
+      }
+    }
+  }
+}
+
+.text-danger {
+  color: $amcs-red;
+}
+
+.text-success {
+  color: $amcs-green;
+}

@@ -1,0 +1,129 @@
+<app-amcs-inner-container-group>
+  <div class="row amcs-container-top-layout">
+    <div class="col-lg-12 col-md-12 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <h4 [translate]="'template.dashboard.title'">Template Dashboard</h4>
+            <div class="template-description" *ngIf="dashboardTemplate != null">
+              <span>{{ dashboardTemplate.templateName }} | {{ dashboardTemplate.templateDate | localizedDate : 'medium' }}</span>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <app-amcs-button customClass="btn-primary" (click)="refreshTemplate()">
+              {{ 'template.dashboard.refresh' | translate }}</app-amcs-button
+            >
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <app-amcs-button customClass="btn-primary" (click)="refreshAll()">
+              {{ 'template.dashboard.refreshAll' | translate }}</app-amcs-button
+            >
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <app-amcs-button customClass="btn-primary" (click)="refreshTemplateDate()">
+              {{ 'template.dashboard.refreshDate' | translate }}</app-amcs-button
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <p>
+              Dashboard makes a 'refresh all' call every time it's initialised.<br />
+              Notice how <strong>'Refresh Date'</strong> works differently after a refresh/refresh all.<br />
+              If you select it <strong>after a refresh all</strong> it'll update all template dates.<br />
+              If you select it <strong>after a refresh it'll</strong> update only that template's date. This is
+              <strong>javascript immutability</strong> in action and is very important!!
+            </p>
+          </div>
+        </div>
+      </app-amcs-inner-container>
+    </div>
+  </div>
+  <div class="row amcs-container-top-layout">
+    <div class="col-lg-12 col-md-12 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-dashboard-tile [caption]="'dashboardTiles.spacing.title' | translate" [isDynamicHeight]="true">
+          <h3 class="no-top-margin">Layout and spacing with visual parent and child components</h3>
+          <p>
+            In any situation where we have a component which is acting as a visual container with multiple child components, we want the
+            spacing between the child components to be consistent. There should be 15 pixels of spacing - on all sides - between the
+            container and the child components and between child components themselves. This couldn't be achieved in all cases with CSS
+            alone so we have two components which help enforce this layout:
+            <br />
+            <br />
+            <code>amcs-inner-container-group</code> defines a visual container. It is included in the markup of some controls so doesn't
+            need to be added when using them eg. amcs-browser-tile, amcs-custom-tile, amcs-parent-card. If the component we are using as a
+            visual container does not already include it, we should add it at the top level.
+            <br />
+            <br />
+            <code>amcs-inner-container</code> defines a visual child component. Again, some of our standard controls already have this in
+            their markup so if using these then we don't need to add it eg. amcs-inner-tile, amcs-card.
+          </p>
+          <p>
+            If we are using bootstrap rows and columns to lay out the child components then we need to use two additional CSS classes to
+            remove some additional bootstrap spacing:
+            <br />
+            <br />
+            On rows we should add <code>amcs-container-top-layout</code> to fix the top margin.
+            <br />
+            <br />
+            On columns we should add <code>amcs-inner-container-layout</code> to fix left and right margins.
+          </p>
+          <p>
+            On this screen the visual container is a custom component - template-dashboard. We therefore use the
+            app-amcs-inner-container-group component as the top level component in the markup. The visual children are all custom dashboard
+            tile components which use app-dashboard-tile as their top level component. app-dashboard-tile does not include
+            amcs-inner-container so we therefore need to wrap each tile in that component. Finally, we are using bootstrap here to give us a
+            4 tile per row layout (and less than that for smaller screen sizes) so we need to use the additional classes on rows and columns
+            to counter the bootstrap spacing. The end result is a consistent 15 pixel spacing between the outside edge of the container and
+            the dashboard tiles, and between the tiles themselves.
+          </p>
+        </app-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+  </div>
+  <div class="row amcs-container-top-layout">
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-recipes-dashboard-tile></app-recipes-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+  </div>
+  <div class="row amcs-container-top-layout">
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12 amcs-inner-container-layout">
+      <app-amcs-inner-container>
+        <app-sample-dashboard-tile></app-sample-dashboard-tile>
+      </app-amcs-inner-container>
+    </div>
+  </div>
+</app-amcs-inner-container-group>

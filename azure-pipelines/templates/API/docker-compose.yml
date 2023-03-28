@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  db:
+    image: amcsdevopsdevcr.azurecr.io/sql-server:2017-win2022-0.0.1.13
+    ports:
+      - 1431:1433
+    environment:
+      - sa_password=${sa_password}
+    container_name: sql

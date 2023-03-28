@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<section type="TestPluginConfiguration" namespace="AMCS.TestPlugin.Server.Configuration" sectionName="amcs.test-plugin" generateInterfaces="true">
+
+  <attribute name="tenantId" type="string" required="true"/>
+
+</section>

@@ -1,0 +1,15 @@
+{
+	"title": {
+		"app": {
+			"amcsPlatform": "AMCS Platform",
+			"cssExample": "Css Example",
+			"dashboard": "Dashboard",
+			"home": "Home",
+			"ingredients": "Ingredients",
+			"mapExample": "Map Example",
+			"snippetsExample": "Snippets Example",
+			"stepperExample": "Stepper Example",
+			"unitsOfMeasurement": "Units Of Measurement"
+		}
+	}
+}

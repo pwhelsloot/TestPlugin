@@ -1,0 +1,10 @@
+<app-amcs-button
+  [customClass]="'btn-default'"
+  [compName]="'AmcsModalStorybookLoaderComponent'"
+  [uniqueKey]="'modal'"
+  (click)="createModal(modalType, modalTemplate)"
+  >Launch {{ modalSize | titlecase }} {{ modalType | titlecase }} Modal</app-amcs-button
+>
+<ng-template #modalTemplate>
+  <h5>I'm a {{ modalSize }} {{ modalType }} modal.</h5>
+</ng-template>

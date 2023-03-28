@@ -1,0 +1,92 @@
+steps:
+  # Append branch name to the version if the branch name is not main
+  - powershell: |
+      $cleanSourceBranchName = $env:Build_SourceBranchName -replace "[^A-Za-z0-9\-]+","-"
+      Write-Host "##vso[build.updatebuildnumber]$($env:Build_BuildNumber)-$($cleanSourceBranchName)"
+    displayName: 'Update build number with metadata'
+    condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet'
+
+  - task: Cache@2
+    displayName: 'Populate/restore NuGet packages cache'
+    inputs:
+      key: '"$(cacheKey)" | "$(Agent.OS)" | **/*.csproj'
+      path: '$(NUGET_PACKAGES)'
+      cacheHitVar: NUGET_CACHE_RESTORED
+      restoreKeys: '$(cacheKey) | "$(Agent.OS)"'
+
+  - task: NuGetAuthenticate@1    
+
+  - task: NuGetCommand@2
+    displayName: 'Restore NuGet packages'
+    inputs:
+      feedsToUse: 'config'
+      nugetConfigPath: '$(Build.SourcesDirectory)/API/.nuget/Nuget.config'
+      restoreSolution: '$(Build.SourcesDirectory)/API/TestPlugin.sln'
+
+  - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+    displayName: 'Update integration tests configuration'
+    inputs:
+      rootDirectory: '$(Build.SourcesDirectory)\API\test\AMCS.TestPlugin.IntegrationTests'
+      targetFiles: 'App.Release.config'
+      tokenPrefix: '___'
+      tokenSuffix: '___'
+
+  - task: FileTransform@1
+    inputs:
+      folderPath: '$(Build.SourcesDirectory)\API\test\AMCS.TestPlugin.IntegrationTests'
+      enableXmlTransform: true
+      xmlTransformationRules: '-transform **\App.Release.config -xml **\App.config'
+      fileType: xml
+
+  - task: Assembly-Info-NetFramework@2
+    displayName: 'Update AssemblyInfo Net Framework'
+    inputs:
+      Path: '$(Build.SourcesDirectory)'
+      FileNames: |
+        **\AssemblyInfo.cs
+      InsertAttributes: false
+      FailOnWarning: false
+      FileEncoding: 'auto'
+      WriteBOM: false
+      Company: 'AMCS'
+      Copyright: 'Copyright © AMCS $(date:YYYY)'
+      VersionNumber: '$(Build.BuildNumber)'
+      FileVersionNumber: '$(Build.BuildNumber)'
+      InformationalVersion: '$(Build.BuildNumber)'
+
+  - task: Assembly-Info-NetCore@2
+    displayName: 'Update AssemblyInfo Net Core'
+    inputs:
+      Path: '$(Build.SourcesDirectory)'
+      InsertAttributes: true
+      FileEncoding: 'auto'
+      WriteBOM: false
+      Company: 'AMCS'
+      Copyright: 'Copyright © AMCS $(date:YYYY)'
+      PackageProjectUrl: 'https://dev.azure.com/amcsgroup/Platform/_git/TestPlugin'
+      RepositoryUrl: 'https://dev.azure.com/amcsgroup/Platform/_git/TestPlugin'
+      VersionNumber: '$(Build.BuildNumber)'
+      FileVersionNumber: '$(Build.BuildNumber)'
+      InformationalVersion: '$(Build.BuildNumber)'
+      FailOnWarning: false
+      DisableTelemetry: true
+      IgnoreNetFrameworkProjects: true
+
+  - task: VSBuild@1
+    displayName: Build API
+    inputs:
+      solution: '$(Build.SourcesDirectory)/API/TestPlugin.sln'
+      platform: '$(buildPlatform)'
+      configuration: 'Release'
+      vsVersion: 'latest'
+
+  - task: VSBuild@1
+    displayName: Build DB
+    inputs:
+      solution: '$(Build.SourcesDirectory)/DB/TestPluginDB.sln'
+      platform: '$(buildPlatform)'
+      configuration: 'Release'
+      vsVersion: 'latest'

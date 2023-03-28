@@ -1,0 +1,16 @@
+<div class="form-group form-md-line-input form-md-floating-label amcs-input"
+  [ngClass]="{'has-error' : hasError, 'has-success' : !hasError}">
+  <div class="input-icon right">
+    <input name="daterangepicker" (blur)="onTouchedCallback()" type="text" [ngClass]="{'edited' : edited}"
+      class="form-control" bsDaterangepicker #dpr="bsDaterangepicker" [bsConfig]="ngxConfig" [ngModel]="value"
+      (ngModelChange)="writeValue($event)" [placeholder]="placeholder" [disabled]="ngxConfig.isDisabled || disabled"
+      [ngClass]="{'edited' : edited}" [minDate]="ngxConfig.minDate" [maxDate]="ngxConfig.maxDate"
+      tooltip="{{dateTooltip}}" appAutomationLocator [compName]="compName"
+      [uniqueKey]="formControlName+'_'+uniqueKey+'_input'">
+    <label>
+      <ng-content></ng-content>
+    </label>
+    <i (click)="dpr.toggle()" class="fa fa-calendar calendar-icon" appAutomationLocator [compName]="compName"
+      [uniqueKey]="formControlName+'_'+uniqueKey+'_toggle'"></i>
+  </div>
+</div>

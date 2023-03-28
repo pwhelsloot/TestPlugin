@@ -1,0 +1,22 @@
+<parameters>
+	<parameter name="IIS Web Application Name" defaultValue="Default Web Site/$($packageName)" tags="IisApp">
+		<parameterEntry kind="ProviderPath" scope="IisApp" match="^F:\\PackageTmp$" />
+		<parameterEntry kind="ProviderPath" scope="setAcl" match="^F:\\PackageTmp$" />
+	</parameter>
+	<parameter name="ScaleServiceRoot" description="todo" defaultValue="\*\*\*apiURL\*\*\*">
+		<parameterEntry kind="TextFile" scope="\\main.*.js$" match="\*\*\*apiURL\*\*\*" />
+	</parameter>
+	<parameter name="ExagoServiceRoot" description="Exago Service Root Url" defaultValue="" />
+	<parameter name="apiKey" description="todo" defaultValue="SysTok 8596DC65-3D40-4504-933C-3FDFF685CDC0">
+		<parameterEntry kind="TextFile" scope="\\main.*.js$" match="\*\*\*apiKey\*\*\*" />
+	</parameter>
+	<parameter name="elemosClientURL" description="todo" defaultValue="\*\*\*elemosClientURL\*\*\*">
+		<parameterEntry kind="TextFile" scope="\\main.*.js$" match="\*\*\*elemosClientURL\*\*\*" />
+	</parameter>
+	<parameter name="exagoApiScriptUrl" description="Exago Service Script Api Url" defaultValue="{ExagoServiceRoot}WrScriptResource.axd?s=ExagoApi">
+		<parameterEntry kind="TextFile" scope="\\main.*.js$" match="\*\*\*exagoApiScriptUrl\*\*\*" />
+	</parameter>
+	<parameter name="uiSettingsAccessKey" description="todo" defaultValue="4F301C48-4A31-4449-A184-15E1CA79F502">
+		<parameterEntry kind="TextFile" scope="\\main.*.js$" match="\*\*\*uiSettingsAccessKey\*\*\*" />
+	</parameter>
+</parameters>

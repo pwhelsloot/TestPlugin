@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light portlet-fit">
+      <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+          <i class="icon-globe theme-font hide"></i>
+          <span class="caption-subject bold uppercase" [translate]="'home.myProfile.profileSettings'">Profile Settings</span>
+        </div>
+      </div>
+      <div class="portlet-body form">
+        <div class="tab-content">
+          <!-- html-hint-disable form-tag-ban -->
+          <form action="#" role="form">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="col-lg-7 col-md-12 col-sm-12">
+                    <div>
+                      <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                          <div class="fileinput-new thumbnail" style="width: 150px; height: 150px">
+                            <img [src]="imageSrc" alt="" />
+                          </div>
+                          <div
+                            class="fileinput-preview fileinput-exists thumbnail"
+                            style="max-width: 200px; max-height: 150px; line-height: 10px"
+                          ></div>
+                          <div>
+                            <span class="btn default btn-file" title="{{ 'home.myProfile.noFileChosen' | translate }}">
+                              <span class="fileinput-new" [translate]="'home.myProfile.selectImage'"> Select image</span>
+                              <span class="fileinput-exists" [translate]="'home.myProfile.change'"> Change </span>
+                              <input type="hidden" /><input type="file" (change)="handleFileInput($event)" name="..." />
+                            </span>
+                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput">
+                              <span [translate]="'home.myProfile.remove'"> Remove </span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p [translate]="'home.myProfile.uploadMessage'"><br />You can upload a JPG, GIF or PNG image. Max file size: 2 MB.</p>
+                    <div>
+                      <div [hidden]="!imageLoaded" style="width: 300px; height: 300px; position: absolute; top: 0; left: 180px">
+                        <app-image-manipulation
+                          [hidden]="!imageLoaded"
+                          [file]="theFile"
+                          (imageCroppedComplete)="onImageCropped($event)"
+                        ></app-image-manipulation>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-5 col-md-12 col-sm-12">
+                    <!-- html-hint-disable form-tag-ban -->
+                    <form [formGroup]="formService.form.formGroup" *ngIf="formService.form != null">
+                      <div class="form-group form-md-line-input amcs-input">
+                        <label [translate]="'home.myProfile.languageTitle'">Language</label>
+                        <!-- eslint-disable amcs-html-plugin/deprecated-tag-ban -->
+                        <app-amcs-select-deprecated formControlName="uiLanguage">
+                          <ng-container ngProjectAs="options">
+                            <option *ngFor="let language of formService.translateSettingsService.uiLanguages" [value]="language.code">
+                              {{ language.description }}
+                            </option>
+                          </ng-container>
+                        </app-amcs-select-deprecated>
+                      </div>
+                      <div class="form-group form-md-line-input amcs-input">
+                        <label [translate]="'home.myProfile.DefaultPrinter'">Default Printer</label>
+                        <app-amcs-select formControlName="printerId" [options]="formService.printerLookups"></app-amcs-select>
+                        <label class="mt-checkbox mt-checkbox-outline checkbox-label">
+                          <input formControlName="autoPrint" type="checkbox" name="autoPrint" />
+                          {{ 'home.myProfile.AutoPrinting' | translate }}
+                          <span></span>
+                        </label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <app-amcs-save-button (clicked)="onSave()" customClass="amcs-green" [disabled]="canSave()">
+                <span [translate]="'home.myProfile.save'">Save</span>
+              </app-amcs-save-button>
+              <button (click)="return()" class="btn btn-default pull-right" type="button">
+                <span [translate]="'home.myProfile.cancel'">Cancel</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

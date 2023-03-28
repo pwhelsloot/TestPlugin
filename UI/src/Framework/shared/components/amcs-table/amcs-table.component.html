@@ -1,0 +1,61 @@
+<!-- Filter (Optional) -->
+<div *ngIf="showFilter" class="grid-filter">
+  <input type="text" class="form-control" [placeholder]="filterPlaceholder" [(ngModel)]="filterText"
+    appAutomationLocator [compName]="compName" [uniqueKey]="'filter'" />
+</div>
+<div class="table-container"
+  [ngClass]="{ 'table-container-margin': !removeTableContainer, 'table-bordered': !rowBorder }" appAutomationLocator
+  [compName]="compName" [uniqueKey]="'tablediv'">
+  <table class="table" [ngClass]="{'fixed-table': tableLayoutFixed, 'table-hover': !disableSelection}"
+    appAutomationLocator [compName]="compName" [uniqueKey]="'table'">
+    <!-- Header -->
+    <thead class="thead-light">
+      <tr>
+        <ng-content></ng-content>
+      </tr>
+    </thead>
+    <!-- Rows -->
+    <div [ngClass]="{'table-content-height': fixedContentHeight}">
+      <ng-container *ngFor="let row of filteredRows;let i = index">
+        <tr (click)="selectRow(row)" #rowsRef [id]="row.id" class="table-row-display"
+          [ngClass]="{'selectedRow': row.isSelected, 'row-striping': rowStriping, 'row-border': rowBorder}"
+          [class.selectedRow]="row.isSelected" appAutomationLocator [compName]="compName" [uniqueKey]="'tr_' + i">
+          <ng-template [ngTemplateOutlet]="rowTemplate" [ngTemplateOutletContext]="{ row: row, index: i }">
+          </ng-template>
+        </tr>
+        <!-- Detail (Optional) -->
+        <ng-container *ngIf="detailRowTemplate != null">
+          <tr class="expanded-row" [ngClass]="{'hide-detail-row': !row.isSelected}">
+            <td colspan="666">
+              <!--666 = Mini-hack, span all columns. -->
+              <div *ngIf="row.isSelected" (@expandAndCollapse.done)="tileUiService.innerTilesChanged.next()"
+                [@expandAndCollapse]>
+                <div class="portlet-skeleton portlet-body" *ngIf="detailsLoading; else loadedTemplate">
+                  <div class="portlet-skeleton-body-load">
+                    <div class="square square-c state1c"></div>
+                    <div class="square square-c state2c"></div>
+                  </div>
+                </div>
+                <div class="details-container" [ngClass]="{'hide-content': detailsLoading }">
+                  <ng-template #loadedTemplate [ngTemplateOutlet]="detailRowTemplate"
+                    [ngTemplateOutletContext]="{ row: row, index: i }">
+                  </ng-template>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </div>
+    <tfoot *ngIf="includePaging">
+      <tr>
+        <!--666 = Mini-hack, span all columns. -->
+        <td colspan="666">
+          <mat-paginator [length]="totalItemCount" [pageSize]="pageSize" [hidePageSize]="true"
+            (page)="pageChanged($event.pageIndex)" appAutomationLocator [compName]="compName" [uniqueKey]="'paging'">
+          </mat-paginator>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

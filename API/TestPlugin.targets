@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Product>TestPlugin</Product>
+    <Version>99.0.0.0</Version>
+    <Company>AMCS Group Ltd</Company>
+    <Authors>AMCS Group Ltd</Authors>
+    <Copyright>Copyright © AMCS Group Ltd</Copyright>
+    <CodeAnalysisRuleSet>..\..\AMCS.ruleset</CodeAnalysisRuleSet>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+</Project>

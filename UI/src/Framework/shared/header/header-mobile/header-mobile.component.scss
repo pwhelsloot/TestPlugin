@@ -1,0 +1,333 @@
+@import 'sass/abstracts/variables';
+
+app-header-mobile {
+  .page-header.navbar .page-logo img.amcs-logo {
+    margin-left: 0px !important;
+  }
+
+  .mobile-header-padding {
+    padding-top: 50px;
+
+    &.expanded {
+      padding-top: 90px;
+    }
+  }
+
+  .no-pad-right {
+    padding-right: 0px;
+  }
+
+  .no-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .no-margin {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  .logo-padding {
+    margin-top: -2px;
+  }
+
+  .workcenter-logo {
+    color: $amcs-white;
+    padding: 8px 20px;
+    padding-right: 0px;
+    opacity: 0.9;
+    float: left;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    span {
+      color: $amcs-white;
+      padding-left: 5px;
+      vertical-align: bottom;
+    }
+  }
+
+  .amcs-logo {
+    padding-top: 10px;
+    height: 40px;
+    width: 90px;
+  }
+
+  .workcenter-logo {
+    color: $amcs-white;
+    padding: 14px 10px;
+    opacity: 0.9;
+    float: left;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    span {
+      color: $amcs-white;
+      padding-left: 5px;
+      vertical-align: bottom;
+    }
+  }
+
+  .header-menu-icon {
+    margin: 18px 15px 0px 3px;
+    float: left;
+    color: $amcs-white;
+    font-size: 11px;
+  }
+
+  .navbar-nav {
+    li {
+      &.dropdown {
+        &.dropdown-user {
+          a {
+            margin: 0;
+            padding: 5px;
+          }
+
+          > ul {
+            &.dropdown-menu {
+              &.dropdown-menu-open {
+                min-width: 162px !important;
+                border-radius: 0 !important;
+                display: inline;
+                padding: 5px;
+                background-color: $amcs-teal;
+              }
+            }
+
+            li {
+              > a {
+                background-color: $amcs-teal !important;
+              }
+            }
+          }
+        }
+
+        .dropdown-toggle {
+          &:hover {
+            background-color: $amcs-dropdown-toggle-selected;
+          }
+
+          &.communication-dropdown {
+            padding: 15px 10px;
+            > i {
+              top: 5px;
+            }
+
+            > span {
+              top: 9px;
+            }
+          }
+        }
+
+        &.dropdown-inbox {
+          &.dropdown-inbox-opened {
+            > a {
+              background-color: $amcs-light-blue;
+            }
+
+            > div.dropdown-inbox-list {
+              display: inline;
+            }
+          }
+
+          i {
+            color: $amcs-white;
+            font-size: 17px;
+            position: relative;
+            top: 2px;
+          }
+
+          .badge-default {
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            background-color: $amcs-green-button-backgrond-color;
+            color: $amcs-white;
+          }
+        }
+      }
+    }
+  }
+
+  .page-header {
+    &.navbar {
+      position: fixed;
+      background-color: $amcs-teal;
+    }
+
+    .menu-toggler {
+      > span,
+      > span::after,
+      > span::before {
+        height: 2px;
+        width: 26px;
+      }
+
+      > span::before {
+        top: 8px;
+      }
+
+      > span::after {
+        top: -8px;
+      }
+    }
+  }
+
+  .menu-text {
+    background-color: $amcs-light-blue !important;
+    color: #aeb2c4 !important;
+  }
+
+  .btn {
+    margin: 0 !important;
+  }
+
+  .username {
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #aeb2c4 !important;
+  }
+
+  .outlet {
+    padding-right: 10px;
+    min-width: 200px !important;
+  }
+
+  .search-button {
+    margin-top: -5px;
+  }
+
+  span {
+    > button {
+      height: 55px !important;
+      background-color: #f9f9f9;
+    }
+  }
+
+  .profile-img-circle {
+    display: inline-block;
+    color: $amcs-white;
+    background-color: $amcs-green-button-backgrond-color;
+    box-shadow: unset;
+    border-radius: 50px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .clear-btn {
+    width: 80px;
+    height: 34px;
+  }
+
+  .magnifier-button {
+    margin-top: -10px !important;
+  }
+
+  .profile-menu {
+    left: auto;
+    right: 0;
+  }
+
+  .form-control {
+    position: unset !important;
+    border: 0;
+  }
+
+  .search-bar-container {
+    padding-right: 5px;
+    padding-left: 5px;
+    z-index: 9994;
+    position: fixed;
+    background-color: $pallette-primary-color !important;
+  }
+
+  .search-bar {
+    margin-bottom: 0 !important;
+    padding-bottom: 5px !important;
+    padding-top: 1px !important;
+    border: 0;
+    background-color: $pallette-primary-color !important;
+  }
+
+  .dropdown-menu > li > a > [class*=' icon-'],
+  .dropdown-menu > li > a > [class^='icon-'] {
+    color: $header-menu-text-color;
+  }
+
+  .page-header.navbar .top-menu .navbar-nav > li.dropdown.open .dropdown-toggle {
+    background-color: $profile-menu-text-background-color;
+  }
+
+  .search-icon {
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 18px;
+    padding-right: 5px;
+    padding-left: 15px;
+    color: darken($amcs-white, 10);
+    float: left;
+  }
+
+  .search-icon:hover {
+    color: $amcs-white;
+  }
+
+  .profile-img-circle-img {
+    display: inline-block;
+    box-shadow: unset;
+    border-radius: 50px;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .initials {
+    display: block;
+    position: relative;
+    font-size: 110%;
+    color: $amcs-white;
+    margin-top: 24%;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .navbar-nav li a.wc-menu {
+    padding: 19px 5px 5px 10px;
+    height: 100%;
+
+    i {
+      font-size: 22px;
+    }
+  }
+
+  .navbar-nav > li > a {
+    color: $amcs-white;
+  }
+
+  .navbar-nav > li a:hover {
+    background-color: $amcs-dropdown-toggle-selected;
+  }
+
+  .amcs-menu-panel {
+    &.mat-menu-panel {
+      padding: 4px;
+      max-width: 340px !important;
+      left: 0;
+    }
+
+    .mat-menu-content {
+      padding: 0 !important;
+    }
+  }
+
+  .cdk-overlay-connected-position-bounding-box {
+    left: 0 !important;
+  }
+}

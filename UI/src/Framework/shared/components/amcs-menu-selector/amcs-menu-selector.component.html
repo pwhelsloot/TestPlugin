@@ -1,0 +1,11 @@
+<app-amcs-button [compName]="compName" [uniqueKey]="'header'" (click)="showMenu = !showMenu" customClass="noMargin">
+  <span>{{ headerText }}</span>
+</app-amcs-button>
+
+<div *ngIf="showMenu" class="filter-menu">
+  <div class="col-sm-12">
+    <button *ngFor="let menuItem of items;let i=index" appAutomationLocator [compName]="compName"
+      [uniqueKey]="'item_'+i" [ngClass]="{'amcs-green': menuItem.isActive, 'amcs-grey': !menuItem.isActive}"
+      (click)="onSelected(menuItem)" class="btn filter-button"><span>{{ menuItem.text}}</span></button>
+  </div>
+</div>

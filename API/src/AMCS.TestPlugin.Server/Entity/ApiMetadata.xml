@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+  This file defines metadata for the REST API's. The information below describes
+  metadata that's missing from the ORM layer.
+  
+  Once we get to rebuilding the ELEMOS ORM layer, the information below will be
+  integrated into the new ORM layer, obviating the need for this file.
+  
+  The Context element is used to define groups in the API. You can e.g. bind
+  a number of entities into a specific route, creating logical groups for them.
+  To remove redundancy in the type declarations, Context requires a Namespace
+  and Assembly attribute. The qualified types for the entities are created from
+  those.
+  
+  Routes can be reused for different contexts. If entities live in different
+  namespaces or assemblies, but need to be in the same context (i.e. route),
+  define two contexts with the same route and different namespaces/assemblies.
+
+-->
+<Metadata xmlns="http://amcsgroup.com/Elemos/EntityMetadata/2018-04" CurrentVersion="1.0" LatestVersion="1.0">
+
+</Metadata>

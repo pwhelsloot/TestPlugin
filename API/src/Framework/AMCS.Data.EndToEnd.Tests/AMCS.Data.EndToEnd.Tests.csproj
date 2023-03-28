@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <PackageId>AMCS.Data.EndToEnd.Tests</PackageId>
+    <Product>AMCS.Data.EndToEnd.Tests</Product>
+    <Version>99.0.0.0</Version>
+    <Company>AMCS Group Ltd</Company>
+    <Authors>AMCS Group Ltd</Authors>
+    <Copyright>Copyright © AMCS Group Ltd</Copyright>
+    <CodeAnalysisRuleSet>..\ElemosClientServer.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="22.0.8" />
+    <PackageReference Include="SpecFlow.Assist.Dynamic" Version="1.4.2" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.35" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.Data.Entity\AMCS.Data.Entity.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Server\AMCS.Data.Server.csproj" />
+    <ProjectReference Include="..\AMCS.Data\AMCS.Data.csproj" />
+  </ItemGroup>
+</Project>

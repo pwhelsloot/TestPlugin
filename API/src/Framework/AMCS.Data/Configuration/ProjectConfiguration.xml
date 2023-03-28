@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<section type="ProjectConfiguration" namespace="AMCS.Data.Configuration" sectionName="amcs" generateInterfaces="true">
+  <attribute name="projectId" type="string" required="true" legacyName="ProjectIdentifier"/>
+  <attribute name="serviceRootName" type="string" required="true"/>
+</section>

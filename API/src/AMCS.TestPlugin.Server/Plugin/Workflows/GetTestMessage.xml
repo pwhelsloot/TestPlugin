@@ -1,0 +1,39 @@
+<Process Name="{{tenantId}}|GetTestMessage" CanBeInlined="false" Tags="" LogEnabled="false">
+  <Designer />
+  <Activities>
+    <Activity Name="InitialActivity" State="InitialActivity" IsInitial="true" IsFinal="false" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Designer X="550" Y="300" Hidden="false" />
+    </Activity>
+    <Activity Name="FinalActivity" State="FinalActivity" IsInitial="false" IsFinal="true" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Designer X="1170" Y="300" Hidden="false" />
+    </Activity>
+    <Activity Name="amcs/testplugin:GetTestMessage" State="amcs/testplugin:GetTestMessage" IsInitial="false" IsFinal="false" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Annotations>
+        <Annotation Name="__customtype"><![CDATA[amcs/testplugin:GetTestMessage]]></Annotation>
+        <Annotation Name="DeviceId"><![CDATA[{{DeviceId}}]]></Annotation>
+        <Annotation Name="testResponse"><![CDATA[testResponse]]></Annotation>
+      </Annotations>
+      <Designer X="800" Y="300" Hidden="false" />
+    </Activity>
+  </Activities>
+  <Transitions>
+    <Transition Name="InitialActivity_amcs/testplugin:GetTestMessage_1" To="amcs/testplugin:GetTestMessage" From="InitialActivity" Classifier="NotSpecified" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Auto" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer Hidden="false" />
+    </Transition>
+    <Transition Name="amcs/testplugin:GetTestMessage_FinalActivity_1" To="FinalActivity" From="amcs/testplugin:GetTestMessage" Classifier="NotSpecified" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Auto" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer Hidden="false" />
+    </Transition>
+  </Transitions>
+</Process>

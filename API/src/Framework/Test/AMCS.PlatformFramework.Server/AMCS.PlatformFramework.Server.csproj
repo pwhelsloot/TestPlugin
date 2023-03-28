@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PackageId>AMCS.PlatformFramework.Server</PackageId>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+  <Import Project="..\..\PlatformFramework.targets" />
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\CustomDictionary.xml" Link="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ConfigurationSectionGenerator" Version="1.0.6" />
+    <PackageReference Include="NBuilder" Version="6.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.PlatformFramework.CommsServer.Messages\AMCS.PlatformFramework.CommsServer.Messages.csproj" />
+    <ProjectReference Include="..\AMCS.PlatformFramework.Entity\AMCS.PlatformFramework.Entity.csproj" />
+    <ProjectReference Include="..\AMCS.PlatformFramework.Server.ApiDocumentation\AMCS.PlatformFramework.Server.ApiDocumentation.csproj" />
+    <ProjectReference Include="..\..\AMCS.ApiService.Abstractions\AMCS.ApiService.Abstractions.csproj" />
+    <ProjectReference Include="..\..\AMCS.ApiService\AMCS.ApiService.csproj" />
+    <ProjectReference Include="..\..\AMCS.Data.Server\AMCS.Data.Server.csproj" />
+    <ProjectReference Include="..\..\AMCS.Data\AMCS.Data.csproj" />
+    <ProjectReference Include="..\Language\Language.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net48'" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Configuration\PlatformFrameworkConfiguration.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PlatformFrameworkConfiguration.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ConfigurationSectionGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConfigurationSectionGenerator.cs</LastGenOutput>
+    </None>
+    <None Update="Configuration\PlatformFrameworkConfiguration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PlatformFrameworkConfiguration.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,28 @@
+@import "sass/abstracts/variables";
+
+.cal-event-actions {
+    background-color: $pallette-date-range-selector-list-item-bg-colour  !important;
+    position: static !important;
+}
+
+.cal-event-actions a {
+    margin-left: 8px;
+}
+
+.cal-event-actions a:hover {
+    background: $pallette-calender-onHover;
+}
+
+.amcs-green-confirm {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border-radius: 20px !important;
+    background-color: $amcs-green-button-backgrond-color;
+    color: $amcs-green-button-text-color;
+    padding: 0px 12px 19px 11px;
+    height: 20px;
+    border: 0;
+    align-content: center;
+}

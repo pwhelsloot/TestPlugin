@@ -1,0 +1,334 @@
+@import 'sass/abstracts/variables';
+
+app-template-header-desktop {
+  .desktop-header-padding {
+    padding-top: 50px;
+  }
+
+  .amcs-logo {
+    padding-top: 8px;
+    height: 42px;
+  }
+
+  .no-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .search-container {
+    padding-top: 7px;
+  }
+
+  .workcenter-logo {
+    color: $amcs-white;
+    padding: 8px 20px;
+    padding-right: 0px;
+    opacity: 0.9;
+    float: left;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    span {
+      color: $amcs-white;
+      padding-left: 5px;
+      vertical-align: bottom;
+    }
+  }
+
+  .page-logo {
+    width: auto;
+
+    a {
+      cursor: pointer;
+
+      img {
+        &:last-child {
+          display: none;
+        }
+      }
+
+      &:hover {
+        img {
+          &:first-child {
+            display: none;
+          }
+
+          &:last-child {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  .page-header {
+    &.navbar {
+      position: fixed;
+      background-color: $amcs-teal;
+    }
+  }
+
+  .btn {
+    margin: 0 !important;
+  }
+
+  .form-control {
+    border: 0;
+  }
+
+  .menu-text {
+    background-color: $amcs-teal !important;
+    color: $header-menu-text-color !important;
+  }
+
+  .username {
+    margin-left: 10px;
+    margin-top: 10px;
+    color: $header-menu-text-color !important;
+  }
+
+  .dropdowns {
+    padding-top: 8px;
+  }
+
+  .search-button {
+    margin-top: -5px;
+  }
+
+  span {
+    > button {
+      height: 55px !important;
+      background-color: $amcs-white;
+    }
+  }
+
+  .profile-img-circle {
+    display: inline-block;
+    color: $amcs-white;
+    background-color: $amcs-green-button-backgrond-color;
+    box-shadow: unset;
+    border-radius: 50px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .profile-img-circle-img {
+    display: inline-block;
+    box-shadow: unset;
+    border-radius: 50px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .initials {
+    display: block;
+    position: relative;
+    font-size: 110%;
+    color: $amcs-white;
+    margin-top: 24%;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .clear-btn {
+    outline: none !important;
+    font-size: 14px !important;
+    background-color: $amcs-white;
+    border: 0;
+    width: 80px;
+    height: 34px;
+  }
+
+  .search-text {
+    border: 0;
+  }
+
+  .magnifier-button {
+    margin-top: -10px !important;
+  }
+
+  .search-bar-container {
+    padding-top: 8px;
+  }
+
+  .profile-menu {
+    margin-top: 6px;
+    left: auto;
+    right: 0;
+  }
+
+  .page-header.navbar .page-logo {
+    width: auto;
+  }
+
+  .dropdown-menu > li > a > [class*=' icon-'],
+  .dropdown-menu > li > a > [class^='icon-'] {
+    color: $header-menu-text-color;
+  }
+
+  .navbar-nav {
+    li {
+      &.dropdown {
+        &.dropdown-user {
+          a {
+            margin: 0;
+            padding: 5px;
+          }
+
+          > ul {
+            &.dropdown-menu {
+              &.dropdown-menu-open {
+                min-width: 162px !important;
+                border-radius: 0 !important;
+                display: inline;
+                padding: 5px;
+                background-color: $amcs-teal;
+              }
+            }
+          }
+        }
+
+        .dropdown-toggle {
+          &:hover {
+            background-color: $amcs-dropdown-toggle-selected;
+          }
+        }
+
+        &.dropdown-inbox {
+          &.dropdown-inbox-opened {
+            > a {
+              background-color: $amcs-light-blue;
+            }
+
+            > div.dropdown-inbox-list {
+              display: inline;
+            }
+          }
+
+          i {
+            color: $amcs-white;
+            font-size: 17px;
+            position: relative;
+            top: 2px;
+          }
+
+          .badge-default {
+            &.double-digit-badge {
+              left: 2px !important;
+            }
+
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            background-color: $amcs-green-button-backgrond-color;
+            color: $amcs-white;
+          }
+        }
+      }
+    }
+  }
+
+  .page-header.navbar .top-menu .navbar-nav > li.dropdown.open .dropdown-toggle {
+    background-color: $amcs-teal;
+  }
+
+  .fa-angle-down {
+    top: 4px;
+    margin-left: 6px;
+    position: relative;
+  }
+
+  .page-header-inner {
+    .header-menu-icon {
+      margin-left: 3px;
+      margin-top: 18px;
+      float: left;
+      color: white;
+      font-size: 11px;
+    }
+
+    .page-logo {
+      width: 100px;
+    }
+
+    .no-left-pad {
+      padding-left: 0px;
+    }
+
+    .page-logo.logo-padding {
+      margin-top: -9px;
+      padding-left: 0px !important;
+
+      img {
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  .page-header.navbar .top-menu .navbar-nav > li.dropdown.open .dropdown-toggle {
+    background-color: $profile-menu-text-background-color;
+  }
+
+  .launch-elemos-button {
+    padding-top: 17px;
+
+    a {
+      i {
+        color: $amcs-white;
+      }
+    }
+  }
+
+  .click-once-dialog {
+    .title {
+      font-weight: bold;
+      padding-top: 5px;
+      padding-left: 5px;
+      text-align: left;
+    }
+
+    .modal-body {
+      div {
+        margin-bottom: 5px;
+
+        &.dont-show-dialog-text {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .amcs-menu-panel {
+      &.mat-menu-panel {
+        padding: 0;
+        max-width: 400px !important;
+        left: 0;
+      }
+
+      .mat-menu-content {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  .navbar-nav li a.wc-menu {
+    padding: 19px 10px 10px 10px;
+    height: 100%;
+
+    i {
+      font-size: 22px;
+    }
+  }
+
+  .navbar-nav > li > a {
+    color: $amcs-white;
+  }
+
+  .navbar-nav > li a:hover {
+    background-color: $amcs-dropdown-toggle-selected;
+  }
+}

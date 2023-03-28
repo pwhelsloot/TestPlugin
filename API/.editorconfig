@@ -1,0 +1,17 @@
+; Top-most EditorConfig file
+root = true
+
+; 4-column space indentation
+[*.{cs,tt,xml}]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+# CA1056: URI-like properties should not be strings
+dotnet_diagnostic.CA1056.severity = none
+
+# S2339: Public constant members should not be used
+dotnet_diagnostic.S2339.severity = none
+
+# S3052: Members should not be initialized to default values
+dotnet_diagnostic.S3052.severity = none

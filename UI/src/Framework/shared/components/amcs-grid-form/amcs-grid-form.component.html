@@ -1,0 +1,130 @@
+<div class="amcs-form-grid" *ngIf="!loading; else loadingTemplate" appAutomationLocator [compName]="compName"
+  [uniqueKey]="'formGrid'">
+  <!-- Header -->
+  <div class="amcs-flex-row amcs-grid-header-row">
+    <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '4%'}"></div>
+    <div class="amcs-flex-item amcs-grid-header-cell" [style.flex-basis.%]="config.rowDescriptionSize">
+      <div class="header-text-truncator">
+        <span class="header-text">{{ config.rowDescriptionTitle }}</span>
+      </div>
+    </div>
+    <ng-container *ngFor="let column of columns;let c=index">
+      <ng-container *ngIf="resizable">
+        <div (resizeStart)="resizeHelper.onResizeStart($event.rectangle.width)"
+          (resizing)="resizeHelper.onResizing(column, $event.rectangle.width)"
+          mwlResizable
+          [style.flex-basis.%]="column.relativeWidthPercentage" class="amcs-flex-item amcs-grid-header-cell">
+          <img src="assets/resize-icon.gif"
+            class="resize-handle"
+            mwlResizeHandle
+            [resizeEdges]="{bottom: true, right: true}"
+            appAutomationLocator
+            [compName]="compName"
+            [uniqueKey]="'resize_' + c">
+          <div class="header-text-truncator">
+            <span class="header-text">{{ column.key }}</span>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!resizable">
+        <div [style.flex-basis.%]="column.relativeWidthPercentage" class="amcs-flex-item amcs-grid-header-cell">
+          <div class="header-text-trucator">
+            <span class="header-text">{{ column.key }}</span>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '4%'}">
+    </div>
+  </div>
+  <!-- Rows -->
+  <ng-container *ngFor="let row of rows;let i = index">
+    <div class="amcs-flex-row amcs-grid-row" [ngClass]="{'amcs-grid-row-selected': row.isSelected }">
+      <div class="amcs-flex-item amcs-grid-cell" [ngStyle]="{'flex-basis': '4%'}">
+        <label class="mt-checkbox">
+          <input [ngModel]="row.isSelected" type="checkbox" (click)="service.checkCanSelectRow(row, $event)"
+            [disabled]="!config.allowEdit" (ngModelChange)="service.rowSelected(row, $event)" appAutomationLocator
+            [compName]="compName" [uniqueKey]="c+'_chk_' + i" />
+          <span></span>
+        </label>
+      </div>
+      <div class="amcs-flex-item amcs-grid-cell" [style.flex-basis.%]="config.rowDescriptionSize">
+        <span appAutomationLocator [compName]="compName" [uniqueKey]="c+'_desc_' + i">{{ row.description }}</span>
+      </div>
+      <!-- Forms Shown -->
+      <ng-container *ngIf="row.formItems.length > 0; else emptyCells">
+        <div class="amcs-flex-row amcs-grid-row amcs-inner-row-container">
+          <div *ngFor="let form of row.formItems; let i=index" class="amcs-inner-row"
+            [ngClass]="{'row-error': row.isError && form.formGroup.touched && form.formGroup.invalid}">
+            <ng-template [ngTemplateOutlet]="formTemplate"
+              [ngTemplateOutletContext]="{ form: form, columns: columns, styles: styles }">
+            </ng-template>
+            <div class="amcs-flex-item amcs-grid-cell" [style.flex-basis.%]="service.actionRelativeSizePercentage">
+              <app-amcs-dropdown [compName]="compName" [uniqueKey]="'action_'+i" class="dropdown-button"
+                [dropdownIcon]="AmcsDropdownIconEnum.Ellipsis">
+                <ng-container ngProjectAs="menu">
+                  <ng-template [ngTemplateOutlet]="settingsMenu" [ngTemplateOutletContext]="{ form: form }">
+                  </ng-template>
+                  <li *ngIf="config.allowAdd">
+                    <a (click)="service.addForm(row, i)" appAutomationLocator [compName]="compName"
+                      [uniqueKey]="c+'_add_' + i"><span [translate]="'amcsgridform.addAction'">Add</span></a>
+                  </li>
+                  <li *ngIf="config.allowDelete">
+                    <a (click)="service.removeForm(row, i)" appAutomationLocator [compName]="compName"
+                      [uniqueKey]="c+'_remove_' + i"><span [translate]="'amcsgridform.removeAction'">Remove</span></a>
+                  </li>
+                </ng-container>
+              </app-amcs-dropdown>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- Empty cells Shown -->
+      <ng-template #emptyCells>
+        <ng-container *ngFor="let column of columns">
+          <div class="amcs-flex-item amcs-grid-cell" [style.flex-basis.%]="column.relativeWidthPercentage">
+          </div>
+        </ng-container>
+        <div class="amcs-flex-item amcs-grid-cell" [ngStyle]="{'flex-basis': '4%'}">
+        </div>
+      </ng-template>
+    </div>
+  </ng-container>
+</div>
+<ng-template #loadingTemplate>
+  <div class="amcs-form-grid loading">
+    <div class="amcs-flex-row amcs-grid-header-row">
+      <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '4%'}">
+      </div>
+
+      <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '23%' }">
+        <div class="skeleton-text-block">
+        </div>
+      </div>
+      <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '23%' }">
+        <div class="skeleton-text-block">
+        </div>
+      </div>
+      <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '23%' }">
+        <div class="skeleton-text-block">
+        </div>
+      </div>
+      <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '23%' }">
+        <div class="skeleton-text-block">
+        </div>
+      </div>
+      <div class="amcs-flex-item amcs-grid-header-cell" [ngStyle]="{'flex-basis': '4%'}">
+        <div class="skeleton-text-block small">
+        </div>
+      </div>
+    </div>
+    <div class="amcs-flex-row amcs-grid-row">
+      <div class="portlet-skeleton portlet-body">
+        <div class="portlet-skeleton-body-load">
+          <div class="square square-c state1c"></div>
+          <div class="square square-c state2c"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

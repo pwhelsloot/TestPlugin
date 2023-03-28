@@ -1,0 +1,53 @@
+<app-amcs-pager [compName]="'ChangeLogComponent'" [totalItemCount]="changeLogCount" [pageSize]="5"
+  (pageChange)="onPageChange($event)" *ngIf="changeLog !== null">
+  <div class="col-lg-12 change-log-container"
+    *ngIf="changeLog !== null && changeLog.entityHistories.length > 0 else noChangeLogMessage">
+    <ul>
+      <li *ngFor="let history of changeLog.entityHistories">
+        <div class="history-container">
+          <div [ngClass]="{'padding-bottom' : history.entityHistoryTypeId === HistoryEntryTypeEnum.Insert}">
+            <span>{{history.formattedChangeDescription}}</span>&nbsp;<span class="bold changed-user">{{history.sysUser}}</span>
+          </div>
+          <app-amcs-list-view *ngIf="history.entityHistoryTypeId === HistoryEntryTypeEnum.Update"
+            [compName]="'ChangeLogComponent'" [items]="history.typedChanges"
+            [listItemHeaderTemplate]="listItemHeaderTemplate" [listItemTemplate]="listItemTemplate"
+            [noOuterBorder]="true">
+          </app-amcs-list-view>
+        </div>
+      </li>
+    </ul>
+  </div>
+</app-amcs-pager>
+<ng-template #noChangeLogMessage>
+  <div>
+    <span [translate]="'changeLog.noChangeLog'">No Change Log Exists</span>
+  </div>
+</ng-template>
+<ng-template #listItemHeaderTemplate>
+  <div class="col-lg-4">
+    <span class="bold" [translate]="'changeLog.propertyName'">Property Name</span>
+  </div>
+  <div class="col-lg-4">
+    <span class="bold" [translate]="'changeLog.oldValue'">Old Value</span>
+  </div>
+  <div class="col-lg-4">
+    <span class="bold" [translate]="'changeLog.newValue'">New Value</span>
+  </div>
+</ng-template>
+<ng-template #listItemTemplate let-item="item">
+  <div class="col-lg-4">
+    <span>{{item.formattedPropertyKey}}</span>
+  </div>
+  <div *ngIf="item.oldValue === null" class="col-lg-4">
+    <span *ngIf="item.oldValue === null">-</span>
+  </div>
+  <div *ngIf="item.oldValue !== null" class="col-lg-4 truncate-text" tooltip="{{item.oldValue}}">
+    <span>{{item.oldValue}}</span>
+  </div>
+  <div *ngIf="item.newValue === null" class="col-lg-4">
+    <span *ngIf="item.newValue === null">-</span>
+  </div>
+  <div *ngIf="item.newValue !== null" class="col-lg-4 truncate-text" tooltip="{{item.newValue}}">
+    <span>{{item.newValue}}</span>
+  </div>
+</ng-template>

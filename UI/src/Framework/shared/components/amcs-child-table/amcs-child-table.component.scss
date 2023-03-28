@@ -1,0 +1,14 @@
+@import "sass/abstracts/_variables.scss";
+
+.table {
+    margin-bottom: 0;
+    width: 100%;
+
+    &.fixed-table {
+        table-layout: fixed;
+    }
+
+    thead {
+        background-color: $amcs-heading-background-grey;
+    }
+}

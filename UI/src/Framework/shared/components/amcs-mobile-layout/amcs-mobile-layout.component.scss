@@ -1,0 +1,34 @@
+@import "sass/abstracts/_variables.scss";
+
+.mobile-layout {
+  margin: -15px;
+  overflow: hidden;
+}
+
+.body-div {
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &.show-save-cancel {
+    height: calc(100vh - 175px);
+  }
+
+  &.show-summary {
+    height: calc(100vh - 170px);
+  }
+
+  &.show-save-cancel .show-summary {
+    height: calc(100vh - 245px);
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000 !important;
+  background: rgba(0, 0, 0, 0.32);
+}

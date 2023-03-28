@@ -1,0 +1,10 @@
+<canvas #signaturePad [width]="width" [height]="height" style="touch-action: none;"></canvas>
+<br />
+<app-amcs-button [compName]="compName" [uniqueKey]="'clear'" customClass="btn-default small" (click)="clear()">clear
+</app-amcs-button>
+<app-amcs-button [compName]="compName" [uniqueKey]="'save'" customClass="btn-primary small save" (click)="savePNG()">
+    save</app-amcs-button>
+<br />
+<img *ngIf="showPreview && img" [src]="img">
+<br />
+<span *ngIf="showOutputFile">{{img}}</span>

@@ -1,0 +1,36 @@
+@import 'sass/abstracts/variables';
+
+.large-tax-popover {
+    max-width: 350px;
+
+    .arrow {
+        display: initial !important;
+        left: 160px !important;
+        border-top-color: $amcs-popover-border-top-color !important;
+    }
+
+    .popover-content {
+        padding: 0;
+        width: 350px;
+
+        .table {
+            >tfoot {
+                >tr {
+                    >td {
+                        padding: 10px 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .tax-popover-table {
+        width: 350px;
+        margin-bottom: 0;
+        word-break: break-all;
+
+        .table-headers {
+            background-color: $pallette-portlet-title-background-color;
+        }
+    }
+}

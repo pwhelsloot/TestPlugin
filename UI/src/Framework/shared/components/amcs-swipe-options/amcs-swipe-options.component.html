@@ -1,0 +1,10 @@
+<div class="swipe-parent {{customClass}}" (swipe)="onSwipe($event)" [ngStyle]="{'height': height}">
+  <div class="swipe-container" [@showHideOptions]="showOptions">
+    <div class="swipe-content">
+      <ng-content select="content"></ng-content>
+    </div>
+    <div class="swipe-options" [ngStyle]="{'width': optionsWidth, 'right': '-' + optionsWidth}">
+      <ng-content select="options"></ng-content>
+    </div>
+  </div>
+</div>

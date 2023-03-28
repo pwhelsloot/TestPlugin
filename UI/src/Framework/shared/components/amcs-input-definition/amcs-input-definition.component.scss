@@ -1,0 +1,16 @@
+.form-group.form-md-line-input {
+  padding-top: 0;
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+input {
+  margin-top: 0px;
+}
+
+.form-group.form-md-line-input>.input-icon>label {
+  margin-top: -30px;
+  margin-bottom: 0;
+}

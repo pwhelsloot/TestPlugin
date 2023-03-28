@@ -1,0 +1,58 @@
+@import 'sass/abstracts/variables';
+
+.input-icon .help-block.help-block-error {
+  opacity: 1 !important;
+}
+
+.global-search-autocomplete {
+  top: 2px;
+
+  mat-option {
+    height: 35px;
+
+    &.con {
+      border-left: solid 8px $pallette-seach-keyword-con;
+    }
+
+    &.inv {
+      border-left: solid 8px $pallette-seach-keyword-inv;
+    }
+
+    &.ppc {
+      border-left: solid 8px $pallette-seach-keyword-ppc;
+    }
+
+    &.fed {
+      border-left: solid 8px $pallette-seach-keyword-fed;
+    }
+  }
+}
+
+.dz-wrapper {
+  &.dz-single {
+    .dz-message {
+      display: inline-block !important;
+    }
+
+    .dz-preview {
+      width: unset !important;
+      height: unset !important;
+
+      .dz-image {
+        border-radius: 20px !important;
+        width: 120px !important;
+        height: 120px !important;
+      }
+    }
+  }
+
+  .drag-and-drop {
+    input.has-error {
+      border: 1px solid $amcs-red;
+    }
+
+    .hidden {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="row" *ngIf="options.showCustomiser && !options.showCustomFilter">
+  <div class="col-lg-12">
+    <app-amcs-grid-column-customiser [compName]="options.compName" [accordianTitle]="options.accordianTitle">
+    </app-amcs-grid-column-customiser>
+  </div>
+</div>
+<app-amcs-component-filter *ngIf="options.showCustomFilter" [compName]="'AmcsGridWrapperComponent'" [isOverlay]="true"
+  [properties]="options.filterProperties" [(data)]="options.data" [showCustomiser]="options.showCustomiser"
+  [accordianTitle]="options.accordianTitle">
+</app-amcs-component-filter>
+<app-amcs-grid [detailsLoading]="detailsLoading" [compName]="options.compName" [loading]="loading"
+  [columns]="options.columns" [data]="options.data" [showFilter]="options.showFilter"
+  [showDeleted]="options.showDeleted" [expandOnSelection]="options.expandOnSelection"
+  [filterPlaceholder]="options.filterPlaceholder" [rightAlignFilter]="options.rightAlignFilter"
+  [disableSelection]="options.disableSelection" [allowMultiSelect]="options.allowMultiSelect"
+  [allowHorizontalScroll]="options.allowHorizontalScroll" [includePaging]="options.includePaging"
+  [totalItemCount]="options.totalItemCount" [pageSize]="options.pageSize" [useDefaultSort]="options.useDefaultSort"
+  [useDefaultFilter]="options.useDefaultFilter" [removeCellBorders]="options.removeCellBorders"
+  [pageIndex]="options.pageIndex" [totalsFooterConfig]="options.totalsFooterConfig"
+  [totalsHeaderConfig]="options.totalsHeaderConfig" [headerSummaryEntity]="options.headerSummaryEntity"
+  [desktopRowHeight]="options.desktopRowHeight" [mobileRowHeight]="options.mobileRowHeight"
+  [scrollToSelectedRow]="options.scrollToSelectedRow" [actionColumnWidth]="options.actionColumnWidth"
+  [allowColumnRebind]="options.allowColumnRebind" [alignHeaderWithCell]="options.alignHeaderWithCell"
+  (linkClicked)="linkClicked.emit($event)" (rowExpanded)="rowExpanded.emit($event)"
+  (rowsSelected)="rowsSelected.emit($event)" (linkClickedExtended)="linkClickedExtended.emit($event)"
+  (valueChanged)="valueChanged.emit($event)" (sortChanged)="sortChanged.emit($event)"
+  (filterChanged)="filterChanged.emit($event)" (columnPositionsChanged)="columnPositionsChanged.emit($event)"
+  (selectedPageChanged)="selectedPageChanged.emit($event)" (showDeletedRecords)="showDeletedRecords.emit($event)"
+  (popoverClicked)="popoverClicked.emit($event)" [rowTemplate]="options.rowTemplate"
+  [rowHeaderTemplate]="options.rowHeaderTemplate" [rowDetailTemplate]="options.rowDetailTemplate"
+  [mobileRowDetailTemplate]="options.mobileRowDetailTemplate" [headerTemplate]="options.headerTemplate"
+  [detailTemplate]="options.detailTemplate" [additionalOptionsTemplate]="options.additionalOptionsTemplate"
+  [actionColumnTemplate]="options.actionColumnTemplate ? options.actionColumnTemplate : actionColumnTemplate"
+  [actionColumnHeaderOptions]="options.actionColumnHeaderOptions" [popoverTemplate]="options.popoverTemplate"
+  [filterCustomClass]="options.filterCustomClass"
+  [noDataTemplate]="options.noDataTemplate ? options.noDataTemplate : defaultNoDataTemplate"
+  [allowVerticalScroll]="options.allowVerticalScroll" [gridViewHeight]="options.gridViewHeight"
+  [gridHeight]="options.gridHeight" [gridMaxHeight]="options.gridMaxHeight"
+  [disableMinusToParenthesis]="options.disableMinusToParenthesis">
+</app-amcs-grid>
+
+<ng-template #actionColumnTemplate let-row="row" let-index="index">
+  <app-amcs-grid-action-column [loading]="row.taskLoading" [displayInline]="options.displayActionColumnsButtonsInline"
+    [dropup]="options.dropup" [compName]="options.compName" [items]="options.actionColumnButtons" [index]="index"
+    [row]="row" [dropdownIconEnum]="options.dropdownIconEnum" (onOpenActionMenu)="openActions.emit($event)"
+    (onMenuItemClicked)="menuItemClicked.emit($event)"></app-amcs-grid-action-column>
+</ng-template>
+<ng-template #defaultNoDataTemplate>
+  <div [translate]="'gridWrapper.noResults'">No Results Found</div>
+</ng-template>

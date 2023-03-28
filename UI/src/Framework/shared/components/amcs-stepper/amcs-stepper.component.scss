@@ -1,0 +1,259 @@
+@import "sass/abstracts/_variables.scss";
+
+app-amcs-stepper {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-rendering: optimizeLegibility;
+    color: #283533;
+    font-weight: 600;
+    font-style: normal;
+    font-family: "DIN Next", sans-serif;
+  }
+
+  hr {
+    height: 1px;
+    border-color: #EBEDF2;
+    border-style: dashed;
+  }
+
+  .form hr {
+    border-style: dashed;
+    border-color: $pallette-box-border-color;
+  }
+
+
+
+  .form-body {
+    padding: 10px 20px 0px 20px !important;
+
+    .form-control {
+      background: transparent;
+    }
+
+    .form-group.form-md-line-input .form-control[readonly] {
+      cursor: text;
+    }
+
+    h3.form-section {
+      font-size: 22px;
+    }
+  }
+
+  .tab-content {
+    overflow: hidden;
+  }
+
+  .form-wizard {
+    .progress {
+      margin-bottom: 90px;
+      margin-top: -97px;
+      height: 3px;
+    }
+
+    .noText {
+      .progress {
+        margin-bottom: 50px;
+        margin-top: -68px;
+      }
+    }
+
+    .noHeadings {
+      .progress {
+        margin-bottom: 65px;
+        margin-top: -71px;
+      }
+    }
+
+    .noSubHeadings {
+      .progress {
+        margin-bottom: 60px;
+        margin-top: -93px;
+      }
+    }
+
+    .progress-bar {
+      background-color: $amcs-green !important;
+      transition: width .6s ease !important;
+      -o-transition: width .6s ease !important;
+      -webkit-transition: width .6s ease !important;
+    }
+
+    .amcs-step-animation {
+      max-width: 100%;
+      overflow: hidden;
+      height: 0;
+    }
+
+    .amcs-step-animation.active {
+      height: unset;
+    }
+
+    .step-heading {
+      user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    .steps {
+      display: table;
+      table-layout: fixed;
+      align-items: center;
+      padding: 0;
+
+      li {
+        width: 100%;
+      }
+
+      li> {
+        a.step {
+          background: 0 0;
+          color: $amcs-grey;
+        }
+
+        a.step>.desc {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 100%;
+          font-weight: 600;
+          margin-top: unset;
+          font-size: 16px;
+        }
+
+        a.step>.sub {
+          display: inline-block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 100%;
+          font-size: 14px;
+          font-weight: 300;
+          color: $amcs-grey;
+        }
+      }
+
+      li.active>a.step {
+        .number {
+          background-color: $pallette-active-list-item-color;
+        }
+
+        .desc {
+          color: $amcs-grey;
+        }
+      }
+
+      li.completed>a.step .number {
+        background-color: $amcs-green;
+        color: #FFF;
+      }
+
+      li.completed.disabled>a.step .number {
+        background-color: $amcs-grey-disabled;
+        color: #FFF;
+      }
+
+      li.completed.disabled {
+        cursor: not-allowed;
+      }
+
+      li.error.disabled {
+        cursor: not-allowed;
+      }
+
+      li.error.disabled>a.step .number {
+        background-color: $amcs-grey-disabled;
+        color: #FFF;
+      }
+
+      li.completed>a.step .desc i {
+        display: inline-block;
+        color: #999;
+        font-weight: 400;
+        font-size: 12px;
+      }
+
+      li.completed.active>a.step {
+        .number {
+          background-color: $pallette-active-list-item-color;
+        }
+      }
+
+      li.error>a.step .number {
+        background-color: $amcs-red;
+        color: #FFF;
+      }
+
+      li.error.active>a.step .number {
+        background-color: $amcs-red;
+      }
+
+      span.tab_line {
+        position: absolute;
+        right: calc(-50% + 20px);
+        left: calc(50% + 20px);
+        top: 12px;
+        border: 1px solid #BDBDBD;
+      }
+    }
+
+
+    .form-actions {
+      margin: 0;
+      border-top: 1px solid $pallette-box-border-color;
+      z-index: 999;
+      overflow: hidden;
+      position: sticky;
+      bottom: 0;
+      background: #FFF !important;
+
+    }
+  }
+
+
+
+  // //  RDM TODO ALL THESE STYLES SHOULD BE SHARED BUT NOT READY FOR SITE WIDE DEPLOYMENT
+
+  .portlet>.portlet-title>.actions .btn {
+    line-height: 1.5;
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+
+  .portlet.light.portlet-fit.portlet-form>.portlet-body .form-actions a.btn {
+    margin-right: 10px;
+    border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+  }
+
+  .portlet.light.portlet-fit.portlet-form>.portlet-body .form-actions a.btn.btn-cancel {
+    margin: 0;
+  }
+
+  .portlet>.portlet-title>.actions .btn {
+    line-height: 1.5;
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+
+  .input-group-addon {
+    padding: 0;
+  }
+
+  .form-group.form-md-line-input .input-group .input-group-addon .btn {
+    padding: 3px 8px;
+  }
+
+  .btn.btn-lg {
+    padding: 13px 30px;
+    font-size: 14px;
+  }
+}

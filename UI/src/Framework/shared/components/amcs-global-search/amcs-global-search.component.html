@@ -1,0 +1,107 @@
+<div class="search-bar">
+  <!-- html-hint-disable form-tag-ban -->
+  <form [formGroup]="service.form.formGroup" class="login-form" (submit)="service.doFullSearch()">
+    <div class="input-group">
+      <div class="search-box" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+        <ng-container [ngSwitch]="service.searchMode">
+          <ng-container *ngSwitchCase="service.GlobalSearchModeEnum.Standard">
+            <div *ngIf="service.showBusinessTypeDropdown" class="business-type-div">
+              <app-amcs-select [compName]="compName" customClass="global-search-drp" formControlName="businessTypeId"
+                [options]="service.businessTypes">
+              </app-amcs-select>
+            </div>
+            <input #input [takeFocus]="true" formControlName="searchTerm" type="text" class="form-control"
+              placeholder="{{ 'shared.search.placeholder' | translate }}" [matAutocomplete]="auto"
+              [matAutocompleteConnectedTo]="origin" appAutomationLocator [compName]="compName"
+              [uniqueKey]="'searchTerm'">
+            <span>
+              <div class="clear-input">
+                <button class="clear-btn" (click)="service.clearInput($event)" [translate]="'shared.search.clear'"
+                  appAutomationLocator [compName]="compName" [uniqueKey]="'clear'">Clear</button>
+              </div>
+            </span>
+            <mat-autocomplete class="global-search-autocomplete" appAutomationLocator [compName]="compName"
+              [uniqueKey]="'autoComplete'" (optionSelected)="service.setSearchKeyword($event.option.value)"
+              autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option [class]="keyword.class"
+                *ngFor="let keyword of service.keywordHelper.filteredKeywords;let i = index" [value]="keyword.type">
+                {{keyword.description}}
+              </mat-option>
+            </mat-autocomplete>
+          </ng-container>
+          <ng-container *ngSwitchCase="service.GlobalSearchModeEnum.KeywordSelected">
+            <input class="form-control read-only-keyword" [disabled]="true"
+              placeholder="{{service.keywordHelper.keywordCode}}" [ngClass]="
+          {'con': service.form.formGroup.controls.searchKeyword.value === service.keywordHelper.SearchKeywordEnum.CON,
+          'inv' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.INV,
+          'ppc' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.PPC,
+          'fed' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.FED,
+          'son' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.SON,
+          'pon' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.PON,
+          'tna' : service.form.formGroup.controls.searchKeyword.value === service.keywordHelper.SearchKeywordEnum.TNA,
+          'rpt' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.RPT,
+          'wdn' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.WDN,
+          'stn' : service.form.formGroup.controls.searchKeyword.value === service.keywordHelper.SearchKeywordEnum.STN,
+          'bcn' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.BCN,
+          'acc' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.ACC,
+          'mat' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.MAT  }
+          " appAutomationLocator [compName]="compName" [uniqueKey]="'keyWord'">
+            <span [ngClass]="
+          {'con': service.form.formGroup.controls.searchKeyword.value === service.keywordHelper.SearchKeywordEnum.CON,
+          'inv' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.INV,
+          'ppc' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.PPC,
+          'fed' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.FED,
+          'son' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.SON,
+          'pon' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.PON,
+          'tna' : service.form.formGroup.controls.searchKeyword.value === service.keywordHelper.SearchKeywordEnum.TNA,
+          'rpt' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.RPT,
+          'wdn' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.WDN,
+          'stn' : service.form.formGroup.controls.searchKeyword.value === service.keywordHelper.SearchKeywordEnum.STN,
+          'bcn' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.BCN,
+          'acc' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.ACC,
+          'mat' : service.form.formGroup.controls.searchKeyword.value ===  service.keywordHelper.SearchKeywordEnum.MAT }
+          " appAutomationLocator [compName]="compName" [uniqueKey]="'keyWord_close'"
+              (click)="service.clearInput($event)">
+              <a class="close-button" appAutomationLocator [compName]="'AmcsGlobalSearchComponent'" [uniqueKey]="'close'">
+                <i class="close-icon fal fa-times"></i>
+              </a>
+            </span>
+            <input #input [takeFocus]="true" formControlName="searchTerm" type="text"
+              (keydown.backspace)="service.onBackspaceClearSearchKeyword()" class="form-control keyword-input"
+              placeholder="{{service.keywordHelper.keywordPlaceholder}}" [matAutocomplete]="auto"
+              [matAutocompleteConnectedTo]="origin" appAutomationLocator [compName]="compName"
+              [uniqueKey]="'keyWord_2'">
+            <span>
+              <div class="clear-input">
+                <button class="clear-btn" (click)="service.clearInput($event)" [translate]="'shared.search.clear'"
+                  appAutomationLocator [compName]="compName" [uniqueKey]="'clear_2'">Clear</button>
+              </div>
+            </span>
+            <mat-autocomplete class="global-search-autocomplete" appAutomationLocator [compName]="compName"
+              [uniqueKey]="'quickSearch'"
+              (optionSelected)="service.quickSearchResultSelected($event.option.value, $event.option.id)"
+              autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let quickSearchResult of service.keywordQuickSearchResults"
+                [value]="quickSearchResult.description"
+                [id]="quickSearchResult.barcodeUnique ? quickSearchResult.barcodeUnique: quickSearchResult.id">
+                {{quickSearchResult.description}}
+              </mat-option>
+            </mat-autocomplete>
+          </ng-container>
+        </ng-container>
+      </div>
+      <span class="input-group-btn">
+        <app-amcs-button type="submit" [compName]="compName" [uniqueKey]="'go'"
+          [disabled]="!service.form.formGroup.valid" customClass="amcs-search-button"
+          [loading]="service.standardSearchService.loading || service.keywordSearchService.loading">
+          <ng-container *ngIf="showGo; else showIcon">
+            <span [translate]="'shared.amcs-global-search.go'">Go</span>
+          </ng-container>
+          <ng-template #showIcon>
+            <i class="fas fa-search"></i>
+          </ng-template>
+        </app-amcs-button>
+      </span>
+    </div>
+  </form>
+</div>

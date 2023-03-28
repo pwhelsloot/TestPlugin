@@ -1,0 +1,4 @@
+<app-header-desktop [compName]="compName" *ngIf="!mobileQuery.matches; else mobileHeader"></app-header-desktop>
+<ng-template #mobileHeader>
+  <app-header-mobile [compName]="compName"></app-header-mobile>
+</ng-template>

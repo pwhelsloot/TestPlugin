@@ -1,0 +1,51 @@
+<!--
+    the second level nav is implemented at feature level - so is optional and configurable for each feature module. we can either use the
+    app-amcs-navbar directly as here or we can add a new component which itself uses amcs-navbar and defines the templates and their content
+    eg. customer-nav-bar-component in CSR.
+-->
+<app-amcs-navbar
+  *ngIf="!featureService.navbarLoading"
+  appInstrumentation
+  [titleTemplate]="titleTemplate"
+  [titleMenuTemplate]="titleMenuTemplate"
+  [menuItems]="featureService.navigationMenuItems"
+  (titleClicked)="navbarTitleClicked($event)"
+>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+      <h4 [translate]="'template.feature.title'">Template Feature</h4>
+      <div class="template-description" *ngIf="featureTemplate != null">
+        <span>{{ featureTemplate.templateName }} | {{ featureTemplate.templateDate | localizedDate : 'medium' }}</span>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+      <app-amcs-button customClass="btn-primary" (click)="refreshTemplate()"> {{ 'template.feature.refresh' | translate }}</app-amcs-button>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+      <app-amcs-button customClass="btn-primary" (click)="refreshAll()"> {{ 'template.feature.refreshAll' | translate }}</app-amcs-button>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+      <app-amcs-button customClass="btn-primary" (click)="refreshTemplateDate()">
+        {{ 'template.feature.refreshDate' | translate }}</app-amcs-button
+      >
+    </div>
+  </div>
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</app-amcs-navbar>
+
+<ng-template #titleTemplate>
+  <!--
+        this template defines the content for the LHS of the second level navbar
+        eg. on CSR we have customer name and an icon for red-flag etc.
+    -->
+
+  <div>Template</div>
+</ng-template>
+
+<ng-template #titleMenuTemplate>
+  <!--
+        this template defines the content that appears on the RHS of the second level navbar.
+    -->
+  <app-amcs-navbar-actions [actionItems]="featureService.navigationActionItems" (favouriteActions)="favouriteActionsChanged($event)">
+  </app-amcs-navbar-actions>
+</ng-template>

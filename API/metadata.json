@@ -1,0 +1,5 @@
+{
+  "pluginId": "amcs/testplugin",
+  "wellKnownRelativeUrl": "/.well-known/amcs-plugin-configuration",
+  "dependencies": [ "amcs/core", "amcs/workflow-server" ]
+}

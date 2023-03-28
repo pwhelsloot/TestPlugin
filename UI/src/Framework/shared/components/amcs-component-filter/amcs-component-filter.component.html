@@ -1,0 +1,134 @@
+<div class="row filter-row text-align-right">
+  <div class="col-lg-12" [ngClass]="{ 'display-contents': displayInLine }">
+    <div *ngIf="!showFilter" class="top-row-filter-cards">
+      <div class="top-row-filter-card" *ngFor="let filter of componentFilterService.appliedFilters">
+        <span class="property-name">{{ filter.property }} </span>
+        <span>{{ filter.filterType }} </span>
+        <span *ngIf="filter.filterEnumValue">{{ filter.filterEnumDescriptionValue }}</span>
+        <span *ngIf="filter.filterTextValue">{{ filter.filterTextValue }}</span>
+        <span *ngIf="filter.filterNumberValue">{{ filter.filterNumberValue }}</span>
+        <span *ngIf="filter.filterDateValue">{{ filter.filterDateValue | localizedDate: 'shortDate' }}</span>
+        <span *ngIf="filter.filterBooleanValue === 1" [translate]="'componentFilter.editor.booleanFilter.true'"></span>
+        <span *ngIf="filter.filterBooleanValue === 0" [translate]="'componentFilter.editor.booleanFilter.false'"></span>
+
+        <a
+          (click)="componentFilterService.deleteFilter(filter.filterId, $event)"
+          class="top-row-delete-button"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="'deleteFilter'"
+        >
+          <i class="fal fa-times"></i>
+        </a>
+      </div>
+    </div>
+    <a
+      class="filter-button"
+      container="body"
+      (click)="toggleFilter(); pop.toggle()"
+      [outsideClick]="true"
+      (onHidden)="showFilter = false"
+      (onShown)="showFilter = true"
+      [popover]="isOverlay ? filterTemplate : null"
+      [placement]="popoverPlacement"
+      #pop="bs-popover"
+      triggers=""
+      containerClass="component-filter-popover"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="'toggleFilter'"
+    >
+      <i class="far fa-filter" [ngClass]="{ 'show-filter': showFilter }"></i>
+    </a>
+    <app-amcs-grid-column-customiser [compName]="compName" [accordianTitle]="accordianTitle" *ngIf="showCustomiser">
+    </app-amcs-grid-column-customiser>
+    <ng-container *ngIf="extrasTemplate !== null">
+      <ng-container *ngTemplateOutlet="extrasTemplate"></ng-container>
+    </ng-container>
+  </div>
+</div>
+<div class="row">
+  <div [ngClass]="{ 'col-lg-12': (!isOverlay && !showFilter) || isOverlay, 'col-lg-9': !isOverlay && showFilter }">
+    <ng-content></ng-content>
+  </div>
+  <div class="col-lg-3 no-left-padding" *ngIf="!isOverlay && showFilter">
+    <ng-container *ngTemplateOutlet="filterTemplate"></ng-container>
+  </div>
+</div>
+
+<ng-template #filterTemplate>
+  <div class="background">
+    <div class="main-body">
+      <div class="row" [ngClass]="customClass">
+        <div [ngClass]="{ 'padding-right': !isOverlay }" class="col-lg-12">
+          <div
+            [ngClass]="{ 'no-padding-left': !isOverlay }"
+            class="filter-card"
+            *ngFor="let filter of componentFilterService.appliedFilters; let i = index"
+          >
+            <div [ngClass]="{ 'no-margin': !isOverlay }" class="row">
+              <div [ngClass]="{ 'no-margin': !isOverlay }" class="col-lg-10">
+                <span class="property-name">{{ filter.property }}</span>
+              </div>
+              <div class="col-lg-2">
+                <a
+                  (click)="componentFilterService.deleteFilter(filter.filterId, $event)"
+                  class="delete-button"
+                  appAutomationLocator
+                  [compName]="compName"
+                  [uniqueKey]="'deleteFilter_' + i"
+                >
+                  <i class="fal fa-times fa-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div [ngClass]="{ 'no-margin': !isOverlay }" class="row">
+              <div class="col-lg-12">
+                <span>{{ filter.filterType }} </span>
+                <div class="clip-text">
+                  <span *ngIf="filter.filterTextValue">{{ filter.filterTextValue }}</span>
+                </div>
+                <span *ngIf="filter.filterEnumValue">{{ filter.filterEnumDescriptionValue }}</span>
+                <span *ngIf="filter.filterNumberValue">{{ filter.filterNumberValue }}</span>
+                <span *ngIf="filter.filterDateValue">{{ filter.filterDateValue | localizedDate: 'shortDate' }}</span>
+                <span *ngIf="filter.filterBooleanValue === 1" [translate]="'componentFilter.editor.booleanFilter.true'"></span>
+                <span *ngIf="filter.filterBooleanValue === 0" [translate]="'componentFilter.editor.booleanFilter.false'"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row button-card">
+        <div [ngClass]="{ 'no-left-padding': isOverlay }" class="col-lg-6">
+          <a
+            ><span
+              [translate]="'componentFilter.addFilter'"
+              (click)="componentFilterService.openEditor()"
+              appAutomationLocator
+              [compName]="compName"
+              [uniqueKey]="'addFilter'"
+              >Add Filter</span
+            ></a
+          >
+        </div>
+        <div [ngClass]="{ 'no-right-padding': isOverlay }" class="col-lg-6">
+          <a class="right-button"
+            ><span
+              [translate]="'componentFilter.removeAll'"
+              (click)="componentFilterService.removeAll()"
+              appAutomationLocator
+              [compName]="compName"
+              [uniqueKey]="'removeAllFilter'"
+              >Remove All</span
+            ></a
+          >
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="{ 'padding-right': !isOverlay }" class="row" *ngIf="componentFilterService.showEditor">
+      <div class="col-lg-12">
+        <app-component-filter-editor [isOverlay]="isOverlay"></app-component-filter-editor>
+      </div>
+    </div>
+  </div>
+</ng-template>

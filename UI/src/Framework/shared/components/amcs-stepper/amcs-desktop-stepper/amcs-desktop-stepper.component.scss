@@ -1,0 +1,25 @@
+app-amcs-desktop-stepper {
+  .portlet.portlet-fit {
+    .portlet-body {
+      .form-actions {
+        padding: 15px !important;
+        z-index: 10000;
+        app-amcs-button {
+          .btn {
+            margin: 0;
+            margin-right: 0!important;
+            border-radius: 3px !important;
+          }
+          .btn.amcs-grey {
+            margin-right: 15px !important;
+          }
+        }
+        app-amcs-save-button {
+          .btn {
+            margin: 0!important;
+          }
+        }
+      }
+    }
+  }
+}

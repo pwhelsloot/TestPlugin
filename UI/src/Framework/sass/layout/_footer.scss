@@ -1,0 +1,11 @@
+@import 'sass/abstracts/variables';
+
+.page-footer {
+    .page-footer-inner {
+        color: $amcs-footer-inner-body-text;
+    }
+}
+
+.page-footer-fixed {
+    background-color: $amcs-footer-inner-body-text;
+}

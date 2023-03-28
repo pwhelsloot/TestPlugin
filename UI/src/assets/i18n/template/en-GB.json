@@ -1,0 +1,124 @@
+{
+	"dashboardTiles": {
+		"spacing": {
+			"title": "Spacing"
+		}
+	},
+	"template": {
+		"cssExample": {
+			"bleedingLoaded": "Bleeding CSS Loaded",
+			"encapsulatedLoaded": "Encapsulated CSS Loaded",
+			"title": "CSS Example"
+		},
+		"dashboard": {
+			"refresh": "Refresh Dashboard",
+			"refreshAll": "Refresh All",
+			"refreshDate": "Refresh Date",
+			"tiles": {
+				"recipes": {
+					"title": "{{count}} Recipes"
+				},
+				"sample": {
+					"title": "Sample"
+				}
+			},
+			"title": "Template Dashboard"
+		},
+		"feature": {
+			"refresh": "Refresh Feature",
+			"refreshAll": "Refresh All",
+			"refreshDate": "Refresh Date",
+			"title": "Template Feature"
+		},
+		"ingredientBrowser": {
+			"addIngredient": "Add Ingredient",
+			"cancel": "Cancel",
+			"delete": "Delete",
+			"edit": "Edit",
+			"false": "False",
+			"ingredient": {
+				"amount": "Amount",
+				"measurement": "Measurement",
+				"name": "Ingredient",
+				"optional": "Is Optional",
+				"type": "Type of Ingredient"
+			},
+			"optional": "Optional",
+			"save": "Save",
+			"showPaging": "Show/Hide Paging",
+			"title": "Ingredients",
+			"true": "True"
+		},
+		"mapExample": {
+			"deleteConfirmationDialog": {
+				"message": "Delete Map Point?",
+				"title": "Confirm Deletion"
+			},
+			"deletedMessage": "Map Point deleted",
+			"editor": {
+				"cancel": "Cancel",
+				"latitude": "Latitude",
+				"longitude": "Longitude",
+				"mapPointSavedNotification": "Map Point Saved",
+				"name": "Description",
+				"save": "Save"
+			},
+			"list": {
+				"add": "Add",
+				"createHeading": "Create new map point",
+				"helpMessage": "Add a point by clicking on the button below",
+				"listHeading": "Map points"
+			},
+			"title": "Map Example"
+		},
+		"recipeStepper": {
+			"dinnerCoursesStep": {
+				"courses": "Courses",
+				"detailsTitle": "Plan Details",
+				"difficultyLevelTitle": "Difficulty Level",
+				"errors": {
+					"courses": {
+						"maxLength": "Maximum of three may be chosen"
+					}
+				},
+				"estimatedTime": "Estimated Time",
+				"name": "Name"
+			},
+			"dinnerPlanTitle": "Dinner Plan",
+			"dinnerRecipesStep": {
+				"dateConfirmationMessage": "We can preview value changes to prevent it firing before we've done something!",
+				"dateConfirmationTitle": "Preview Changes",
+				"preperationDate": "Preperation Date",
+				"recipe": "Recipe"
+			},
+			"recipesTitle": "Recipes",
+			"savedMessage": "Dinner Plan Saved",
+			"savingMessage": "Saving",
+			"summaryTile": {
+				"difficulty": "Difficulty",
+				"estimatedTime": "Time",
+				"title": "{{name}} Summary"
+			},
+			"wizardTitle": "Stepper Example"
+		},
+		"secondLevelNav": {
+			"actions": {
+				"addIngredient": "Add Ingredient",
+				"addRecipe": "Add Recipe"
+			},
+			"menuItems": {
+				"cssExample": "CSS Example",
+				"dashboard": "Dashboard",
+				"ingredients": "Ingredients",
+				"mapExample": "Map Example",
+				"snippetsExample": "Snippets Example",
+				"stepperExample": "Stepper Example",
+				"unitsOfMeasurement": "Units of Measurement"
+			}
+		},
+		"snippetsExample": {
+			"subTitle": "Snippet Classes",
+			"title": "Snippets"
+		}
+	}
+}

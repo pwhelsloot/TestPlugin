@@ -1,0 +1,15 @@
+steps:
+  - checkout: self
+    submodules: true
+    clean: true
+    persistCredentials: true
+
+  - task: AzurePowerShell@5
+    displayName: Get SBN
+    inputs:
+      azureSubscription: Development Subscription
+      scriptType: inlineScript
+      TargetAzurePs: latestVersion
+      inline: |
+        $sbnConnString = (Get-AzServiceBusKey -ResourceGroupName platform-testplugin-rg -Namespace platform-testplugin-sbn -Name RootManageSharedAccessKey).PrimaryConnectionString
+        Write-Host "##vso[task.setvariable variable=SbnConnectionString;]$sbnConnString"

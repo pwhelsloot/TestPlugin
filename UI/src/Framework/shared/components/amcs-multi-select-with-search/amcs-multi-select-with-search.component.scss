@@ -1,0 +1,290 @@
+@import 'sass/abstracts/_variables.scss';
+
+app-amcs-multi-select-with-search {
+  .disabled-dashed {
+    border-bottom-style: dashed !important;
+    cursor: not-allowed !important;
+  }
+
+  input[disabled] {
+    cursor: not-allowed !important;
+  }
+
+  .selected-items {
+    max-width: 100%;
+  }
+
+  .selected-items-disabled {
+    cursor: not-allowed;
+  }
+
+  .ng-select.custom .ng-select-container .ng-value-container .ng-value {
+    white-space: normal;
+    height: auto !important;
+  }
+
+  .form-group.form-md-line-input.secondary-ui {
+    .form-control {
+      background: #fff;
+    }
+  }
+
+  .label-definitions {
+    padding-top: 24px !important;
+  }
+
+  .form-control {
+    font-family: 'Nunito Sans', sans-serif !important;
+    padding-right: 0 !important;
+    min-height: 28px;
+    height: unset !important;
+  }
+
+  .help-block-error {
+    opacity: 1 !important;
+  }
+
+  .form-group.form-md-line-input.amcs-input.small-mode {
+    margin: 0 !important;
+    margin-bottom: 15px !important;
+
+    ng-select {
+      margin-top: 0px;
+    }
+  }
+
+  .form-group.form-md-line-input.amcs-input.grid-mode {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: white;
+
+    ng-select {
+      margin-top: 0px;
+    }
+
+    .form-control {
+      padding: 5px 5px 0px 5px;
+    }
+  }
+
+  .form-group.form-md-line-input {
+    position: relative;
+    margin: 0 0 33px !important;
+
+    .form-control {
+      padding-right: 0px !important;
+    }
+  }
+
+  .ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-clear-wrapper,
+  .ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-arrow-wrapper {
+    border-top: 0px;
+  }
+
+  .ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-value-container {
+    padding: 0px;
+  }
+
+  .ng-select.custom {
+    height: unset !important;
+    margin: 0;
+    padding: 0;
+
+    .ng-select-container {
+      margin: 0;
+      padding: 0;
+      min-height: 19px;
+
+      &:after {
+        border: 0 !important;
+      }
+
+      .ng-value-container {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+        .ng-input {
+          top: 0;
+          bottom: 0;
+
+          > input {
+            border: 0 !important;
+            padding: 0;
+            margin: 0;
+          }
+        }
+
+        .ng-value {
+          z-index: 9;
+          background-color: #428bca;
+          color: #fff;
+          display: inline-flex;
+          padding: 0px 5px;
+          border-radius: 10px;
+          align-items: center;
+          cursor: default;
+          min-height: 20px;
+          height: 1px;
+        }
+      }
+
+      .ng-arrow-wrapper {
+        bottom: 4px !important;
+      }
+
+      .ng-clear-wrapper {
+        bottom: 0 !important;
+      }
+
+      .ng-spinner-loader {
+        bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.ng-dropdown-panel.custom {
+  margin-top: 4px;
+  z-index: 10000;
+}
+
+$md-checkbox-size: 1.25em;
+$md-checkbox-padding: 0.25em;
+
+.md-checkbox {
+  &.template-md-checkbox {
+    label {
+      padding-left: 25px;
+    }
+  }
+  &.md-checkbox-inline {
+    display: inline-block;
+  }
+
+  div {
+    margin-top: -42px;
+    margin-left: 25px;
+  }
+
+  label {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.87);
+    display: inline;
+    line-height: 1em;
+    clear: both;
+    padding-left: 1px;
+
+    &:not(:empty) {
+      padding-left: 25px;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+    }
+
+    &:before {
+      // box
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.54);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+  }
+
+  input[type='checkbox'] {
+    outline: 0;
+    visibility: hidden;
+    width: 16px;
+    margin: 0;
+    display: block;
+    float: left;
+    font-size: inherit;
+
+    &:checked {
+      + label:before {
+        background: #22505f;
+        border: none;
+      }
+
+      + label:after {
+        $md-checkmark-size: $md-checkbox-size - 2 * $md-checkbox-padding;
+
+        transform: translate($md-checkbox-padding, ($md-checkbox-size / 2) - ($md-checkmark-size / 2.6)) rotate(-45deg);
+        width: $md-checkmark-size;
+        height: $md-checkmark-size / 2;
+
+        border: 2px solid #fff;
+        border-top-style: none;
+        border-right-style: none;
+      }
+    }
+
+    &:disabled {
+      + label:before {
+        border-color: rgba(0, 0, 0, 0.26);
+      }
+
+      &:checked {
+        + label:before {
+          background: rgba(0, 0, 0, 0.26);
+        }
+      }
+    }
+  }
+}
+
+.no-checkbox {
+  div {
+    margin-top: -42px;
+  }
+
+  label {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.87);
+    display: inline;
+    line-height: 1em;
+    clear: both;
+    padding-left: 1px;
+  }
+}
+// TODO: Move this CSS inside component selector, currently this css is leaking outside the component
+// *************************************
+
+// *************************************
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.ng-dropdown-panel .ng-dropdown-header {
+  padding: 5px 7px;
+
+  .multi-select-with-search-button {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+
+    &:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+    }
+  }
+
+  .multi-select-with-search-button + .multi-select-with-search-button {
+    margin-left: 5px;
+  }
+
+  .display-option {
+    display: flex;
+  }
+}

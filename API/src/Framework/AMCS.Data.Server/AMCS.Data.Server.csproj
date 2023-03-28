@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <PackageId>AMCS.Data.Server</PackageId>
+  </PropertyGroup>
+  <Import Project="..\PlatformFramework.targets" />
+  <ItemGroup>
+    <Content Include="Configuration\ServerConfiguration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServerConfiguration.cs</LastGenOutput>
+    </Content>
+    <Content Include="Configuration\ServerConfiguration.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AMCS.AzureServiceBusSupport" Version="0.2.24" />
+    <PackageReference Include="AMCS.JobSystem.StatusMonitor.WebApi.AspNetCore" Version="0.1.17" Condition="'$(TargetFramework)' == 'net6.0'" />
+    <PackageReference Include="AMCS.JobSystem.StatusMonitor.WebApi.Owin" Version="0.1.17" Condition="'$(TargetFramework)' == 'net48'" />
+    <PackageReference Include="AMCS.WebDiagnostics" Version="1.5.5" />
+    <PackageReference Include="Azure.Messaging.EventGrid" Version="4.11.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" Condition="'$(TargetFramework)' == 'net6.0'" />
+    <PackageReference Include="BCrypt.Net-Next" Version="3.2.1" />
+    <PackageReference Include="ConfigurationSectionGenerator" Version="1.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.8.0" />
+    <PackageReference Include="Owin" Version="1.0.0" Condition="'$(TargetFramework)' == 'net48'" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="ResXResourceReader.NetStandard" Version="1.1.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.7.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.1.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.ApiService.Abstractions\AMCS.ApiService.Abstractions.csproj" />
+    <ProjectReference Include="..\AMCS.ApiService.Filtering\AMCS.ApiService.Filtering.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Configuration\AMCS.Data.Configuration.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Entity\AMCS.Data.Entity.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Schema\AMCS.Data.Schema.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Server.Azure.Helpers\AMCS.Data.Server.Azure.Helpers.csproj" />
+    <ProjectReference Include="..\AMCS.Encryption.Bouncy\AMCS.Encryption.BouncyCastle.csproj" />
+    <ProjectReference Include="..\AMCS.Encryption\AMCS.Encryption.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Configuration\ServerConfiguration.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ServerConfiguration.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Configuration\ServerConfiguration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServerConfiguration.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserDefinedField\WriteValidations\" />
+    <Folder Include="UserDefinedField\Restrictions\" />
+  </ItemGroup>
+</Project>

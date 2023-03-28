@@ -1,0 +1,10 @@
+@import 'sass/abstracts/variables';
+a > i:hover {
+  color: $amcs-teal;
+}
+div.align-right {
+  text-align: right;
+}
+div.align-center {
+  text-align: center;
+}

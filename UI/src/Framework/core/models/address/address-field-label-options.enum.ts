@@ -1,0 +1,34 @@
+/**
+ * @deprecated Move to PlatformUI + ScaleUI (or new module) https://dev.azure.com/amcsgroup/Platform/_workitems/edit/188268
+ */
+export enum AddressFieldLabelOptionsEnum {
+  ApartmentNumber,
+  Building,
+  City,
+  Region,
+  County,
+  State,
+  Province,
+  COAddress,
+  MunicipalityName,
+  HouseNumber,
+  Country,
+  Postcode,
+  StreetName,
+  Town,
+  Address2,
+  Address3,
+  Address4,
+  Address6,
+  Address7,
+  Address8,
+  Address9,
+  KommuneNr,
+  Gnr,
+  Bnr,
+  Fnr,
+  Snr,
+  Floor,
+  HouseLetter,
+  HouseAddition
+}

@@ -1,0 +1,499 @@
+{
+	"addressMapper": {
+		"address1": "Address 1",
+		"address2": "Address 2",
+		"address3": "Address 3",
+		"address4": "Address 4",
+		"address6": "Address 6",
+		"address7": "Address 7",
+		"address8": "Address 8",
+		"address9": "Address 9",
+		"apartmentNumber": "Apartment Number",
+		"bnr": "Bnr",
+		"building": "Building",
+		"cOAddress": "C/O Address",
+		"city": "City",
+		"country": "Country",
+		"county": "County",
+		"floor": "Floor",
+		"fnr": "Fnr",
+		"gnr": "Gnr",
+		"houseAddition": "House Addition",
+		"houseLetter": "House Letter",
+		"houseNumber": "House Number",
+		"invalidCountryAndProvider": "Geonorge address provider is only supported for Norway.",
+		"invalidCountryAndProviderPdok": "PDOK address provider is only supported for Netherlands.",
+		"kommuneNr": "Kommune Nr",
+		"municipalityName": "Municipality Name",
+		"postcode": "Postcode",
+		"province": "Province",
+		"region": "Region",
+		"snr": "Snr",
+		"state": "State",
+		"streetName": "Street Name",
+		"title": "Address Reorder And Labelling",
+		"town": "Town"
+	},
+	"addressValidation": {
+		"additionalSite": "Also create a site for Postal Address",
+		"addressSearch": "Address Search",
+		"brreg": "BRREG",
+		"brregSearch": "BRREG Search",
+		"getAddress": "Get Address",
+		"latitude": "Latitude",
+		"longitude": "Longitude",
+		"orgNotFound": "Organization number entered could not be found"
+	},
+	"amcsMobileLayout": {
+		"cancel": "Cancel",
+		"save": "Save"
+	},
+	"amcsgridform": {
+		"addAction": "Add",
+		"removeAction": "Remove"
+	},
+	"barcodeScanner": {
+		"loading": "Loading...",
+		"noCameraAccess": "Either the device does not have a camera or the browser does not have permission to access the camera."
+	},
+	"browserGridEditorLayout": {
+		"deleteMessage": "Are you sure you want to delete this item?",
+		"deleteTitle": "Confirmation Required",
+		"unsavedChangedMessage": "You have unsaved changes. Are you sure you want to continue?",
+		"unsavedChangedTitle": "Unsaved Changes"
+	},
+	"calendar": {
+		"filterEvents": "Filter Events",
+		"off": "Off",
+		"on": "On"
+	},
+	"changeLog": {
+		"newValue": "New Value",
+		"noChangeLog": "No Change Log Exists",
+		"oldValue": "Old Value",
+		"propertyName": "Property Name",
+		"recordCreated": "Created on {{date}} - by",
+		"recordUpdated": "Changes made on {{date}} - by"
+	},
+	"componentFilter": {
+		"addFilter": "Add Filter",
+		"editor": {
+			"booleanFilter": {
+				"false": "False",
+				"true": "True"
+			},
+			"booleanTypePlaceholder": "Select Filter",
+			"enumTypePlaceholder": "Select Filter",
+			"filterTypePlaceholder": "Select Filter",
+			"propertyPlaceholder": "Select Property"
+		},
+		"filterTypes": {
+			"contains": "contains",
+			"endsWith": "ends with",
+			"equal": "is equal to",
+			"greaterThan": "is greater than",
+			"greaterThanOrEqual": "is greater than or equal to",
+			"isEmpty": "is empty",
+			"isNotEmpty": "is not empty",
+			"lessThan": "is less than",
+			"lessThanOrEqual": "is less than or equal to",
+			"notEqual": "is not equal to",
+			"startsWith": "starts with"
+		},
+		"removeAll": "Remove All"
+	},
+	"costTemplateSelector": {
+		"title": "Cost Template Selector"
+	},
+	"costeTemplateSelector": {
+		"columns": {
+			"action": "Action",
+			"material": "Material",
+			"pricingBasis": "Pricing Basis",
+			"service": "Service",
+			"supplierSite": "Supplier Site",
+			"unitOfMeasure": "Unit Of Measure"
+		}
+	},
+	"dateRangeFilter": {
+		"apply": "Apply",
+		"cancel": "Cancel",
+		"custom": "Custom",
+		"last120Days": "Last 120 Days",
+		"last60Days": "Last 60 Days",
+		"lastMonth": "Last Month",
+		"lastSevenDays": "Last 7 Days",
+		"lastThirtyDays": "Last 30 Days",
+		"lastThreeMonths": "Last 3 Months",
+		"nextMonth": "Next Month",
+		"nextSevenDays": "Next 7 Days",
+		"requestedDate": "Requested Date",
+		"requestedDatePlusSeven": "Next 7 Days",
+		"requestedDatePlusThirty": "Next 30 Days",
+		"selectDateRange": "Select Date Range",
+		"thisMonth": "This Month",
+		"today": "Today",
+		"yesterday": "Yesterday"
+	},
+	"defaultActionSelector": {
+		"columns": {
+			"action": "Action",
+			"material": "Material",
+			"pricingBasis": "Pricing Basis",
+			"service": "Service",
+			"unitOfMeasure": "Unit Of Measure"
+		},
+		"title": "Product Offering"
+	},
+	"directDebit": {
+		"accountName": "Account Name",
+		"accountNo": "Account No",
+		"accountType": "Account Type",
+		"address1": "Address 1",
+		"address2": "Address 2",
+		"address3": "Address 3",
+		"address4": "Address 4",
+		"address5": "Address 5",
+		"advancePaymentOf": "Advance payment of ",
+		"authorisedSignatory": "Authorised Signatory",
+		"bankAccountTitle": "Bank Account Details",
+		"bankAddressTitle": "Bank Name & Address",
+		"bankName": "Bank Name",
+		"bic": "BIC",
+		"branchCode": "Branch Code",
+		"collectedAfter": "collected after",
+		"coverDirectDebit": "Advance payment will cover direct debit ",
+		"dateAuthorised": "Date Authorised",
+		"ddRunConfig": "DD Run Config",
+		"firstPayment": "First payment of",
+		"followingServicePeriod": "for following service period",
+		"iban": "IBAN",
+		"isVerified": "Is Verified",
+		"nationalBankCode": "Bank Code",
+		"nationalCheckDigits": "RIB Key",
+		"onePayment": "One payment of",
+		"paymentsOf": "payment(s) of ",
+		"postCode": "Postcode",
+		"processAsFirst": "Process as First",
+		"requestPaymentFrom": "Request Payment From",
+		"requestPaymentNow": "Request Payment this Month",
+		"rib": "RIB",
+		"sortCode": "Sort Code",
+		"totalAmountLeft": "to collect for",
+		"umr": "UMR"
+	},
+	"dragAndDrop": {
+		"maxFilesReached": "Maximum of {{maxFiles}} file(s) reached."
+	},
+	"externalPayment": {
+		"buttonTextCardAuth": "Authorize Credentials",
+		"buttontext": "Process Payment",
+		"title": "External Payment"
+	},
+	"fielddefinition": {
+		"editable": "Editable",
+		"fieldname": "Field Name",
+		"mandatory": "Mandatory",
+		"visible": "Visible"
+	},
+	"filter": {
+		"all": "All",
+		"applyText": "Apply",
+		"clearAllText": "Clear All",
+		"clearText": "Clear"
+	},
+	"form": {
+		"definition": {
+			"editable": "Editable",
+			"mandatory": "Mandatory",
+			"noteditable": "Not Editable",
+			"notmandatory": "Not Mandatory",
+			"notvisible": "Not Visible",
+			"visible": "Visible"
+		}
+	},
+	"formTile": {
+		"editor": {
+			"back": "Back",
+			"cancel": "Cancel",
+			"continue": "Continue",
+			"delete": "Delete",
+			"save": "Save"
+		},
+		"editortile": {
+			"new": "New",
+			"viewChangeLog": "View Change Log"
+		}
+	},
+	"globalSearch": {
+		"businessType": {
+			"all": "All LOBs"
+		}
+	},
+	"grid": {
+		"copied": "Copied",
+		"filterPlaceholder": "Filter",
+		"showDeleted": "Show Deleted",
+		"viewMore": "View More"
+	},
+	"gridFilter": {
+		"editor": {
+			"applyFilter": "Apply",
+			"cancelFilter": "Cancel"
+		}
+	},
+	"gridWrapper": {
+		"noResults": "No Results Found"
+	},
+	"initiatePayments": {
+		"dateRangeFilter": {
+			"due1To30": "Due < 30 days",
+			"due31To60": "Due 31-60 days",
+			"dueGreaterThanOrEqualTo61": "Due > 60 days",
+			"dueLessThanOrEqualToNegative61": "Overdue > 60 days",
+			"dueNegative1ToNegative30": "Overdue < 30 days",
+			"dueNegative31ToNegative60": "Overdue 31-60 days",
+			"dueToday": "Due today"
+		}
+	},
+	"listSelectWithSearch": {
+		"selectAll": "Select All"
+	},
+	"map": {
+		"drawmap": {
+			"polygon": {
+				"continue": "Continue or select first point to finish",
+				"createArea": "New Area",
+				"intersecterror": "Error: Area points cannot overlap",
+				"nextpoint": "Select next point",
+				"start": "Select a starting point"
+			},
+			"polyline": {
+				"intersecterror": "Error: Line points cannot overlap"
+			},
+			"toolbar": {
+				"cancel": "Cancel",
+				"save": "Finish",
+				"tooltips": {
+					"cancel": "Cancel Area",
+					"save": "Finish Area",
+					"undo": "Remove last point"
+				},
+				"undo": "Undo"
+			}
+		},
+		"icon-legend": {
+			"assignedStop": "Assigned Stop",
+			"close": "Close",
+			"completedStop": "Completed Stop",
+			"container": "Container",
+			"missedStop": "Missed Stop",
+			"routeVisitCurrentCustomer": "Route Visit Of Current Customer",
+			"serviceLocation": "Service Location",
+			"title": "Map Legend",
+			"vehicle": "En Route Vehicle"
+		},
+		"map-providers": {
+			"basemap": "Base Map",
+			"classic": "Classic",
+			"european": "European",
+			"fjellskygge": "Fjellskygge",
+			"kartdata": "Kartdata",
+			"nautical": "Nautical",
+			"norway": "Norway",
+			"norwayBaseMap": "Norway BaseMap",
+			"norwayBaseMapGreyScale": "Norway BaseMap GreyScale",
+			"satellite": "Satellite",
+			"seabed": "Seabed",
+			"terrain": "Terrain",
+			"topoGraphic": "Topo Graphic",
+			"topoGraphicGrayScale": "Topo Graphic GrayScale",
+			"toporaster": "Topo Raster"
+		}
+	},
+	"multiSelect": {
+		"all": "All"
+	},
+	"myProfile": {
+		"myprofileSavedNotification": "User Profile updated"
+	},
+	"navbarActions": {
+		"addToFavourites": "Add to favourites (max 3)",
+		"moreActions": "More Actions"
+	},
+	"pagination": {
+		"nextPage": "",
+		"previousPage": ""
+	},
+	"personalAccessToken": {
+		"cancel": "Cancel",
+		"copyToClipBoard": "Copy to Clipboard",
+		"creationDate": "Creation Date",
+		"description": "Description",
+		"expireOptions": {
+			"in1Year": "In 1 year",
+			"in2Years": "In 2 years",
+			"never": "Never"
+		},
+		"expiry": "Expiry",
+		"expiryDate": "Expiry Date",
+		"newPersonalAccessToken": "New Personal Access Token",
+		"noTokens": "No personal access tokens exist",
+		"personalAccessTokenDeleteConfirmationDialog": {
+			"message": "Are you sure you want to delete this personal access token?",
+			"title": "Confirmation"
+		},
+		"personalAccessTokenDeletedNotification": "Personal Access Token Deleted",
+		"save": "Save",
+		"title": "Personal Access Tokens",
+		"userName": "User Name",
+		"value": "Value"
+	},
+	"reportsearchresult": {
+		"specialType": {
+			"myReports": "My Reports",
+			"shared": "Shared",
+			"ssrs": "Standard (From Reporting Sector)",
+			"standard": "Standard"
+		}
+	},
+	"scheduleEditor": {
+		"advancedSettings": {
+			"title": "Advanced Settings"
+		},
+		"dailySettings": {
+			"recurrence": "Recur every: ",
+			"recurrencedays": "Days"
+		},
+		"monthlySettings": {
+			"days": "Date",
+			"monthDays": "Dates",
+			"monthWeeks": "Weeks",
+			"monthlyWeekDays": "Week Days",
+			"months": "Months",
+			"offset": "Occurrence"
+		},
+		"settings": {
+			"daily": "Days",
+			"expire": "Expire",
+			"expireDate": "Expiry Date",
+			"expireTime": "Expiry Time",
+      "expireTooltip": "Expire fields indicate the last date/time the additional job should execute.",
+			"monthly": "Months",
+			"repeat": "Repeat",
+			"repeatDuration": "Repeat Duration",
+      "repeatDurationTooltip": "How long the additional repeat should run. Divide duration by interval to get your number of additional runs.",
+			"repeatEvery": "Repeat Interval",
+      "repeatEveryTooltip": "How often the job will repeat after initial schedule.",
+			"startDate": "Start Date",
+			"startTime": "Start Time",
+			"title": "Settings",
+			"weekly": "Weeks"
+		},
+		"title": "Schedule",
+		"weeklySettings": {
+			"monthlyWeekDays": "Week Days",
+			"recurrence": "Recur every: ",
+			"recurrenceweeks": "Weeks"
+		}
+	},
+	"searchselect": {
+		"select": "Select"
+	},
+	"selectTypeahead": {
+		"itemToCreate": "Item will be created",
+		"loadingText": "Loading...",
+		"noResultsFound": "No Results Found",
+		"typeToSearch": "Start Typing To Begin Search"
+	},
+	"shared": {
+		"amcs-global-search": {
+			"go": "GO"
+		},
+		"browsertile": {
+			"add": "Add",
+			"delete": "Delete",
+			"edit": "Edit",
+			"new": "New"
+		},
+		"calendar": {
+			"day": "Day",
+			"events": "Events",
+			"filters": "Filters",
+			"month": "Month",
+			"persist": "Persist: ",
+			"seeLess": "See Less",
+			"seeMore": "See More",
+			"selectAll": "Select All",
+			"today": "Today",
+			"week": "Week"
+		},
+		"contact": {
+			"noContact": "No contact configured for this customer"
+		},
+		"filter": {
+			"more": "{{no}} More"
+		},
+		"header": {
+			"aboutElemos": "About ELEMOS",
+			"communications": {
+				"communications": "Communications",
+				"open": "{{count}} Open",
+				"viewAll": "View All",
+				"youHave": "You Have"
+			},
+			"dontShowAgain": "Don't show this message again",
+			"extensionRequired": "An extension is required to launch the desktop client from this browser.",
+			"installBrowserExtension": "Install Browser Extension",
+			"launchDesktopClient": "Launch Desktop Client",
+			"launchElemos": "Launch Desktop",
+			"logout": "Log out",
+			"myProfile": "My Profile",
+			"notifications": {
+				"assignedToSysUserId": "Assigned To",
+				"communicationFollowupStatusId": "Status",
+				"followupDate": "Follow Up Date",
+				"inFollowUp": "in follow up",
+				"modified": "modified",
+				"notifications": "Notifications",
+				"on": "on",
+				"to": "to",
+				"youHave": "You Have"
+			}
+		},
+		"modal": {
+			"alert": "Alert",
+			"cancel": "Cancel",
+			"confirm": "Confirm",
+			"continue": "Continue",
+			"ok": "OK",
+			"save": "Save",
+			"unsavedWarningMessage": "Changes have been made. Are you sure you want to cancel?",
+			"unsavedWarningTitle": "Confirmation"
+		},
+		"multiSelectWithSearch": {
+			"selectAll": "Select All",
+			"unselectAll": "Unselect All"
+		},
+		"search": {
+			"clear": "Clear",
+			"placeholder": "Search (Minimum 3 characters)"
+		},
+		"stepper": {
+			"back": "Back",
+			"cancel": "Cancel",
+			"continue": "Continue",
+			"save": "Save",
+			"stepsummary": "Step {{stepNo}} of {{totalStepNo}}"
+		}
+	},
+	"sharedColumnCustomiser": {
+		"resetToDefault": "Reset To Default"
+	},
+	"tooltip": {
+		"clearAll": ""
+	},
+	"workflow": {
+		"missingRoute": ""
+	}
+}

@@ -1,0 +1,20 @@
+<div *ngIf="(this.filterService.selectedFilterOptions$ | async).length > 0" class="container-fluid">
+  <div class="top-line">
+    <div class="clear-all">
+      <a (click)="this.filterService.clearAllFilters()" appAutomationLocator [compName]="compName"
+        [uniqueKey]="'clearAll'">{{clearAllText}}</a>
+    </div>
+    <div class="title">Filters</div>
+  </div>
+  <div class="selected-filter-list">
+    <mat-chip-list [selectable]="false">
+      <div *ngFor="let option of this.filterService.selectedFilterOptions$ | async;let i=index">
+        <mat-chip *ngIf="(option.hasAllSelected && option.id === 0) || !option.hasAllSelected" [removable]="true"
+          (removed)="this.filterService.selectFilterOption(false, option.filterDefinitionId, option.id)">
+          <span class="chip-content">{{option.description | breakword}}</span>
+          <mat-icon matChipRemove appAutomationLocator [compName]="compName" [uniqueKey]="'Cancel_'+i">cancel</mat-icon>
+        </mat-chip>
+      </div>
+    </mat-chip-list>
+  </div>
+</div>

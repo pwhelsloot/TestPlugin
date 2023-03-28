@@ -1,0 +1,12 @@
+<label class="mt-checkbox mt-checkbox-outline checkbox-label">
+  <input
+    appAutomationLocator
+    [compName]="'CheckboxCellEditorComponent'"
+    [uniqueKey]="'editor'"
+    #checkboxInput
+    type="checkbox"
+    [ngModel]="cellValue"
+    (ngModelChange)="onChange($event)"
+  />
+  <span></span>
+</label>

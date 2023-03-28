@@ -1,0 +1,11 @@
+<ng-container *ngIf="loading; else mainContent">
+  <div class="animation-container" [ngClass]="{'vertically-center': verticallyCenter}">
+    <div class="animation" [ngStyle]="{'min-height.px': containerSize, 'min-width.px': containerSize}">
+      <div class="square square-c state1c" [ngStyle]="{'background': color, 'width.px': size, 'height.px': size}"></div>
+      <div class="square square-c state2c" [ngStyle]="{'background': color, 'width.px': size, 'height.px': size}"></div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #mainContent>
+  <ng-content></ng-content>
+</ng-template>

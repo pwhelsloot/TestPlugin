@@ -1,0 +1,14 @@
+<div class="mobile-actions col-xs-12">
+  <div *ngIf="!isOnlySaveButton" class="col-xs-6 text-center padding-right-5">
+    <app-amcs-button [customClass]="cancelButtonCustomClass" [compName]="'AmcsMobileActionButtonsComponent'"
+      [uniqueKey]="'cancel'" (click)="cancel()">
+      <span>{{cancelText}}</span>
+    </app-amcs-button>
+  </div>
+  <div class="text-center padding-left-5" [ngClass]="isOnlySaveButton ? 'col-xs-12' : 'col-xs-6'">
+    <app-amcs-button [customClass]="primaryButtonCustomClass" (click)="save()"
+      [compName]="'AmcsMobileActionButtonsComponent'" [disabled]="!enableSave" [uniqueKey]="'save'">
+      <span>{{saveText}}</span>
+    </app-amcs-button>
+  </div>
+</div>

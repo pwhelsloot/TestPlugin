@@ -1,0 +1,59 @@
+{
+  "ShowScreenUiComponents": [
+    {
+      "Name": "amcs/platform:LoginScreen",
+      "Description": {
+        "Values": [
+          {
+            "Language": "de-DE",
+            "Text": "Dein Benutzername oder deine Email Adresse"
+          },
+          {
+            "Language": "en",
+            "Text": "Your username or email address"
+          }
+        ]
+      },
+      "Documentation": null,
+      "Inputs": [
+        {
+          "Required": true,
+          "Name": "Username",
+          "Type": "string",
+          "Description": {
+            "Values": [
+              {
+                "Language": "de-DE",
+                "Text": "Ihr Passwort"
+              },
+              {
+                "Language": "en",
+                "Text": "Your password"
+              }
+            ]
+          },
+          "Documentation": null
+        }
+      ],
+      "Outputs": [
+        {
+          "Name": "IsAuthenticated",
+          "Type": "bool",
+          "Description": null,
+          "Documentation": {
+            "Values": [
+              {
+                "Language": "en",
+                "Text": "Is will be true if the user authenticated successfully"
+              },
+              {
+                "Language": "nl",
+                "Text": "Dit is waar als de gebruiker met succes is geverifieerd"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+@import "sass/abstracts/variables";
+
+.card {
+    margin-bottom: 15px;
+    background-color: $amcs-parent-card-background-color;
+    color: $amcs-parent-card-color;
+    border-radius: 3px !important;
+    box-shadow: 0 4px 15px 0 rgba(19, 30, 40, 0.025), 0 0 0 1px $amcs-parent-card-box-shadow-color;
+
+    .card-title {
+        padding: 20px 20px 0 20px;
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 14px;
+    }
+
+    .card-body {
+        padding: 10px 20px 20px 20px;
+    }
+}
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}

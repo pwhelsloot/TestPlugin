@@ -1,0 +1,11 @@
+{
+	"name": "eslint-plugin-amcs-html-plugin",
+    "version": "0.0.1",
+	"main": "index.ts",
+	"devDependencies": {
+            "eslint": "~2.7.0"
+	},
+	"engines": {
+		"node": ">=0.10.0"
+	}
+}

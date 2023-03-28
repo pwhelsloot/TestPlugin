@@ -1,0 +1,62 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+
+var comparisons = new List<Tuple<string, string>> {
+  Tuple.Create("Equals", "=="),
+  Tuple.Create("NotEquals", "!="),
+  Tuple.Create("Greater", ">"),
+  Tuple.Create("GreaterOrEquals", ">="),
+  Tuple.Create("Less", "<"),
+  Tuple.Create("LessOrEquals", "<=")
+};
+
+#>
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AMCS.Data.EntityValidation.Syntax;
+
+namespace AMCS.Data.EntityValidation.Rules
+{
+  partial class ComparisonExpression
+  {
+    public static ComparisonExpression FromExpressionType(BinaryExpressionType type, IComparer comparer, IExpression left, IExpression right)
+    {
+      if (comparer == null)
+        throw new ArgumentNullException(nameof(comparer));
+      if (left == null)
+        throw new ArgumentNullException(nameof(left));
+      if (right == null)
+        throw new ArgumentNullException(nameof(right));
+
+      switch (type)
+      {
+<# foreach (var comparison in comparisons) { #>
+        case BinaryExpressionType.<#= comparison.Item1 #>:
+          return new <#= comparison.Item1 #>ComparisonExpression(comparer, left, right);
+<# } #>
+        default:
+          throw new ArgumentOutOfRangeException(nameof(type));
+      }
+    }
+<# foreach (var comparison in comparisons) { #>
+
+    private class <#= comparison.Item1 #>ComparisonExpression : ComparisonExpression
+    {
+      public <#= comparison.Item1 #>ComparisonExpression(IComparer comparer, IExpression left, IExpression right)
+        : base(comparer, left, right)
+      {
+      }
+
+      protected override bool Compare(int comparison)
+      {
+        return comparison <#= comparison.Item2 #> 0;
+      }
+    }
+<# } #>
+  }
+}

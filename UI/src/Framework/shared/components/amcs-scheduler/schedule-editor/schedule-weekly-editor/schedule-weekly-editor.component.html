@@ -1,0 +1,41 @@
+<app-amcs-form [form]="form" [options]="options">
+  <ng-template>
+    <div class="row">
+      <div>
+        <div class="recur-container">
+          <div class="row">
+            <div class="col-xs-10 no-rightpadding">
+              <app-amcs-quantity-selector
+                [label]="'scheduleEditor.weeklySettings.recurrence' | translate"
+                [customClass]="'no-margin-no-padding'"
+                [compName]="'ScheduleDailyEditorComponent'"
+                formControlName="weeklyOccurence"
+                [minValue]="1"
+              >
+              </app-amcs-quantity-selector>
+            </div>
+            <div class="col-xs-2 no-padding">
+              <label [translate]="'scheduleEditor.weeklySettings.recurrenceweeks'"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="weekly-days-container">
+        <app-amcs-multi-select-with-search
+          [label]="'scheduleEditor.weeklySettings.monthlyWeekDays' | translate"
+          [compName]="'ScheduleWeeklyEditorComponent'"
+          formControlName="weeklyDays"
+          [keepOriginalOrder]="true"
+          [appendToBody]="false"
+          bindLabel="description"
+          bindValue="description"
+          [items]="weekDays"
+          [appendTo] ="null"
+        >
+        </app-amcs-multi-select-with-search>
+      </div>
+    </div>
+  </ng-template>
+</app-amcs-form>

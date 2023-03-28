@@ -1,0 +1,77 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "target": "es2017",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": [
+        "app/*"
+      ],
+      "@environments/*": [
+        "environments/*"
+      ],
+      "@auth-module/*": [
+        "Framework/auth/*"
+      ],
+      "@core-module/*": [
+        "Framework/core/*"
+      ],
+      "@testing/*": [
+        "Framework/testing/*"
+      ],
+      "@translate/*": [
+        "Framework/translate/*"
+      ],
+      "@shared-module/*": [
+        "Framework/shared/*"
+      ],
+      "@corehelpers/*": [
+        "Framework/core/helpers/*"
+      ],
+      "@coremodels/*": [
+        "Framework/core/models/*"
+      ],
+      "@coreservices/*": [
+        "Framework/core/services/*"
+      ],
+      "@coreconfig/*": [
+        "Framework/core/config/*"
+      ],
+      "@sharedconfig/*": [
+        "app/shared/config/*"
+      ],
+      "@routeconfig/*": [
+        "Framework/core/config/routes/*"
+      ],
+      "@reportrmodels/*": [
+        "app/reports/models/*"
+      ],
+      "@search/*": [
+        "app/search/*"
+      ],
+      "@sass/*": [
+        "sass/*"
+      ],
+      "@fonts/*": [
+        "fonts/*"
+      ],
+      "@workflow/*": [
+        "Framework/workflow/*"
+      ]
+    }
+  }
+}

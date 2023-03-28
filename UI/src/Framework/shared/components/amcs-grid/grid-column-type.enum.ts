@@ -1,0 +1,25 @@
+export enum GridColumnType {
+    text,
+    number,
+    email,
+    phoneNumber, /* not implemented in template yet, will default to text */
+    link,
+    currency,
+    boolean,
+    numericInput,
+    integerInput,
+    shortDate,
+    shortDateTime,
+    popover,
+    showMore,
+    enumeration,
+    truncatedText,
+    truncatedDateTime,
+    template,
+    selectInput,
+    superScript,
+    conditionalLink,
+    rateNumber,
+    textInput,
+    weight
+}

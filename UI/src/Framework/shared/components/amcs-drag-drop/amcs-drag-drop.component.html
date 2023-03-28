@@ -1,0 +1,7 @@
+<dropzone #dropzoneComponent [config]="config" (removedFile)="onRemoveFile($event)" (addedFile)="onAddedFile($event)"
+  (maxFilesReached)="onMaxFilesReached($event)" (maxFilesExceeded)="onMaxFilesExceeded($event)" (error)=onError($event)
+  appAutomationLocator [compName]="compName" [uniqueKey]="'drag'">
+  <ng-template>
+    <ng-content></ng-content>
+  </ng-template>
+</dropzone>

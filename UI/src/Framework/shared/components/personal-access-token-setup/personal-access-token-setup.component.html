@@ -1,0 +1,53 @@
+<!-- eslint-disable amcs-html-plugin/ng-project-label-ban --> 
+<app-amcs-loading-view [loading]="formService.form === null" [size]="20" [containerSize]="310">
+    <!-- html-hint-disable form-tag-ban -->
+    <form *ngIf="formService.form != null" [formGroup]="formService.form.htmlFormGroup" (submit)="formService.save()"
+        appFocusOnError autocomplete="off">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5 class="bold uppercase">
+                        <i class="fa fa-pencil"></i>
+                        <span class="marL5" [translate]="'personalAccessToken.newPersonalAccessToken'">
+                            New Personal Access Token</span>
+                    </h5>
+                </div>
+            </div>
+            <div class="row"><br></div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <app-amcs-input [autoFocus]="true" [maxLength]="60" [compName]="'PersonalAccessTokenSetupComponent'"
+                        formControlName="description"
+                        [hasError]="formService.form.hasErrors(formService.form.description)">
+                        <ng-container ngProjectAs="label">
+                            <span [translate]="'personalAccessToken.description'">Description</span>
+                        </ng-container>
+                    </app-amcs-input>
+                </div>
+                <div class="col-lg-4">
+                    <app-amcs-select [compName]="'PersonalAccessTokenSetupComponent'" formControlName="sysUserId"
+                        [options]="formService.users"
+                        [hasError]="formService.form.hasErrors(formService.form.sysUserId)">
+                        <span [translate]="'personalAccessToken.userName'">User Name</span>
+                    </app-amcs-select>
+                </div>
+                <div class="col-lg-4">
+                    <app-amcs-select [compName]="'PersonalAccessTokenSetupComponent'" formControlName="expires"
+                        [options]="formService.expireOptions"
+                        [hasError]="formService.form.hasErrors(formService.form.expires)">
+                        <span [translate]="'personalAccessToken.expiry'">Expiry</span>
+                    </app-amcs-select>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <app-amcs-save-button customClass="amcs-green pull-left" [compName]="'PersonalAccessTokenSetupComponent'" [uniqueKey]="'save'">
+                <span [translate]="'personalAccessToken.save'">Save</span>
+            </app-amcs-save-button>
+            <button class="btn btn-default pull-right" type="button" (click)="formService.return()" appAutomationLocator
+                [compName]="'PersonalAccessTokenSetupComponent'" [uniqueKey]="'cancel'">
+                <span [translate]="'personalAccessToken.cancel'">Cancel</span>
+            </button>
+        </div>
+    </form>
+</app-amcs-loading-view>

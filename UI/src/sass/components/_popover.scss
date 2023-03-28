@@ -1,0 +1,27 @@
+@import '~sass/abstracts/variables';
+
+popover-container {
+  // ensure popover is visible when opened from a modal.
+  z-index: 10000 !important;
+}
+
+popover-container.selector-popover {
+  max-width: unset;
+
+  .popover-content {
+    padding: 0px;
+    border: 1px solid $amcs-grid-border-color;
+  }
+}
+
+popover-container.warning-popover {
+  .popover-content {
+    color: $amcs-dashboard-boxblue-action-button-background-color;
+  }
+}
+
+bs-tooltip-container {
+  .tooltip-inner {
+    max-width: 500px !important;    
+  }
+}

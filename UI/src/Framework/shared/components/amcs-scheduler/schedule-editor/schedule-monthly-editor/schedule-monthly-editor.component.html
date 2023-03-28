@@ -1,0 +1,90 @@
+<app-amcs-form [form]="form" [options]="options">
+  <ng-template>
+    <div class="row">
+      <div class="col-xs-12">
+        <app-amcs-multi-select-with-search
+          [label]="'scheduleEditor.monthlySettings.months' | translate"
+          [compName]="'ScheduleMonthlyEditorComponent'"
+          formControlName="months"
+          [keepOriginalOrder]="true"
+          bindLabel="description"
+          bindValue="description"
+          [items]="months"
+          [appendTo] ="null"
+          [appendToBody]="false"
+        >
+        </app-amcs-multi-select-with-search>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" radioControl>
+          <div class="days-radio-button">
+          <app-amcs-radio-input
+            [compName]="'ScheduleMonthlyEditorComponent'"
+            [customClass]="'no-border'"
+            formControlName="monthDaysType"
+            [label]="'scheduleEditor.monthlySettings.days' | translate"
+            [value]="MonthDaysTypeEnum[MonthDaysTypeEnum.days]"
+          ></app-amcs-radio-input>
+        </div>
+        <div class="occurence-radio-button">
+          <app-amcs-radio-input
+            [compName]="'ScheduleMonthlyEditorComponent'"
+            [customClass]="'no-border'"
+            formControlName="monthDaysType"
+            [label]="'scheduleEditor.monthlySettings.offset' | translate"
+            [value]="MonthDaysTypeEnum[MonthDaysTypeEnum.offset]"
+          ></app-amcs-radio-input>
+        </div>
+        </div>
+        <div class="col-xs-8">
+          <div class="row">
+            <div class="col-xs-12">
+              <app-amcs-multi-select-with-search
+                [label]="'scheduleEditor.monthlySettings.monthDays' | translate"
+                [compName]="'ScheduleMonthlyEditorComponent'"
+                formControlName="monthDays"
+                [keepOriginalOrder]="true"
+                bindLabel="description"
+                bindValue="guid"
+                [items]="monthDays"
+                [appendTo] ="null"
+                [appendToBody]="false"
+              >
+              </app-amcs-multi-select-with-search>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <app-amcs-multi-select-with-search
+                [label]="'scheduleEditor.monthlySettings.monthWeeks' | translate"
+                [compName]="'ScheduleMonthlyEditorComponent'"
+                formControlName="monthlyWeeks"
+                [keepOriginalOrder]="true"
+                bindLabel="description"
+                bindValue="guid"
+                [items]="monthWeeks"
+                [appendTo] ="null"
+                [appendToBody]="false"
+              >
+              </app-amcs-multi-select-with-search>
+            </div>
+            <div class="col-xs-6">
+              <app-amcs-multi-select-with-search
+                [label]="'scheduleEditor.monthlySettings.monthlyWeekDays' | translate"
+                [compName]="'ScheduleMonthlyEditorComponent'"
+                formControlName="monthlyWeekDays"
+                [keepOriginalOrder]="true"
+                bindLabel="description"
+                bindValue="description"
+                [items]="monthWeekDays"
+                [appendTo] ="null"
+                [appendToBody]="false"
+              >
+              </app-amcs-multi-select-with-search>
+            </div>
+          </div>
+        </div>
+      </div>
+  </ng-template>
+</app-amcs-form>

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12 amcs-tile">
+    <div>
+      <div class="profile-sidebar">
+        <div class="portlet light profile-sidebar-portlet">
+          <div *ngIf="profileData != null && profileData.profilePictureBase64 != null; else noProfilePic" class="profile-userpic">
+            <img src="{{ profileData.profilePictureBase64 }}" class="img-responsive" alt="" />
+          </div>
+          <ng-template #noProfilePic>
+            <div class="avatar-circle">
+              <span *ngIf="profileData != null && profileData.userInitials != null" class="initials">{{ profileData.userInitials }}</span>
+            </div>
+          </ng-template>
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name" *ngIf="profileData != null && profileData.forename != null">
+              {{ profileData.forename + ' ' + profileData.surname }}
+            </div>
+            <div class="profile-usertitle-job" *ngIf="profileData != null">{{ profileData.staffType }}</div>
+          </div>
+          <div class="profile-usermenu">
+            <ul class="nav">
+              <li class="active">
+                <a href="javascript:;">
+                  <i class="icon-settings"></i>
+                  <span [translate]="'home.myProfile.profileSettings'">Profile Settings</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-content">
+      <app-profile-settings></app-profile-settings>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 amcs-tile">
+    <div style="float: left !important; width: 300px !important; margin-right: 20px !important">
+      <p></p>
+    </div>
+  </div>
+</div>

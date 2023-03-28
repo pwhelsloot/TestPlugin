@@ -1,0 +1,75 @@
+@import "sass/abstracts/_variables.scss";
+
+.container-fluid {
+
+    div.row.multi-filter-view {
+        div.filter-definition {
+            position: relative;
+
+            a.filter-header {
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 5px;
+                margin-left: 5px;
+                color: $amcs-black;
+                line-height: 20px;
+                height: 20px;
+
+                div {
+                    margin-right: 40px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+
+                i {
+                    float: right;
+                }
+            }
+
+            div.filterOptions {
+                display: none;
+
+                ul {
+                    margin-bottom: 5px;
+                    margin-left: 10px;
+
+                    li {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        margin-bottom: 5px;
+                        margin-left: 5px;
+
+                        label {
+                            user-select: none;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+
+                a {
+                    display: none;
+                    margin-bottom: 10px;
+                    margin-left: 15px;
+                }
+
+                a.expanded {
+                    display: block;
+                }
+            }
+
+            div.filterOptions.expanded {
+                display: block;
+            }
+
+            div.filter-controls {
+                a {
+                    margin: 5px;
+                    margin-left: 10px;
+                    float: right;
+                }
+            }
+        }
+    }
+}

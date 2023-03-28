@@ -1,0 +1,18 @@
+@import 'sass/abstracts/variables';
+
+a>i {
+  padding-right: 15px;
+}
+
+a>i:hover {
+  color: $amcs-teal;
+}
+
+.rowTextHighlighted {
+  color: $amcs-red  !important;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: $amcs-grey-opacity-40;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <appSettings>
+    <add key="aspnet:SuppressSameSiteNone" value="true" />
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="owin:appStartup" value="AMCS.ApiService.Startup" />
+    <add key="AppContext.SetSwitch:Switch.System.Net.DontEnableSchUseStrongCrypto" value="false" />
+    <add key="AppContext.SetSwitch:Switch.System.Net.DontEnableSystemDefaultTlsVersions" value="false" />
+  </appSettings>
+
+  <amcs
+    projectId="AMCS" 
+    serviceRootName="TestPluginServiceRoot"/>
+
+  <amcs.serviceRoots>
+    <add name="TestPluginServiceRoot" url="http://localhost:16932/" />
+    <add name="CoreServiceRoot" url="http://localhost:26519/" />
+    <add name="PluginApiRoot" url="http://localhost:16932/" />
+  </amcs.serviceRoots>
+
+  <amcs.server
+    applicationInsightsInstrumentationKey=""
+    dataAccessType="SQL"
+    commandTimeout="240"
+    commandTimeoutExtended="600"
+    bulkCopyTimeout="600"
+    performanceMonitoringEnabled="false"
+    azureCompatibilityEnabled="false"
+    dataSynchronizationDisabled="true"
+    entityObjectMappingsPath="..\Language\ent\"
+    searchResultMappingsPath="..\Language\srch\"
+    sessionExpiration="0:30:00"
+    encryptionKey="supersecret!supersecret!"
+    certificateSubjectName=""
+    certificatePath="">
+
+    <!--
+    The scheduledJobQueueInterval attribute defines the interval in seconds
+    in which we queue pending scheduled jobs.
+    -->
+
+    <platformUI>
+    </platformUI>
+
+    <broadcast
+      queuePrefix="" />
+
+    <api>
+      <enabledApis>
+        <!--<add name="Area1"/>-->
+      </enabledApis>
+    </api>
+
+    <tempFileStorage
+      ttl="7.00:00:00">
+      <fileSystem
+        store="" />
+      <!-- DevOps Beware: Cannot point at exising container as contents will be automatically cleaned up with TTL above -->
+      <azure
+        container="" />
+    </tempFileStorage>
+
+    <pluginSystem>
+      <metadataRegistries
+        uiComponentsMetadata="AMCS.TestPlugin.Server.uiComponents.json"/>
+    </pluginSystem>
+  </amcs.server>
+
+  <amcs.test-plugin
+    neutralTimeZoneId="Europe/Dublin"
+    tenantId="4C0FFDF1-CC0A-4C1F-A023-7B2C0354AE98" >
+
+    <commsServer>
+
+      <server
+        url=""
+        authKey="let-me-in"
+        protocol="WebSocket"
+        azureServiceBusConnectionStringName="TestPluginServiceBusConnectionString"
+        allowAlteranteTransport="true"/>
+
+    </commsServer>
+
+  </amcs.test-plugin>
+
+  <connectionStrings>
+    <add name="TestPluginConnectionString" connectionString="Data Source=.;Initial Catalog=TestPluginDevelopment;User ID=sa;Password=T7axEiTYigXtE4ap/Z7Wbw==" providerName="System.Data.SqlClient" />
+    <add name="BroadcastServiceBusConnectionString" connectionString="" />
+  </connectionStrings>
+
+  <log4net>
+    <appender name="ConsoleAppender" type="AMCS.Data.Support.ConsoleColorAppender, AMCS.Data">
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="[%-5p] %m%n" />
+      </layout>
+    </appender>
+    <appender name="aiAppender" type="Microsoft.ApplicationInsights.Log4NetAppender.ApplicationInsightsAppender, Microsoft.ApplicationInsights.Log4NetAppender">
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%message%newline" />
+      </layout>
+    </appender>
+    <root>
+      <level value="DEBUG" />
+      <appender-ref ref="ConsoleAppender" />
+      <appender-ref ref="aiAppender" />
+    </root>
+  </log4net>
+
+</configuration>

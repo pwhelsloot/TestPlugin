@@ -1,0 +1,179 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "amcsplatform.ui": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules/", "src/", "src/Framework/"]
+            },
+            "preserveSymlinks": true,
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "assets": ["src/i18n", "src/assets", "src/favicon.ico", "src/web.config", "src/Framework/assets", "src/Parameters.xml"],
+            "styles": [
+              "src/sass/styles.scss",
+              "node_modules/snazzy-info-window/dist/snazzy-info-window.scss",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet-draw/dist/leaflet.draw.css",
+              "node_modules/@ng-select/ng-select/themes/material.theme.css"
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
+              "node_modules/chartjs-plugin-piechart-outlabels/dist/chartjs-plugin-piechart-outlabels.min.js",
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "7mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": true,
+                "fonts": false
+              },
+              "outputHashing": "all",
+              "progress": false,
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "hidden": true,
+                "vendor": false
+              },
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "amcsplatform.ui:build",
+            "port": 4700
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "amcsplatform.ui:build:production"
+            },
+            "development": {
+              "browserTarget": "amcsplatform.ui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "amcsplatform.ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "preserveSymlinks": true,
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [],
+            "styles": [
+              "src/sass/styles.scss",
+              "node_modules/snazzy-info-window/dist/snazzy-info-window.scss",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet-draw/dist/leaflet.draw.css"
+            ],
+            "assets": ["src/i18n", "src/assets", "src/favicon.ico", "src/web.config"]
+          },
+          "configurations": {
+            "test": {
+              "include": ["src/app/**/*.spec.ts"],
+              "codeCoverageExclude": ["src/Framework/**/*.ts"]
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          },
+          "exclude": ["src/Framework/**/*.ts", "src/Framework/**/*.html"]
+        }
+      }
+    },
+    "amcsplatform.ui-e2e": {
+      "root": "e2e",
+      "sourceRoot": "e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "amcsplatform.ui:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["e2e/**/*.ts", "e2e/**/*.html"]
+          },
+          "exclude": ["src/Framework/**/*.ts", "src/Framework/**/*.html"]
+        }
+      }
+    }
+  },
+  "defaultProject": "amcsplatform.ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "cache": {
+      "enabled": true
+    }
+  }
+}

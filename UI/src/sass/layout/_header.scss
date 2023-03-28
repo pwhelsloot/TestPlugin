@@ -1,0 +1,59 @@
+@import '~sass/abstracts/variables';
+
+.page-header {
+  &.navbar {
+    background-color: $pallette-primary-color;
+
+    .search-form {
+      background: $pallette-secondary-color;
+
+      &.open {
+        background: $pallette-secondary-color;
+      }
+    }
+  }
+}
+
+.page-logo {
+  background: none !important;
+}
+
+.page-header-fixed {
+  .page-container {
+    margin-top: 0 !important;
+  }
+}
+
+// Fix for bug 172626 - Had to override some bootstrap styles
+@media (max-width: 768px) {
+  .page-header {
+    .navbar-nav {
+      margin: 0px;
+
+      >li {
+        float: left;
+
+        >a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    &.navbar {
+      padding: unset;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .page-header {
+    &.navbar {
+      padding: unset;
+    }
+  }
+}

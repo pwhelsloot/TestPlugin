@@ -1,0 +1,51 @@
+steps:
+  - task: Docker@2
+    inputs:
+      command: login
+      containerRegistry: amcsdevopsdevcr
+    displayName: acr login
+
+  - powershell: |
+      docker-compose -f $(Build.SourcesDirectory)\azure-pipelines\templates\API\docker-compose.yml up --detach
+      docker logs sql
+      docker ps -a
+    displayName: docker run sql
+    
+  - task: NuGetCommand@2
+    displayName: 'Provide Credentials to AMCS NuGet Source'
+    inputs:
+      command: custom
+      arguments: sources update -Name "AMCS" -Username "devops" -Password "$(System.AccessToken)"  -ConfigFile "$(Build.SourcesDirectory)/API/.nuget/NuGet.Config"
+
+  - script: 'nuget install SqlPackage.CommandLine -OutputDirectory "$(Build.SourcesDirectory)" -Version "14.0.3953.4" -Source "AMCS" -ConfigFile "$(Build.SourcesDirectory)/API/.nuget/NuGet.Config"'
+    workingDirectory: '$(Build.SourcesDirectory)'
+    displayName: 'Install SqlPackage'
+
+  - script: 'SqlPackage.exe
+      /SourceFile:"$(Build.SourcesDirectory)\DB\src\AMCS.TestPlugin.Database\bin\Release\AMCS.TestPlugin.Database.dacpac"
+      /Action:Publish
+      /TargetServerName:"localhost,1431"
+      /TargetDatabaseName:"TestPluginDevelopment"
+      /TargetPassword:"$(sa_password)"
+      /TargetUser:"sa"'
+    workingDirectory: '$(Build.SourcesDirectory)\SqlPackage.CommandLine.14.0.3953.4\tools'
+    displayName: 'Publish dacpac to TestPluginDevelopment'
+
+  
+  - task: VSTest@2
+    displayName: 'Run Tests'
+    inputs:
+      testSelector: 'testAssemblies'
+      testRunTitle: 'Integration'
+      searchFolder: '$(Build.SourcesDirectory)\API\'
+      testAssemblyVer2: |
+        **\bin\**\*Test.dll
+        **\bin\**\*Tests.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      codeCoverageEnabled: true
+      platform: 'AnyCPU'
+      configuration: 'Release'
+      vsTestVersion: 'latest'
+      failOnMinTestsNotRun: true
+      minimumExpectedTests: 1

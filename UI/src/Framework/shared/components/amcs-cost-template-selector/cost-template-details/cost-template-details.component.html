@@ -1,0 +1,6 @@
+<app-amcs-pager [compName]="compName" [totalItemCount]="costTemplates.count" [pageSize]="10"
+  (pageChange)="onPageChange($event)" *ngIf="costTemplates">
+  <!-- eslint-disable amcs-html-plugin/deprecated-tag-ban -->
+  <app-amcs-selector-grid [compName]="compName" [singleSelectionEnforced]="true" [columns]="columns"
+    (rowsSelected)="rowSelected($event)" [data]="costTemplates.results" #selectorGrid></app-amcs-selector-grid>
+</app-amcs-pager>

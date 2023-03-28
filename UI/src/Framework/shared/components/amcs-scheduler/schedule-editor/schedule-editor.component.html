@@ -1,0 +1,137 @@
+<app-amcs-form-tile [form]="service.form" [options]="service.options" (onSave)="service.save()" (onCancel)="service.cancel()" *ngIf="!hideParentTile">
+  <!-- This template must match the template used with hideParentTile=true -->
+  <ng-template>
+    <h3 [translate]="'scheduleEditor.settings.title'">Settings</h3>
+    <div class="row">
+      <div class="col-xs-3" radioControl>
+        <app-amcs-radio-input
+          [compName]="'ScheduleEditorComponent'"
+          formControlName="scheduleType"
+          [label]="'scheduleEditor.settings.daily' | translate"
+          [value]="ScheduleTypeEnum[ScheduleTypeEnum.daily]"
+        ></app-amcs-radio-input>
+        <app-amcs-radio-input
+          [compName]="'ScheduleEditorComponent'"
+          formControlName="scheduleType"
+          [label]="'scheduleEditor.settings.weekly' | translate"
+          [value]="ScheduleTypeEnum[ScheduleTypeEnum.weekly]"
+        ></app-amcs-radio-input>
+        <app-amcs-radio-input
+          [compName]="'ScheduleEditorComponent'"
+          formControlName="scheduleType"
+          [label]="'scheduleEditor.settings.monthly' | translate"
+          [value]="ScheduleTypeEnum[ScheduleTypeEnum.monthly]"
+        ></app-amcs-radio-input>
+      </div>
+      <div class="col-xs-9">
+        <div class="row">
+          <div class="col-xs-6">
+            <app-amcs-datepicker
+              [label]="'scheduleEditor.settings.startDate' | translate"
+              [compName]="'ScheduleEditorComponent'"
+              formControlName="startDate"
+              [config]="dateConfig"
+            >
+            </app-amcs-datepicker>
+          </div>
+          <div class="col-xs-6 timepicker-padding">
+            <app-amcs-timepicker
+              [label]="'scheduleEditor.settings.startTime' | translate"
+              [compName]="'ScheduleEditorComponent'"
+              formControlName="startTime"
+            >
+            </app-amcs-timepicker>
+          </div>
+          <div class="col-xs-12">
+            <div class="type-container">
+            <ng-container [ngSwitch]="service.form.scheduleType.value">
+              <app-schedule-daily-editor
+                *ngSwitchCase="ScheduleTypeEnum[ScheduleTypeEnum.daily]"
+                [form]="service.form"
+              ></app-schedule-daily-editor>
+              <app-schedule-weekly-editor
+                *ngSwitchCase="ScheduleTypeEnum[ScheduleTypeEnum.weekly]"
+                [form]="service.form"
+              ></app-schedule-weekly-editor>
+              <app-schedule-monthly-editor
+                *ngSwitchCase="ScheduleTypeEnum[ScheduleTypeEnum.monthly]"
+                [form]="service.form"
+              ></app-schedule-monthly-editor>
+            </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3 [translate]="'scheduleEditor.advancedSettings.title'">Advanced Settings</h3>
+    <app-schedule-advanced-editor [form]="service.form"></app-schedule-advanced-editor>
+  </ng-template>
+</app-amcs-form-tile>
+  <app-amcs-form [form]="service.form" [options]="service.options" (onSave)="service.save()" (onCancel)="service.cancel()" *ngIf="hideParentTile">
+    <!-- This template must match the template used with hideParentTile=false -->
+    <ng-template>
+      <div class="row">
+        <div class="col-xs-3" radioControl>
+          <app-amcs-radio-input
+            [compName]="'ScheduleEditorComponent'"
+            formControlName="scheduleType"
+            [label]="'scheduleEditor.settings.daily' | translate"
+            [value]="ScheduleTypeEnum[ScheduleTypeEnum.daily]"
+          ></app-amcs-radio-input>
+          <app-amcs-radio-input
+            [compName]="'ScheduleEditorComponent'"
+            formControlName="scheduleType"
+            [label]="'scheduleEditor.settings.weekly' | translate"
+            [value]="ScheduleTypeEnum[ScheduleTypeEnum.weekly]"
+          ></app-amcs-radio-input>
+          <app-amcs-radio-input
+            [compName]="'ScheduleEditorComponent'"
+            formControlName="scheduleType"
+            [label]="'scheduleEditor.settings.monthly' | translate"
+            [value]="ScheduleTypeEnum[ScheduleTypeEnum.monthly]"
+          ></app-amcs-radio-input>
+        </div>
+        <div class="col-xs-9">
+          <div class="row">
+            <div class="col-xs-6">
+              <app-amcs-datepicker
+                [label]="'scheduleEditor.settings.startDate' | translate"
+                [compName]="'ScheduleEditorComponent'"
+                formControlName="startDate"
+                [config]="dateConfig"
+              >
+              </app-amcs-datepicker>
+            </div>
+            <div class="col-xs-6 timepicker-padding">
+              <app-amcs-timepicker
+                [label]="'scheduleEditor.settings.startTime' | translate"
+                [compName]="'ScheduleEditorComponent'"
+                formControlName="startTime"
+              >
+              </app-amcs-timepicker>
+            </div>
+            <div class="col-xs-12">
+              <div class="type-container">
+              <ng-container [ngSwitch]="service.form.scheduleType.value">
+                <app-schedule-daily-editor
+                  *ngSwitchCase="ScheduleTypeEnum[ScheduleTypeEnum.daily]"
+                  [form]="service.form"
+                ></app-schedule-daily-editor>
+                <app-schedule-weekly-editor
+                  *ngSwitchCase="ScheduleTypeEnum[ScheduleTypeEnum.weekly]"
+                  [form]="service.form"
+                ></app-schedule-weekly-editor>
+                <app-schedule-monthly-editor
+                  *ngSwitchCase="ScheduleTypeEnum[ScheduleTypeEnum.monthly]"
+                  [form]="service.form"
+                ></app-schedule-monthly-editor>
+              </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <app-schedule-advanced-editor [form]="service.form"></app-schedule-advanced-editor>
+    </ng-template>
+  </app-amcs-form>

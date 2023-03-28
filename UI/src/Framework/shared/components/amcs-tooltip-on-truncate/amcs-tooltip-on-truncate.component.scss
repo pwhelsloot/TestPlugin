@@ -1,0 +1,16 @@
+.text-truncator {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 999;
+}
+
+.tooltip-text {
+  overflow-wrap: break-word;
+}
+
+.hide-text {
+  opacity: 0;
+  user-select: none;
+  height: 0;
+}

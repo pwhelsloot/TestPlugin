@@ -1,0 +1,72 @@
+<div class="portlet portlet-fit box {{baseColor}} bordered modal-dialog"
+  [ngClass]="{'modal-lg': largeSize, 'mobile-modal': isMobile }" [style.width]="width">
+  <div class="portlet-title">
+    <div class="caption">
+      <a class="modal-icon" *ngIf="icon">
+        <i [class]="icon"></i>
+      </a>
+      <span class="caption-subject bold" [ngClass]="{'uppercase': !isMobile}"
+        *ngIf="title; else defaultTitleTemplate">{{title}}</span>
+      <ng-template #defaultTitleTemplate>
+        <span class="caption-subject bold" [ngClass]="{'uppercase': !isMobile}" *ngIf="type === 'alert'">
+          {{'shared.modal.alert' | translate}}
+        </span>
+        <span class="caption-subject bold" [ngClass]="{'uppercase': !isMobile}" *ngIf="type === 'confirmation'">
+          {{'shared.modal.confirm' | translate}}
+        </span>
+        <span class="caption-subject bold" [ngClass]="{'uppercase': !isMobile}" *ngIf="type === 'save'">
+          {{'shared.modal.save' | translate}}
+        </span>
+      </ng-template>
+    </div>
+    <div class="actions buttons-container">
+      <app-amcs-button *ngFor="let button of (buttons || []); let i = index" customClass="btn noMargin"
+        (click)="button.onClick()" [compName]="constructor.name" [uniqueKey]="'button_' + i">
+        <i *ngIf="button.icon" [class]="'button-icon ' + button.icon" appAutomationLocator [compName]="type"
+          [uniqueKey]="'icon_' + i"></i>
+        <span *ngIf="button.text">{{button.text}}</span>
+      </app-amcs-button>
+      <a *ngIf="!isMobile && !hideCloseButton" class="close-button">
+        <i class="fal fa-times fa-2x" (click)="hide()" appAutomationLocator [compName]="type" [uniqueKey]="'hide'"></i>
+      </a>
+    </div>
+  </div>
+  <div class="portlet-skeleton portlet-body" *ngIf="loading">
+    <!-- CSS animation taken from https://codepen.io/trungk18/pen/yJggrL -->
+    <div class="portlet-skeleton-body-load">
+      <div class="square square-c state1c"></div>
+      <div class="square square-c state2c"></div>
+    </div>
+  </div>
+  <div class="portlet-body" [ngClass]="{'hide-content': loading }">
+    <div *ngIf="isTemplateString">
+      <div class="templateText">{{template}}</div>
+    </div>
+    <div [ngClass]="{'hide-content': isTemplateString }">
+      <ng-container #innerComponent></ng-container>
+    </div>
+  </div>
+  <div class="portlet-footer" *ngIf="type != null && !hideButtons">
+    <ng-container *ngIf="type === 'confirmation' || type === 'save' ; else alertTemplate">
+      <app-amcs-button [compName]="type" [uniqueKey]="'cancel'" customClass="cancel {{mobileButtonClass}}"
+        (click)="decline()">{{
+        'shared.modal.cancel' | translate
+        }}</app-amcs-button>
+
+      <app-amcs-button *ngIf="type === 'confirmation'" [compName]="type" [uniqueKey]="'continue'"
+        customClass="ok amcs-green {{mobileButtonClass}}" (click)="confirm()">{{
+        'shared.modal.continue' | translate }}
+      </app-amcs-button>
+      <app-amcs-button *ngIf="type === 'save'" [compName]="type" [uniqueKey]="'save'"
+        customClass="ok amcs-green {{mobileButtonClass}}" (click)="save()">{{
+        'shared.modal.save' | translate }}
+      </app-amcs-button>
+    </ng-container>
+    <ng-template #alertTemplate>
+      <app-amcs-button [compName]="type" [uniqueKey]="'ok'" customClass="ok {{mobileButtonClass}}" (click)="hide()">{{
+        'shared.modal.ok' |
+        translate }}
+      </app-amcs-button>
+    </ng-template>
+  </div>
+</div>

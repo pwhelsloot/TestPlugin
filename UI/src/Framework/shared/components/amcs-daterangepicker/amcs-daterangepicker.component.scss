@@ -1,0 +1,25 @@
+@import "sass/abstracts/_variables.scss";
+
+.form-group.form-md-line-input {
+
+  .calendar-icon {
+    color: $amcs-form-input-border-color;
+  }
+
+  .form-control:focus~.calendar-icon {
+    color: $amcs-form-input-border-active-color;
+  }
+
+  div.input-icon {
+    label {
+      top: 0px;
+      font-size: 14px;
+    }
+  }
+}
+
+.form-group.form-md-line-input.has-error {
+  .calendar-icon {
+    color: $amcs-form-input-error-color !important;
+  }
+}

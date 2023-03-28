@@ -1,0 +1,79 @@
+@import 'sass/abstracts/_variables.scss';
+
+.form-group.form-md-line-input,
+.form-group.form-md-line-input.has-success {
+  margin: 0 0 28px 0;
+
+  .form-control {
+    height: 28px;
+    color: $amcs-form-input-text-color;
+    border-bottom: 1px solid $amcs-form-input-border-color;
+
+    padding: 4px 34px 4px 0;
+
+    &:disabled {
+      border-bottom-style: dashed;
+    }
+
+    &:focus-within {
+      border-bottom-width: 2px;
+      border-bottom-color: $amcs-form-input-border-active-color;
+    }
+
+    &::placeholder {
+      color: $amcs-form-input-placeholder-color;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+
+  label {
+    color: $amcs-form-label-colour !important;
+    font-size: 14px;
+    font-weight: 600;
+
+    .required {
+      color: $amcs-form-input-error-color;
+    }
+  }
+
+  // metronic inserts a 2 pixel high "border" using ::after at the bottom of inputs which we don't want.
+  .form-control ~ .form-control-focus:after,
+  .form-control ~ label:after {
+    content: none;
+  }
+
+  .form-control-icon {
+    color: $amcs-form-input-border-color !important;
+  }
+
+  .form-control:focus-within ~ .form-control-icon {
+    color: $amcs-form-input-border-active-color !important;
+  }
+}
+
+.form-group.form-md-line-input.has-error {
+  .form-control {
+    border-bottom: 1px solid $amcs-form-input-error-color;
+
+    &:focus-within {
+      border-bottom-width: 2px;
+    }
+  }
+
+  .help-block-error {
+    color: $amcs-form-input-error-color !important;
+  }
+
+  label {
+    color: $amcs-form-input-error-color !important;
+  }
+
+  .form-control-icon {
+    color: $amcs-form-input-error-color !important;
+  }
+
+  .form-control:focus-within ~ .form-control-icon {
+    color: $amcs-form-input-error-color !important;
+  }
+}

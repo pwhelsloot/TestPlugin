@@ -1,0 +1,56 @@
+@import "sass/abstracts/_variables.scss";
+@import "sass/abstracts/_mixins.scss";
+
+.portlet-skeleton {
+  .portlet-title {
+    .portlet-skeleton-text-block {
+      background-color: darken($amcs-portlet-grey-title, 20);
+      top: 10px;
+      position: relative;
+      width: 120px !important;
+      height: 10px;
+    }
+  }
+
+  .portlet-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portlet-skeleton-body-load {
+    border: 0;
+    height: 90px;
+    width: 90px;
+
+    .square {
+      opacity: 0.2;
+      background: $amcs-portlet-grey-title;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+    }
+
+    .square-c {
+      @include loading-animation();
+      animation: loading-animation 2s infinite ease-in-out;
+      width: 30px;
+      height: 30px;
+      opacity: 0.8;
+    }
+
+    .square-c.state2c {
+      animation-delay: -1s;
+    }
+  }
+}
+
+.dynamic-height {
+  min-height: unset;
+  height: unset;
+  overflow: hidden;
+}
+
+.no-padding {
+  padding: 0 !important;
+}

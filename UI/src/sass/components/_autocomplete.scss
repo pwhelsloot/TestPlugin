@@ -1,0 +1,33 @@
+@import '~sass/abstracts/variables';
+
+.scale-search-autocomplete {
+  .mat-optgroup {
+    border-bottom: 1px solid #d8d8d8;
+    display: block;
+  }
+
+  .mat-optgroup.cus {
+    border-bottom: none;
+    display: block;
+    padding-bottom: 0;
+  }
+
+  .mat-optgroup .mat-option,
+  .mat-optgroup .mat-optgroup-label {
+    font-family: "Nunito Sans", sans-serif;
+    color: black;
+  }
+
+  .mat-optgroup .mat-optgroup-label {
+    height: 30px;
+    line-height: 36px;
+    font-weight: 900;
+  }
+
+  .mat-optgroup .mat-option,
+  .mat-optgroup .mat-option-text {
+    line-height: 36px;
+    font-size: 14px;
+  }
+  
+}

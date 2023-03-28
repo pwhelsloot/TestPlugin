@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,Log4net" />
+    <section name="amcs" type="AMCS.Data.Configuration.ProjectConfigurationSection, AMCS.Data" allowLocation="true" allowDefinition="Everywhere" />
+    <section name="amcs.serviceRoots" type="AMCS.Data.Configuration.ServiceRootsConfigurationSection, AMCS.Data" allowLocation="true" allowDefinition="Everywhere" />
+    <section name="amcs.cache" type="AMCS.Data.Cache.Configuration.CacheConfigurationSection, AMCS.Data.Cache" allowLocation="true" allowDefinition="Everywhere" />
+    <section name="amcs.server" type="AMCS.Data.Server.Configuration.ServerConfigurationSection, AMCS.Data.Server" allowLocation="true" allowDefinition="Everywhere" />
+    <section name="amcs.test-plugin" type="AMCS.TestPlugin.Server.Configuration.TestPluginConfigurationSection, AMCS.TestPlugin.Server" allowLocation="true" allowDefinition="Everywhere" />
+  </configSections>
+
+  <appSettings>
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="owin:appStartup" value="AMCS.ApiService.Startup" />
+  </appSettings>
+
+  <amcs
+	  projectId="AMCS"
+	  serviceRootName="TestPluginServiceRoot" />
+
+  <amcs.serviceRoots>
+    <add name="TestPluginServiceRoot" url="http://localhost:16932/" />
+  </amcs.serviceRoots>
+
+  <amcs.cache
+	  type="MemoryCache"
+	  uncacheableEntityTypes=""
+	  cacheAbsoluteExpirationMinutes="10">
+
+    <memory
+		  maxCacheSizeMegabytes="0"
+		  maxPercentagePhysicalMemoryForCache="15"
+		  cachePollingInterval="00:02:00" />
+
+  </amcs.cache>
+
+  <!-- Set azureCompatibilityEnabled to `true` to enable runtime Azure compatibility translation, removing group_concat and GETDATE calls -->
+  <!-- performanceMonitoringEnabled should always be false (change it and checkin if you see it set to true) as it's comes with overhead-->
+  <!-- bulkCopyTimeout with a value of 0 indicates no limit; the bulk copy will wait indefinitely. -->
+
+  <amcs.server
+	  dataAccessType="SQL"
+	  commandTimeout="240"
+	  commandTimeoutExtended="600"
+	  bulkCopyTimeout="600"
+	  performanceMonitoringEnabled="false"
+	  azureCompatibilityEnabled="false"
+	  dataSynchronizationDisabled="true"
+	  sessionExpiration="1.00:00:00"
+	  encryptionKey="supersecret!supersecret!"
+	  certificateSubjectName=""
+    certificatePath="" />
+
+  <amcs.test-plugin
+	  neutralTimeZoneId="Europe/Dublin"
+	  tenantId="4C0FFDF1-CC0A-4C1F-A023-7B2C0354AE98" />
+
+  <connectionStrings>
+    <add name="TestPluginConnectionString" connectionString="Data Source=.;Initial Catalog=TestPluginDevelopment;User ID=sa;Password=T7axEiTYigXtE4ap/Z7Wbw==" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+
+  <log4net>
+    <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="[%-5p] %m%n" />
+      </layout>
+    </appender>
+    <root>
+      <level value="DEBUG" />
+      <appender-ref ref="ConsoleAppender" />
+    </root>
+  </log4net>
+
+</configuration>

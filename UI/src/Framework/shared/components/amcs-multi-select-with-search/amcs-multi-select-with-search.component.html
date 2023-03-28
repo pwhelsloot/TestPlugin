@@ -1,0 +1,147 @@
+<div
+  class="form-group {{customClass}} form-md-line-input amcs-input"
+  [ngClass]="{
+    'has-error': hasError,
+    'has-success': !hasError && edited,
+    'secondary-ui': isSecondaryUi,
+    'small-mode': displayMode === FormControlDisplay.Small,
+    'grid-mode': displayMode === FormControlDisplay.Grid
+  }"
+  appAutomationLocator
+  [compName]="compName"
+  [uniqueKey]="formControlName + '_' + uniqueKey"
+>
+  <div class="form-control" [ngClass]="{ edited: edited, 'append-to-body': appendToBody, 'disabled-dashed': isDisabled }">
+    <ng-select
+      #select
+      [items]="items"
+      [bindLabel]="bindLabel"
+      [bindValue]="bindValue"
+      [ngModel]="value"
+      [loading]="loading"
+      (ngModelChange)="writeValueFromView($event)"
+      (blur)="onTouchedCallback()"
+      [ngClass]="{ edited: edited }"
+      [disabled]="isDisabled"
+      [takeFocus]="autoFocus"
+      [groupBy]="groupBy"
+      [clearSearchOnAdd]="true"
+      notFoundText="{{ notFoundText }}"
+      [virtualScroll]="true"
+      [searchFn]="searchFn.bind(this)"
+      [clearable]="isOptional"
+      clearAllText="{{ 'tooltip.clearAll' | translate }}"
+      [appendTo]="appendTo"
+      class="custom"
+      [multiple]="true"
+      [closeOnSelect]="closeOnSelect"
+      [selectableGroup]="true"
+      [selectableGroupAsModel]="hideSelectionsWhenSelectAll"
+      [compareWith]="hideSelectionsWhenSelectAll ? groupCompare.bind(this) : defaultCompare.bind(this)"
+      appAutomationLocator
+      [compName]="compName"
+      [uniqueKey]="formControlName + '_' + uniqueKey + '_select'"
+      [dropdownPosition]="dropdownPosition"
+    >
+      <ng-template *ngIf="enableSelectAll" ng-header-tmp>
+        <button
+          (click)="selectAll()"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="formControlName + '_' + uniqueKey + '_selectAll'"
+          class="btn btn-sm btn-secondary multi-select-with-search-button"
+        >
+          {{ 'shared.multiSelectWithSearch.selectAll' | translate }}
+        </button>
+        <button
+          (click)="unselectAll()"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="formControlName + '_' + uniqueKey + '_unSelectAll'"
+          class="btn btn-sm btn-secondary multi-select-with-search-button"
+        >
+          {{ 'shared.multiSelectWithSearch.unselectAll' | translate }}
+        </button>
+      </ng-template>
+      <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+        <div class="md-checkbox">
+          <input
+            type="checkbox"
+            [ngModel]="item$.selected"
+            appAutomationLocator
+            [compName]="compName"
+            [uniqueKey]="formControlName + '_' + uniqueKey + '_groupCheckbox'"
+          />
+          <label></label>
+          <app-amcs-tooltip-on-truncate [text]="item[groupBy] | glossary"> </app-amcs-tooltip-on-truncate>
+        </div>
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+        <div class="md-checkbox" *ngIf="isCheckbox && !rowTemplate">
+          <input
+            type="checkbox"
+            [ngModel]="item$.selected"
+            appAutomationLocator
+            [compName]="compName"
+            [uniqueKey]="formControlName + '_' + uniqueKey + '_checkbox'"
+          />
+          <ng-container>
+            <label></label>
+            <app-amcs-tooltip-on-truncate [text]="item[bindLabel] | glossary"></app-amcs-tooltip-on-truncate>
+          </ng-container>
+        </div>
+        <div class="no-checkbox" *ngIf="!isCheckbox && !rowTemplate">
+          <ng-container>
+            <label></label>
+            <app-amcs-tooltip-on-truncate [text]="item[bindLabel] | glossary"></app-amcs-tooltip-on-truncate>
+          </ng-container>
+        </div>
+        <div class="display-option" *ngIf="rowTemplate">
+          <ng-container [ngTemplateOutlet]="rowTemplate" [ngTemplateOutletContext]="{ item: item, item$: item$, index: index }">
+            <div class="md-checkbox template-md-checkbox" *ngIf="isCheckbox">
+              <input
+                type="checkbox"
+                [ngModel]="item$.selected"
+                appAutomationLocator
+                [compName]="compName"
+                [uniqueKey]="formControlName + '_' + uniqueKey + '_checkbox_template'"
+              />
+              <label></label>
+            </div>
+          </ng-container>
+        </div>
+      </ng-template>
+      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+        <span
+          (click)="clear(item)"
+          appAutomationLocator
+          [compName]="compName"
+          [uniqueKey]="formControlName + '_' + uniqueKey + '_clear'"
+          aria-hidden="true"
+          class="ng-value-icon left"
+        ></span>
+        <span class="ng-value-label">{{ item[bindLabel] | glossary }}</span>
+      </ng-template>
+      <ng-template *ngIf="csvTextLabel" ng-multi-label-tmp let-selectedItems="items" let-index="index">
+        <div class="selected-items" [ngClass]="{ 'selected-items-disabled': isDisabled }">
+          <app-amcs-select-text-label
+            [allItems]="items"
+            [toolTipPlacement]="toolTipPlacement"
+            [items]="selectedItems"
+            [isGroupBy]="groupBy !== 'selectAll'"
+          >
+          </app-amcs-select-text-label>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+  <ng-container *ngIf="isDefaultLabel; then defaultLabel; else customLabel"></ng-container>
+  <ng-template #defaultLabel>
+    <label app-amcs-form-label [label]="label" [isRequired]="isRequired"></label>
+  </ng-template>
+  <ng-template #customLabel>
+    <label>
+      <ng-content select="label"></ng-content>
+    </label>
+  </ng-template>
+</div>
