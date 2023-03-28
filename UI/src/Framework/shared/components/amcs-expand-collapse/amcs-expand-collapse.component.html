@@ -1,8 +1,0 @@
-<ng-container>
-  <i *ngIf="!isSecondaryStyle" class="fa fa-lg"
-    [ngClass]="{'fa-chevron-down': !isExpanded, 'fa-chevron-up': isExpanded}" aria-hidden="true" appAutomationLocator
-    [compName]="compName" [uniqueKey]="'chevron'"></i>
-  <i *ngIf="isSecondaryStyle" class="fas secondary"
-    [ngClass]="{'fa-chevron-down': !isExpanded, 'fa-chevron-up': isExpanded}" aria-hidden="true" appAutomationLocator
-    [compName]="compName" [uniqueKey]="'secondary_chevron'"></i>
-</ng-container>

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="Default Web Site/Amcs.Platform.UI" />
-  <setParameter name="ElemosServiceRoot" value="https://f1-dev-svc-elemos.azurewebsites.net/" />
-  <setParameter name="apiKey" value="SysTok 8596DC65-3D40-4504-933C-3FDFF685CDC0" />
-  <setParameter name="elemosClientURL" value="ELEMOS-f1-dev" />
-</parameters>

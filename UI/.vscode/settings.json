@@ -1,8 +1,0 @@
-{  // Controls if suggestions should automatically show up while typing
-    "editor.quickSuggestions": {
-      "other": true,
-      "comments": false,
-      "strings": true
-    },
-    "ngx-translate-quickcreate.autocapitalize": false
-}

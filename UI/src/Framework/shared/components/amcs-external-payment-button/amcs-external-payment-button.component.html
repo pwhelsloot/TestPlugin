@@ -1,7 +1,0 @@
-<app-amcs-button [compName]="compName" [uniqueKey]="uniqueKey" customClass="btn-secondary process-payment" type="submit"
-    [loading]="loading" [disabled]="disabled || loading">
-    <span *ngIf="isPayment" [translate]="'externalPayment.buttontext'">Process Payment<i
-            class="fas fa-external-link-alt padding-left"></i></span>
-    <span *ngIf="!isPayment" [translate]="'externalPayment.buttonTextCardAuth'">Authorize Credentials<i
-            class="fas fa-external-link-alt padding-left"></i></span>
-</app-amcs-button>

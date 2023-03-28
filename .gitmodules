@@ -1,7 +1,3 @@
-[submodule "UI/src/Framework"]
-	path = UI/src/Framework
-	url = https://amcsgroup@dev.azure.com/amcsgroup/Platform/_git/PlatformUIFramework
-	branch = master
 [submodule "API/src/Framework"]
 	path = API/src/Framework
 	url = https://amcsgroup@dev.azure.com/amcsgroup/Platform/_git/PlatformFramework

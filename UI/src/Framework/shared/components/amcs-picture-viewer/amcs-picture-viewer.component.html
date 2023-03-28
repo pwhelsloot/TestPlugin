@@ -1,7 +1,0 @@
-<carousel [interval]="-1" (activeSlideChange)="pictureChanged.next($event)">
-  <slide *ngFor="let picture of pictures;let i = index" appAutomationLocator [compName]="compName"
-    [uniqueKey]="'slide_'+i">
-    <img [appImageViewer]="picture.pictureBase64" alt="{{picture.caption}}">
-    <div class="carousel-caption d-none d-md-block"></div>
-  </slide>
-</carousel>

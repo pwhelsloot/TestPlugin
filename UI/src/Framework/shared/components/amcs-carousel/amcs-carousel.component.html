@@ -1,6 +1,0 @@
-<carousel [interval]="-1" (activeSlideChange)="onSlideChange($event)">
-  <slide *ngFor="let slideItems of slides;let i = index" appAutomationLocator [compName]="compName"
-    [uniqueKey]="'caurousel_' + i">
-    <ng-template [ngTemplateOutlet]="slideTemplate"></ng-template>
-  </slide>
-</carousel>
