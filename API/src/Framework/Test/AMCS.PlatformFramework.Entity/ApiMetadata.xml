@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+  This file defines metadata for the REST API's. The information below describes
+  metadata that's missing from the ORM layer.
+  
+  Once we get to rebuilding the ELEMOS ORM layer, the information below will be
+  integrated into the new ORM layer, obviating the need for this file.
+  
+  The Context element is used to define groups in the API. You can e.g. bind
+  a number of entities into a specific route, creating logical groups for them.
+  To remove redundancy in the type declarations, Context requires a Namespace
+  and Assembly attribute. The qualified types for the entities are created from
+  those.
+  
+  Routes can be reused for different contexts. If entities live in different
+  namespaces or assemblies, but need to be in the same context (i.e. route),
+  define two contexts with the same route and different namespaces/assemblies.
+
+-->
+<Metadata xmlns="http://amcsgroup.com/Elemos/EntityMetadata/2018-04" CurrentVersion="1.0" LatestVersion="1.0">
+
+  <Context Route="/" Namespace="AMCS.PlatformFramework.Entity" Assembly="AMCS.PlatformFramework.Entity">
+    <Entity Name="User" Type="UserEntity"/>
+    <Entity Name="Job" Type="JobEntity"/>
+    <Entity Name="CustomerSite" Type="CustomerSiteEntity"/>
+    <Entity Name="Location" Type="LocationEntity"/>
+  </Context>
+
+  <Context Route="/jobsystem" Namespace="AMCS.PlatformFramework.Entity.Api.JobSystem" Assembly="AMCS.PlatformFramework.Entity">
+    <Entity Name="Job" Type="ApiJob"/>
+    <Entity Name="JobLog" Type="ApiJobLog"/>
+    <Entity Name="JobHandler" Type="ApiJobHandler"/>
+    <Entity Name="ScheduledJob" Type="ApiScheduledJob"/>
+    <Entity Name="JobPost" Type="ApiJobPost"/>
+    <Entity Name="JobCancel" Type="ApiJobCancel"/>
+  </Context>
+
+  <Context Route="/api" Namespace="AMCS.PlatformFramework.Entity.Api" Assembly="AMCS.PlatformFramework.Entity">
+    <Entity Name="Template" Type="ApiTemplateEntity"/>
+    <Entity Name="User" Type="ApiUserEntity"/>
+  </Context>
+
+  <Context Route="/template" Namespace="AMCS.PlatformFramework.Entity.Api.Snippets" Assembly="AMCS.PlatformFramework.Entity">
+    <Entity Name="SnippetExampleEditorData" Type="ApiSnippetExampleEditorData"/>
+  </Context>
+
+  <Context Route="/settings" Namespace="AMCS.PlatformFramework.Entity.Api.Settings" Assembly="AMCS.PlatformFramework.Entity">
+    <Entity Name="ExampleSettingEditorData" Type="ApiExampleSettingEditorData"/>
+    <Entity Name="ExampleSetting" Type="ApiExampleSetting"/>
+    <Entity Name="ExampleSettingBrowser" Type="ApiExampleSettingBrowser"/>
+  </Context>
+
+  <Context Route="/recipe" Namespace="AMCS.PlatformFramework.Entity.Api.Recipe" Assembly="AMCS.PlatformFramework.Entity">
+    <Entity Name="Ingredient" Type="ApiIngredient"/>
+    <Entity Name="Recipe" Type="ApiRecipe"/>
+    <Entity Name="Measurement" Type="ApiMeasurement"/>
+    <Entity Name="IngredientType" Type="ApiIngredientType"/>
+    <Entity Name="IngredientEditorData" Type="ApiIngredientEditorData"/>
+    <Entity Name="DinnerPlanEditorData" Type="ApiDinnerPlanEditorData"/>
+    <Entity Name="RecipeStepperSave" Type="ApiRecipeStepperSave"/>
+    <Entity Name="MapExampleEditorData" Type="ApiMapExampleEditorData"/>
+    <Entity Name="MapExample" Type="ApiMapExample"/>
+  </Context>
+
+</Metadata>

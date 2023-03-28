@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6869A647-53D9-4455-9F13-3DE9E17B5E49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AMCS.ApiService.Tests</RootNamespace>
+    <AssemblyName>AMCS.ApiService.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\ElemosClientServer.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\ElemosClientServer.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <PackageId>AMCS.ApiService.Tests</PackageId>
+    <Product>AMCS.ApiService.Tests</Product>
+    <Version>99.0.0.0</Version>
+    <Company>AMCS Group Ltd</Company>
+    <Authors>AMCS Group Ltd</Authors>
+    <Copyright>Copyright © AMCS Group Ltd</Copyright>
+    <AssemblyVersion>99.0.0.0</AssemblyVersion>
+    <FileVersion>99.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\DynamicAppConfig\ConfigurationServiceTests.cs" />
+    <Compile Include="Configuration\DynamicAppConfig\ExportDynamicAppConfigurationTest.cs" />
+    <Compile Include="Configuration\DynamicAppConfig\TestConfigurations.cs" />
+    <Compile Include="Configuration\DynamicAppConfig\ValidTestConfiguration.cs" />
+    <Compile Include="Configuration\DynamicAppConfig\ValidTestConfigurationResolver.cs" />
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Configuration\OwinContextExtensionsTests.cs" />
+    <Compile Include="Filters\Filter.cs" />
+    <Compile Include="Filters\FilterEntity.cs" />
+    <Compile Include="Filters\FilterExpressionParserTest.cs" />
+    <Compile Include="Filters\FilterTermExpressionParserTest.cs" />
+    <Compile Include="Fixtures\AppBuilderFixture.cs" />
+    <Compile Include="Fixtures\BaseFixture.cs" />
+    <Compile Include="Fixtures\ClaimsPrincipalFixture.cs" />
+    <Compile Include="Fixtures\ConfigurationManagerFixture.cs" />
+    <Compile Include="Fixtures\HttpMessageHandlerFixture.cs" />
+    <Compile Include="Moment\MomentTimeZoneDatabaseConverterFixture.cs" />
+    <Compile Include="Fixtures\OpenIdConnectAuthenticationOptionsFixture.cs" />
+    <Compile Include="Fixtures\OwinContextFixture.cs" />
+    <Compile Include="Fixtures\RedirectToIdentityProviderNotificationFixture.cs" />
+    <Compile Include="Fixtures\ServiceRootResolverFixture.cs" />
+    <Compile Include="Fixtures\TestHttpMessageHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestServiceSetup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Moment\2019b.json" />
+    <EmbeddedResource Include="Moment\2019b.patch" />
+    <EmbeddedResource Include="Moment\2019c.json" />
+    <EmbeddedResource Include="Moment\2019c.patch" />
+    <EmbeddedResource Include="Moment\tzdb2019b.nzd" />
+    <EmbeddedResource Include="Moment\tzdb2019c.nzd" />
+    <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.ApiService.Filtering\AMCS.ApiService.Filtering.csproj">
+      <Project>{a3198540-a2ed-4edd-b083-f54c0ffb88f5}</Project>
+      <Name>AMCS.ApiService.Filtering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMCS.ApiService\AMCS.ApiService.csproj">
+      <Project>{c78aabe2-e337-418a-af43-a6f50e062478}</Project>
+      <Name>AMCS.ApiService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMCS.Data.Entity\AMCS.Data.Entity.csproj">
+      <Project>{989aabe3-b367-450b-a197-b8158aee020b}</Project>
+      <Name>AMCS.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMCS.Data.Server\AMCS.Data.Server.csproj">
+      <Project>{a422c241-4cbb-4dd2-a5bc-a7209d0c061b}</Project>
+      <Name>AMCS.Data.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMCS.Data.TestSupport\AMCS.Data.TestSupport.csproj">
+      <Project>{c034cd79-6636-4a9f-b1e4-e4a802235227}</Project>
+      <Name>AMCS.Data.TestSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMCS.Data\AMCS.Data.csproj">
+      <Project>{5458F2CA-3C66-494F-BC65-2AD72C74CC83}</Project>
+      <Name>AMCS.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Diff.Match.Patch">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestAdapter">
+      <Version>2.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestFramework">
+      <Version>2.2.10</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

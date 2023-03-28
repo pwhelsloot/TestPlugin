@@ -1,0 +1,6 @@
+<PluginMetadata xmlns="https://schemas.amcsgroup.io/platform/plugin-metadata/2021-12" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Plugin="amcs/workflow-server" Version="99.0.0.0" Mode="Validate">
+    <ReverseProxyRules>
+        <ReverseProxyRule Prefix="/workflow-server/api/" Target="http://localhost:49294/" AcceptsOAuthToken="false" />
+        <ReverseProxyRule Prefix="/workflow-server/api/" Target="http://localhost:49294/" AcceptsOAuthToken="false" />
+    </ReverseProxyRules>
+</PluginMetadata>

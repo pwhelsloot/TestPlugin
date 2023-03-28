@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
+    <PackageId>AMCS.Data.Configuration</PackageId>
+  </PropertyGroup>
+  <Import Project="..\PlatformFramework.targets" />
+  <ItemGroup>
+    <PackageReference Include="ConfigurationSectionGenerator" Version="1.0.6" />
+    <PackageReference Include="System.Resources.Reader" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.Data.EntityValidation\AMCS.Data.EntityValidation.csproj" />
+    <ProjectReference Include="..\AMCS.Data.Entity\AMCS.Data.Entity.csproj" />
+    <ProjectReference Include="..\AMCS.Data\AMCS.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Configuration\ConnectionStringsConfiguration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConnectionStringsConfiguration.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Configuration\ConnectionStringsConfiguration.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConnectionStringsConfiguration.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

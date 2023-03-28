@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <appSettings>
+    <add key="aspnet:SuppressSameSiteNone" value="true" />
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+    <add key="owin:appStartup" value="AMCS.ApiService.Startup" />
+    <add key="AppContext.SetSwitch:Switch.System.Net.DontEnableSchUseStrongCrypto" value="false" />
+    <add key="AppContext.SetSwitch:Switch.System.Net.DontEnableSystemDefaultTlsVersions" value="false" />
+  </appSettings>
+
+  <amcs
+    projectId="AMCS" 
+    serviceRootName="PlatformFrameworkServiceRoot"/>
+
+  <amcs.serviceRoots>
+    <add name="PlatformFrameworkServiceRoot" url="http://localhost:60047/" />
+  </amcs.serviceRoots>
+
+  <amcs.server
+    applicationInsightsInstrumentationKey=""
+    dataAccessType="SQL"
+    commandTimeout="240"
+    commandTimeoutExtended="600"
+    bulkCopyTimeout="600"
+    performanceMonitoringEnabled="false"
+    azureCompatibilityEnabled="false"
+    dataSynchronizationDisabled="true"
+    entityObjectMappingsPath="..\Language\ent\"
+    searchResultMappingsPath="..\Language\srch\"
+    sessionExpiration="0:30:00"
+    encryptionKey="supersecret!supersecret!"
+    certificateSubjectName=""
+    certificatePath="">
+
+    <!--
+    The scheduledJobQueueInterval attribute defines the interval in seconds
+    in which we queue pending scheduled jobs.
+    -->
+
+    <platformUI>
+    </platformUI>
+
+    <jobSystem
+      scheduledJobUserId="admin"
+      scheduledJobQueueInterval="60"
+      instanceName="server"
+      queuePrefix="" />
+
+    <broadcast
+      instanceName="server"
+      queuePrefix="" />
+
+    <commsServer
+      userName="ADMIN"
+      allowAlteranteTransport="true">
+    </commsServer>
+
+    <commsServerProtocols
+      serviceRoot="PlatformFrameworkServiceRoot"
+      key="secret" />
+
+    <api>
+      <enabledApis>
+        <!--<add name="Area1"/>-->
+      </enabledApis>
+    </api>
+
+    <tempFileStorage
+      ttl="7.00:00:00">
+      <fileSystem
+        store="" />
+      <!-- DevOps Beware: Cannot point at exising container as contents will be automatically cleaned up with TTL above -->
+      <azure
+        container="" />
+    </tempFileStorage>
+
+  </amcs.server>
+
+  <amcs.platform-framework
+    neutralTimeZoneId="Europe/Dublin"
+    tenantId="4C0FFDF1-CC0A-4C1F-A023-7B2C0354AE98" >
+
+    <commsServer>
+
+      <server
+        url="http://localhost:43603"
+        authKey="let-me-in"
+        protocol="Push"
+        azureServiceBusConnectionStringName="PlatformFrameworkServiceBusConnectionString"
+        allowAlteranteTransport="true"/>
+
+    </commsServer>
+
+  </amcs.platform-framework>
+
+  <agentConfiguration>
+    <queues>
+      <add name="priority" queueSize="2" />
+      <add name="slow" queueSize="2" />
+    </queues>
+  </agentConfiguration>
+
+  <connectionStrings>
+    <add name="PlatformFrameworkConnectionString" connectionString="Data Source=.;Initial Catalog=PlatformFrameworkDevelopment;User ID=sa;Password=T7axEiTYigXtE4ap/Z7Wbw==" providerName="System.Data.SqlClient" />
+    <add name="BroadcastServiceBusConnectionString" connectionString="" />
+    <add name="PlatformFrameworkServiceBusConnectionString" connectionString="" />
+  </connectionStrings>
+
+  <log4net>
+    <appender name="ConsoleAppender" type="AMCS.Data.Support.ConsoleColorAppender, AMCS.Data">
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="[%-5p] %m%n" />
+      </layout>
+    </appender>
+    <root>
+      <level value="DEBUG" />
+      <appender-ref ref="ConsoleAppender" />
+    </root>
+  </log4net>
+
+</configuration>

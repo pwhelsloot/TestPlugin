@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commsServer xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <storage>
+    <azureServiceBus connectionString="___SbnConnectionString___" queuePrefix="platformframework-integration-test" xdt:Transform="SetAttributes" />
+  </storage>
+</commsServer>

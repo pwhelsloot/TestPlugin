@@ -1,0 +1,33 @@
+﻿<Dictionary>
+  <Words>
+    <Unrecognized>
+      <Word></Word>
+    </Unrecognized>
+    <Recognized>
+      <Word>AMCS</Word>
+      <Word>Api</Word>
+      <Word>Utils</Word>
+      <Word>Bom</Word>
+      <Word>Comms</Word>
+      <Word>Dto</Word>
+      <Word>Auth</Word>
+    </Recognized>
+    <Deprecated>
+      <Term PreferredAlternate=""></Term>
+    </Deprecated>
+    <Compound>
+      <Term CompoundAlternate=""></Term>
+    </Compound>
+    <DiscreteExceptions>
+      <Term></Term>
+    </DiscreteExceptions>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>AMCS</Acronym>
+      <Acronym>SQL</Acronym>
+      <Acronym>Ns</Acronym>
+      <Acronym>Comms</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

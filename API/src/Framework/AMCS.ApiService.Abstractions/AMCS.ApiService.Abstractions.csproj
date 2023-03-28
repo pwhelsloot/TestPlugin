@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
+    <PackageId>AMCS.ApiService.Abstractions</PackageId>
+  </PropertyGroup>
+  <Import Project="..\PlatformFramework.targets" />
+  <ItemGroup>
+    <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net48'" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AMCS.AzureServiceBusSupport" Version="0.2.24" />
+    <PackageReference Include="AMCS.CommsServer.Serialization" Version="1.0.0.29" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.4" Condition="'$(TargetFramework)' == 'net48'" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" Condition="'$(TargetFramework)' == 'net6.0'" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMCS.Data\AMCS.Data.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<section type="PlatformFrameworkConfiguration" namespace="AMCS.PlatformFramework.Server.Configuration" sectionName="amcs.platform-framework" generateInterfaces="true">
+
+  <attribute name="neutralTimeZoneId" type="string" required="false"/>
+  <attribute name="tenantId" type="string" required="true"/>
+
+  <element name="commsServer" type="CommsServer">
+    <element name="server" type="CommsServerServer">
+      <attribute name="url" type="string"/>
+      <attribute name="authKey" type="string" />
+      <attribute name="protocol" type="string" />
+      <attribute name="allowAlternateTransport" type="bool"/>
+      <attribute name="azureServiceBusConnectionStringName" type="string"/>
+    </element>
+  </element>
+
+</section>

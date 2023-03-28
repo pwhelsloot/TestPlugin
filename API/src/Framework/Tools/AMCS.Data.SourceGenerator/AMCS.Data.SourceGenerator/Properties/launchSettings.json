@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AMCS.Data.SourceGenerator": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\AMCS.Data.SourceGenerator.UnitTests\\AMCS.Data.SourceGenerator.UnitTests.csproj"
+    }
+  }
+}

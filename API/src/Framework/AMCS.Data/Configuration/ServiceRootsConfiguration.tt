@@ -1,0 +1,3 @@
+﻿<#@ template language="C#" hostspecific="true" debug="true" #>
+<#@ output extension=".cs" encoding="utf-8" #>
+<#@ include file="$(ProjectDir)\ConfigurationSectionGenerator.tt" #>

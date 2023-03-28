@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;netcoreapp3.1</TargetFrameworks>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PackageId>AMCS.PlatformFramework.CommsServer.Protocols</PackageId>
+  </PropertyGroup>
+  <Import Project="..\..\PlatformFramework.targets" />
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml" Link="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AMCS.CommsServer.Server" Version="1.0.0.29" />
+  </ItemGroup>
+</Project>
